@@ -4,7 +4,7 @@ let config = {
   "Description": "Undergraduate Researcher | AGN | Dr. Allison Kirkpatrick | KU",
   "links": [
     {
-      "Title": "GitHub Research Repo",
+      "Title": "Featured Research: Spectral Analysis",
       "URL": "https://github.com/JHavens2187/Spectral_Analysis",
       "icon_classes": "fab fa-github",
     },
