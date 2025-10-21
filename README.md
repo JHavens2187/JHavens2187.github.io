@@ -9,7 +9,7 @@ I’m an Astronomy student at KU, passionate about science outreach, making astr
 - Mild tech repair
 
 **Projects:**  
-- **PYAXIOMA** (my pride and joy)  
+- **PYAXIOMA**
 - **KSHSAA sb-automator**
 
 **Interests:**  
