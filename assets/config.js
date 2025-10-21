@@ -10,7 +10,7 @@ let config = {
     },
     {
       "Title": "View My CV",
-      "URL": "assets/CV.WIP.pdf",
+      "URL": "assets/CV_Havens.pdf",
       "icon_classes": "fas fa-file-alt",
     },
     {
