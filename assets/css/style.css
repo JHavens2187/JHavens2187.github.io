@@ -218,3 +218,126 @@ img {
     border: 4px solid #fff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
+/* =========================================
+   NEW OUTREACH PAGE STYLES (OCT 2025)
+   ========================================= */
+
+/* Main container for the new page */
+.outreach-page-container {
+    max-width: 960px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+/* Header for the new page */
+.outreach-header {
+    text-align: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.outreach-header h1 {
+    font-family: 'Dosis', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: #111;
+}
+
+.back-link {
+    font-family: 'Abel', sans-serif;
+    font-size: 1.1rem;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+/* Row styles for the alternating layout */
+.outreach-row {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #eee;
+}
+
+.outreach-row:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+/* This class reverses the order for the alt layout */
+.outreach-row.reversed {
+    flex-direction: row-reverse;
+}
+
+/* Image container */
+.outreach-image {
+    flex: 1;
+    /* Takes up 1 part of the space */
+    min-width: 250px;
+}
+
+.outreach-image img {
+    width: 100%;
+    border-radius: 8px; /* Softer square corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Text container */
+.outreach-text {
+    flex: 1.5;
+    /* Takes up 1.5 parts of the space (a bit more) */
+}
+
+.outreach-text h3 {
+    font-family: 'Dosis', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.outreach-text p {
+    font-family: 'Abel', sans-serif;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #555;
+}
+
+/* --- Responsive styles for mobile --- */
+@media (max-width: 768px) {
+    .outreach-page-container {
+        margin: 20px 10px;
+        padding: 20px;
+    }
+
+    .outreach-row,
+    .outreach-row.reversed {
+        /* Stack vertically on mobile */
+        flex-direction: column;
+    }
+
+    .outreach-text {
+        /* Make text appear below image on mobile */
+        order: 2;
+    }
+
+    .outreach-image {
+        /* Make image appear above text on mobile */
+        order: 1;
+        width: 100%;
+    }
+}
