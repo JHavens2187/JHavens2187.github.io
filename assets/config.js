@@ -1,7 +1,7 @@
 let config = {
   "Title": "Joseph Havens",
   "Name": "Joseph Havens",
-  "Description": "Undergraduate Researcher | AGN | Dr. Allison Kirkpatrick | KU",
+  "Description": "Undergraduate Researcher | KU Physics and Astronomy Dept.",
   "links": [
     {
       "Title": "Featured Research: Spectral Analysis",
@@ -14,14 +14,19 @@ let config = {
       "icon_classes": "fas fa-file-alt",
     },
     {
+      "Title": "Talks & Outreach",
+      "URL": "#outreach",
+      "icon_classes": "fas fa-star",
+    },
+    {
       "Title": "LinkedIn",
       "URL": "https://www.linkedin.com/in/joseph-havens-1b3a73348/",
       "icon_classes": "fab fa-linkedin"
     },
     {
-  "Title": "Bluesky",
-  "URL": "https://bsky.app/profile/cosmicjoe.bsky.social",
-  "icon_classes": "fa-brands fa-bluesky"
-},
+      "Title": "Bluesky",
+      "URL": "https://bsky.app/profile/cosmicjoe.bsky.social",
+      "icon_classes": "fa-brands fa-bluesky"
+    },
   ]
 }
