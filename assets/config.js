@@ -1,7 +1,7 @@
 let config = {
   "Title": "Joseph Havens",
   "Name": "Joseph Havens",
-  "Description": "Undergraduate Researcher | KU Physics and Astronomy Dept.",
+  "Description": "Undergraduate Researcher | Dr. Allison Kirkpatrick | KU Physics and Astronomy Dept.",
   "links": [
     {
       "Title": "Featured Research: Spectral Analysis",
