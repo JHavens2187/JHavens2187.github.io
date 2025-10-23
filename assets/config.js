@@ -13,9 +13,9 @@ let config = {
       "URL": "assets/CV_Havens.pdf",
       "icon_classes": "fas fa-file-alt",
     },
-    {
+{
       "Title": "Talks & Outreach",
-      "URL": "#outreach",
+      "URL": "outreach.html",
       "icon_classes": "fas fa-star",
     },
     {
