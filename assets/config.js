@@ -6,7 +6,7 @@ let config = {
   {
       "Title": "My Research Projects",
       "URL": "research.html",
-      "icon_classes": "fas fa-star",
+      "icon_classes": "fas fa-telescope",
     },
     {
       "Title": "View My CV",
