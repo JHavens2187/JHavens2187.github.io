@@ -346,11 +346,12 @@ img {
    RESEARCH PAGE STYLES (OCT 2025)
    ========================================= */
 
-/* Style for the new "View on GitHub" button */
+/* Style for the "View on GitHub" button */
 .btn-github-link {
     display: inline-block;
     padding: 10px 18px;
     margin-top: 15px;
+    margin-right: 10px; /* Add space between buttons */
     background-color: #333; /* Dark background */
     color: #fff; /* White text */
     border-radius: 5px;
@@ -371,4 +372,67 @@ img {
 
 .btn-github-link i {
     margin-right: 8px; /* Space between icon and text */
+}
+
+/* Style for the new "Read Paper" button */
+.btn-paper-link {
+    display: inline-block;
+    padding: 10px 18px;
+    margin-top: 15px;
+    background-color: #007bff; /* Primary blue */
+    color: #fff; /* White text */
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: 'Dosis', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-paper-link:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    color: #fff;
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn-paper-link i {
+    margin-right: 8px; /* Space between icon and text */
+}
+
+/* New style for the text-only blocks */
+.research-text-block {
+    padding: 20px 10px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #eee;
+}
+
+.research-text-block:last-child {
+    border-bottom: none;
+}
+
+.research-text-block h3 {
+    font-family: 'Dosis', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.research-text-block p {
+    font-family: 'Abel', sans-serif;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #555;
+}
+
+/* New style for the image caption */
+.outreach-image .caption {
+    font-family: 'Abel', sans-serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: #666;
+    margin-top: 10px;
+    text-align: center;
 }
