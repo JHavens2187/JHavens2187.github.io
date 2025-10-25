@@ -3,10 +3,10 @@ let config = {
   "Name": "Joseph Havens",
   "Description": "Undergraduate Researcher | Dr. Allison Kirkpatrick | KU Physics and Astronomy Dept.",
   "links": [
-    {
-      "Title": "Featured Research: Spectral Analysis",
-      "URL": "https://github.com/JHavens2187/Spectral_Analysis",
-      "icon_classes": "fab fa-github",
+  {
+      "Title": "My Research Projects",
+      "URL": "research.html",
+      "icon_classes": "fas fa-star",
     },
     {
       "Title": "View My CV",
