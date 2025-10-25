@@ -31,55 +31,74 @@
             </a>
         </div>
 
-        <div class="research-text-block">
-            <h3>The Challenge: Seeing Through Cosmic Dust</h3>
-            <p>To understand the properties of the first galaxies and their supermassive black holes (AGN), we must
-                first understand the <strong>dust</strong> that obscures them. Dust doesn't block all light
-                equally—it follows an "attenuation law." A promising method to measure this law is to compare the
-                ratios of multiple hydrogen emission lines (e.g., H&alpha;, H&beta;, and a Paschen line).</p>
-            <p>This method, however, has been notoriously difficult. As shown in <strong>Prescott et al. (2022)</strong>,
-                ground-based attempts suffer from severe biases. Because different lines are observed with different
-                telescopes at different times, you get "slit losses" and calibration errors, making the results
-                unreliable. This is precisely the capability that <strong>JWST</strong> now provides.</p>
-        </div>
-
         <div class="outreach-row">
             <div class="outreach-image">
-                <img src="assets/img/spectral_plot.png" alt="AGN Spectral Analysis Plot using GLEAM">
-                <p class="caption">An example of a GLEAM fit to a JADES/SMACS spectrum, showing the simultaneous fit of key
-                    emission lines.</p>
+                <img src="assets/img/prescott_fig1.png" alt="Prescott et al. 2022 Figure 1">
+                <p class="caption">
+                    This plot from <strong>Prescott et al. (2022)</strong> [cite: 1] shows the problem with ground-based data.
+                    Many galaxies (blue dots) fall in "unphysical" regions (gray) due to observational biases.
+                </p>
             </div>
+            <div class="outreach-text">
+                <h3>The Challenge: Seeing Through Cosmic Dust</h3>
+                <p>To understand the first galaxies and their supermassive black holes (AGN), we must
+                    first understand the <strong>dust</strong> that obscures them. A promising method to measure the
+                    "attenuation law" is to compare hydrogen line ratios (e.g., H&alpha;, H&beta;, Pa&beta;). [cite: 13, 42]</p>
+                <p>This method has been notoriously difficult. As shown in <strong>Prescott et al. (2022)</strong>[cite: 1],
+                    ground-based attempts suffer from severe biases like "slit losses," making the results
+                    unreliable. [cite: 20, 362] The paper concluded that a single, powerful instrument that can
+                    capture all lines at once—like <strong>JWST</strong>—is required. [cite: 21, 511]</p>
+            </div>
+        </div>
+
+        <div class="outreach-row reversed">
             <div class="outreach-text">
                 <h3>My Research: Using JWST & GLEAM to Solve the Puzzle</h3>
                 <p>My research, as part of Dr. Kirkpatrick's group, is one of the first to apply this "three-line
-                    method" using new, high-quality data from the <strong>JADES</strong> (JWST Advanced Deep
-                    Extragalactic Survey) and <strong>SMACS</strong> (Southern MAssive Cluster Survey) programs.</p>
+                    method" using new, high-quality data from the <strong>JADES</strong> and
+                    <strong>SMACS</strong> JWST surveys.</p>
                 <p>To measure the lines, I am using and testing the <strong>GLEAM</strong> fitting tool. My work
                     involves running GLEAM on the JWST spectra to robustly fit the key emission lines and measure their
-                    flux ratios. From these ratios, we can constrain the dust attenuation law (both its slope, $n$,
-                    and normalization, $\tau_V$) in these early-universe AGN, free from the biases of ground-based
-                    data.</p>
+                    flux ratios. This allows us to constrain the dust attenuation law (both $n$ and $\tau_V$)
+                    free from the biases of ground-based data.</p>
 
                 <a href="https://github.com/JHavens2187/Spectral_Analysis" class="btn-github-link" target="_blank">
                     <i class="fab fa-github"></i> View Project on GitHub
                 </a>
                 <a href="assets/pdf/Prescott_2022_ApJ_928_71.pdf" class="btn-paper-link" target="_blank">
-                    <i class="fas fa-file-alt"></i> Read Foundational Paper (Prescott+ 2022)
+                    <i class="fas fa-file-alt"></i> Read Prescott+ 2022
+                </a>
+            </div>
+            <div class="outreach-image">
+                <img src="assets/img/spectral_plot.png" alt="AGN Spectral Analysis Plot using GLEAM">
+                <p class="caption">An example of my GLEAM fit to a JADES/SMACS spectrum, showing the simultaneous fit of key
+                    emission lines.</p>
+            </div>
+        </div>
+        
+        <div class="outreach-row">
+            <div class="outreach-image">
+                <img src="assets/img/shapley_fig4.png" alt="Shapley et al. 2023 Figure 4">
+                <p class="caption">
+                    This result from <strong>Shapley et al. (2023)</strong> [cite: 566] shows the kind of science this method
+                    unlocks: relating dust attenuation ($H\alpha/H\beta$) to stellar mass. 
+                </p>
+            </div>
+            <div class="outreach-text">
+                <h3>Next Steps: Building a More Complete Model</h3>
+                <p>This project's "very recent addition" is to use <strong>Star Formation Rates (SFRs)</strong> as
+                    an independent constraint. This is a cutting-edge field; for example, <strong>Shapley et al.
+                        (2023)</strong> used JWST to get dust-corrected H$\alpha$-based SFRs. [cite: 580]</p>
+                <p>By combining our dust measurements (like the y-axis in the plot) with independent SFRs, we can
+                    break model degeneracies. The future of this work is to build a complete physical model connecting
+                    the AGN activity, star formation, and dust in these early-universe galaxies.</p>
+                
+                <a href="assets/pdf/Shapley_2023_ApJ_954_157.pdf" class="btn-paper-link" target="_blank">
+                    <i class="fas fa-file-alt"></i> Read Shapley+ 2023
                 </a>
             </div>
         </div>
 
-        <div class="research-text-block">
-            <h3>Next Steps: Building a More Complete Model</h3>
-            <p>The "very recent addition" to this project is to use <strong>Star Formation Rates (SFRs)</strong> as
-                an independent constraint. Measuring dust properties from line ratios alone can sometimes be
-                "degenerate," where different models produce similar-looking results.</p>
-            <p>By adding an independent measurement (the galaxy's total SFR, which is also affected by dust), we can
-                break these degeneracies. The future of this work is to combine our GLEAM-derived dust measurements
-                with SFRs to build a complete physical model connecting the AGN activity, the star formation in its
-                host galaxy, and the dust that fuels and obscures them both.</p>
-
-            </div>
 
         <footer>
             <div>
