@@ -5,7 +5,7 @@
     --gold: #ffcc33; --green: #5aad45; --blue: #23a6d5; --red: #ea4335;
 }
 
-/* --- Body & Background (THIS WAS MISSING) --- */
+/* --- Body & Background --- */
 body {
     background: linear-gradient(-45deg, #d35ecd, #5aad45, #23a6d5, #3a0eb3) !important;
     background-size: 400% 400% !important;
@@ -23,9 +23,54 @@ body {
     100% { background-position: 0% 50%; }
 }
 
+/* --- SYSTEM BOOT SCREEN (NEW) --- */
+#boot-screen {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #000; /* Pure black for contrast */
+    z-index: 9999; /* On top of everything */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: opacity 0.8s ease-out; /* Smooth fade out */
+}
+
+.terminal-container {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.2rem;
+    color: var(--accent-glow);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: left;
+    min-width: 300px;
+}
+
+.terminal-line {
+    min-height: 1.5rem;
+    margin-bottom: 10px;
+    opacity: 0; /* Hidden by default */
+}
+
+/* Blinking cursor effect for the active line */
+.terminal-line::after {
+    content: '█';
+    animation: blink 0.8s infinite;
+    margin-left: 5px;
+    display: none; /* Hidden unless active */
+}
+
+.terminal-line.active::after {
+    display: inline-block;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
 /* --- Cinematic Bento Card --- */
 .bento-tile {
-    /* Transparent to let image show */
     background: transparent !important; 
     border: 1px solid var(--card-border) !important;
     border-radius: 24px !important;
@@ -35,7 +80,6 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
 }
 
-/* Background Image Layer */
 .tile-bg {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -47,7 +91,6 @@ body {
     transform: scale(1.05);
 }
 
-/* Dark Overlay */
 .tile-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -57,7 +100,6 @@ body {
     transition: opacity 0.3s ease;
 }
 
-/* Content Container */
 .card-body {
     position: relative; z-index: 2;
     height: 100%;
@@ -65,7 +107,7 @@ body {
     padding-bottom: 30px !important;
 }
 
-/* --- Card Hover Effects --- */
+/* Hover Effects */
 .bento-tile:hover {
     transform: translateY(-8px) !important;
     border-color: rgba(255,255,255,0.6) !important;
@@ -73,36 +115,26 @@ body {
 }
 
 .bento-tile:hover .tile-bg {
-    filter: brightness(0.3) blur(6px); /* Cinematic Blur */
+    filter: brightness(0.3) blur(6px);
     transform: scale(1.0);
 }
 
-.bento-tile:hover .tile-overlay {
-    opacity: 0.95;
-}
+.bento-tile:hover .tile-overlay { opacity: 0.95; }
 
-/* Text Reveal Animation */
 .reveal-text {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
+    max-height: 0; opacity: 0; overflow: hidden;
     transform: translateY(20px);
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .bento-tile:hover .reveal-text {
-    max-height: 100px; 
-    opacity: 1;
-    transform: translateY(0);
-    margin-top: 10px;
+    max-height: 100px; opacity: 1;
+    transform: translateY(0); margin-top: 10px;
 }
 
-/* Icon Animation */
 .icon-box i {
-    font-size: 3rem;
-    transition: transform 0.4s ease;
-    margin-bottom: 10px;
-    color: white;
+    font-size: 3rem; transition: transform 0.4s ease;
+    margin-bottom: 10px; color: white;
 }
 
 .bento-tile:hover .icon-box i {
@@ -116,7 +148,7 @@ body {
 .bento-tile.cv-card:hover { border-color: var(--blue) !important; }
 .bento-tile.outreach-card:hover { border-color: var(--red) !important; }
 
-/* --- Planetary Menu (Top Right) --- */
+/* --- Planetary Menu --- */
 .menu-container {
     position: fixed; top: 30px; right: 30px;
     width: 60px; height: 60px; z-index: 1000;
@@ -155,17 +187,15 @@ body {
 
 #toggle:checked ~ .menu-items a {
     opacity: 1; pointer-events: auto;
-    /* Expansion logic */
     transform: translate(calc(130px * var(--x)), calc(130px * var(--y))); 
 }
 
-/* Brand Colors */
 .menu-items a.github:hover { background: #333; color: white; }
 .menu-items a.linkedin:hover { background: #0077b5; color: white; }
 .menu-items a.bluesky:hover { background: #0085ff; color: white; }
 .menu-items a.email:hover { background: #ea4335; color: white; }
 
-/* --- Profile & Typography --- */
+/* --- Profile --- */
 .profile-pictures-container { display: flex; justify-content: center; gap: 20px; }
 .profile-picture { width: 140px; height: 140px; border-radius: 50% !important; border: 4px solid white; object-fit: cover; }
 .profile-name { font-family: 'Dosis', sans-serif; font-size: 4rem; letter-spacing: 1px; }
