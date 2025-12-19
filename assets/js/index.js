@@ -1,44 +1,47 @@
-// --- BOOT SEQUENCE LOGIC (Priority High) ---
-function runBootSequence() {
+// --- TRUE TYPEWRITER BOOT SEQUENCE ---
+async function typeLine(element, text, speed = 50) {
+    element.textContent = ""; // Clear existing
+    element.style.opacity = '1';
+    
+    for (let i = 0; i < text.length; i++) {
+        element.textContent += text.charAt(i);
+        await new Promise(r => setTimeout(r, speed));
+    }
+}
+
+async function runBootSequence() {
     const bootScreen = document.getElementById('boot-screen');
     const line1 = document.getElementById('line-1');
     const line2 = document.getElementById('line-2');
     const line3 = document.getElementById('line-3');
+    const cursor = document.getElementById('cursor'); // We will move this
 
-    if (!bootScreen || !line1) {
-        console.warn("Boot screen elements not found.");
-        return;
-    }
+    if (!bootScreen || !line1) return;
 
-    // Sequence timing (Total ~2.0s)
+    // Line 1
+    cursor.remove(); // Detach cursor to move it
+    line1.appendChild(cursor); // Attach to line 1
+    await typeLine(line1.firstChild, "INITIALIZING TELESCOPE UPLINK...", 40);
+    
+    // Line 2
+    await new Promise(r => setTimeout(r, 300));
+    cursor.remove();
+    line2.appendChild(cursor);
+    await typeLine(line2.firstChild, "CALIBRATING SENSORS...", 40);
+
+    // Line 3
+    await new Promise(r => setTimeout(r, 300));
+    cursor.remove();
+    line3.appendChild(cursor);
+    line3.style.color = '#5aad45';
+    await typeLine(line3.firstChild, "CONNECTION ESTABLISHED.", 40);
+
+    // Fade Out
+    await new Promise(r => setTimeout(r, 800));
+    bootScreen.style.opacity = '0';
     setTimeout(() => {
-        line1.textContent = "INITIALIZING TELESCOPE UPLINK...";
-        line1.style.opacity = '1';
-        line1.classList.add('active'); // Start cursor blink
-    }, 300);
-
-    setTimeout(() => {
-        line1.classList.remove('active'); // Stop cursor on line 1
-        line2.textContent = "CALIBRATING SENSORS...";
-        line2.style.opacity = '1';
-        line2.classList.add('active'); // Start cursor on line 2
-    }, 1100);
-
-    setTimeout(() => {
-        line2.classList.remove('active');
-        line3.textContent = "CONNECTION ESTABLISHED.";
-        line3.style.opacity = '1';
-        line3.style.color = '#5aad45'; // Green for success
-        line3.classList.add('active');
-    }, 1900);
-
-    // Fade out and reveal dashboard
-    setTimeout(() => {
-        bootScreen.style.opacity = '0';
-        setTimeout(() => {
-            bootScreen.style.display = 'none'; // Remove from flow
-        }, 800); // Wait for opacity transition
-    }, 2500);
+        bootScreen.style.display = 'none';
+    }, 1000);
 }
 
 // Start Boot Sequence Immediately on Load
@@ -47,7 +50,6 @@ window.addEventListener('load', () => {
         runBootSequence();
     } catch (e) {
         console.error("Boot sequence failed:", e);
-        // Fallback: Remove screen immediately if error
         const bs = document.getElementById('boot-screen');
         if(bs) bs.style.display = 'none';
     }
@@ -70,7 +72,7 @@ try {
             },
             "Class Projects & Papers": { 
                 desc: "Computer vision pipelines, Arduino hardware, and theoretical physics.",
-                img: "assets/img/Theoretical_Lagrangian.png",
+                img: "assets/img/Theoretical_Lagrangian.png", /* Your specific image */
                 cls: "projects-card"
             },
             "View My CV": { 
