@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="assets/css/style.css?v=8">
+    <link rel="stylesheet" href="assets/css/style.css?v=9">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Dosis:wght@400;600&display=swap" rel="stylesheet">
@@ -20,12 +20,12 @@
     <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
 
     <div class="container py-5">
-        <div class="page-header fade-in-up">
+        <div class="page-header reveal">
             <h1 class="page-title">My Research</h1>
             <p class="page-subtitle">AGN Dust Attenuation & Spectral Analysis with JWST</p>
         </div>
 
-        <div class="content-row">
+        <div class="content-row reveal">
             <div class="content-image">
                 <img src="assets/img/prescott_fig1.png" alt="Prescott et al. 2022">
             </div>
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <div class="content-row reversed">
+        <div class="content-row reversed reveal">
             <div class="content-text">
                 <h3>Using JWST & GLEAM to Solve the Puzzle</h3>
                 <p>My research utilizes new, high-quality data from the <strong>JADES</strong> and <strong>SMACS</strong> JWST surveys. I am testing the <strong>GLEAM</strong> fitting tool to robustly fit key emission lines and measure their flux ratios.</p>
@@ -49,7 +49,7 @@
             </div>
         </div>
 
-        <div class="content-row">
+        <div class="content-row reveal">
             <div class="content-image">
                 <img src="assets/img/shapley_fig4.png" alt="Shapley Results">
             </div>
@@ -64,15 +64,14 @@
     </div>
 
     <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.content-row').forEach((el) => observer.observe(el));
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
     </script>
 
 </body>
