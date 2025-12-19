@@ -34,25 +34,18 @@ if (container && config && config.links) {
         container.appendChild(col);
     });
 
-    // --- 3D TILT LOGIC (Apple/Active Theory Style) ---
+    // 3D Tilt Logic
     const cards = document.querySelectorAll('.bento-tile');
-
     cards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
-            // Calculate mouse position relative to card center
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
-            
-            // Rotation intensity (lower is more subtle)
-            const rotateX = (y / rect.height) * -15; // Invert Y for natural tilt
-            const rotateY = (x / rect.width) * 15;
-
+            const rotateX = (y / rect.height) * -10; 
+            const rotateY = (x / rect.width) * 10;
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
         });
-
         card.addEventListener('mouseleave', () => {
-            // Reset position smoothly
             card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale(1)`;
         });
     });
