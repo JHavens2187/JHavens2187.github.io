@@ -1,3 +1,32 @@
+/* Add these at the very top of style.css */
+:root {
+    --accent-glow: #23a6d5; /* We can change this to pink, green, or gold later */
+    --card-bg: rgba(255, 255, 255, 0.07);
+    --card-border: rgba(255, 255, 255, 0.2);
+}
+
+/* Update your Project/Research Cards */
+.card {
+    background: var(--card-bg) !important;
+    backdrop-filter: blur(10px); /* This creates the "frosted glass" effect */
+    border: 1px solid var(--card-border) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    color: white !important;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--accent-glow) !important;
+    box-shadow: 0 0 20px var(--accent-glow); /* This is your "Glow" */
+}
+
+/* Ensure headings inside glass cards are visible */
+.card-title {
+    font-family: "Dosis", sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
 body {
     background: linear-gradient(-45deg, #d35ecd, #5aad45, #23a6d5, #3a0eb3);
     background-size: 400% 400%;
