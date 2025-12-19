@@ -12,10 +12,23 @@
 </head>
 <body>
 
+    <div class="menu-container">
+        <input type="checkbox" id="toggle">
+        <label for="toggle" class="btn-main">
+            <i class="material-icons" id="menu-icon">menu</i>
+            <i class="material-icons" id="close-icon">close</i>
+        </label>
+        <div class="menu-items">
+            <a href="https://github.com/JHavens2187" style="--x:-1; --y:0;" target="_blank" class="github" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/joseph-havens-1b3a73348/" style="--x:-0.92; --y:0.38;" target="_blank" class="linkedin" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://bsky.app/profile/cosmicjoe.bsky.social" style="--x:-0.38; --y:0.92;" target="_blank" class="bluesky" title="Bluesky"><i class="fa-brands fa-bluesky"></i></a>
+            <a href="mailto:joe.havens79@ku.edu" style="--x:0; --y:1;" class="email" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+
     <div class="container py-5">
-        
         <header class="text-center mb-5 fade-in-up">
-            <div class="profile-pictures-container">
+            <div class="profile-pictures-container mb-4">
                 <img src="assets/img/profile_pic.png" alt="Researcher" class="profile-picture shadow-lg">
                 <img src="assets/img/outreach_pic.png" alt="Outreach" class="profile-picture shadow-lg">
             </div>
@@ -28,22 +41,8 @@
             </div>
         </header>
 
-        <div class="row justify-content-center" id="link-container"></div>
-
-        <div class="menu-container fade-in-up" style="animation-delay: 0.5s;">
-            <input type="checkbox" id="toggle">
-            <label for="toggle" class="btn-main">
-                <i class="material-icons" id="menu-icon">explore</i>
-                <i class="material-icons" id="close-icon">close</i>
-            </label>
-            <div class="menu-items">
-                <a href="https://github.com/JHavens2187" style="--i:1; --x:-1; --y:-1;" target="_blank" class="github"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/joseph-havens-1b3a73348/" style="--i:2; --x:1; --y:-1;" target="_blank" class="linkedin"><i class="fab fa-linkedin"></i></a>
-                <a href="https://bsky.app/profile/cosmicjoe.bsky.social" style="--i:3; --x:-1; --y:1;" target="_blank" class="bluesky"><i class="fa-brands fa-bluesky"></i></a>
-                <a href="mailto:joe.havens79@ku.edu" style="--i:4; --x:1; --y:1;" class="email"><i class="fas fa-envelope"></i></a>
+        <div class="row justify-content-center" id="link-container">
             </div>
-        </div>
-
     </div>
 
     <script src="assets/config.js"></script>
