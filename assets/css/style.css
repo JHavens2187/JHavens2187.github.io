@@ -1,11 +1,9 @@
-/* --- Core Variables --- */
 :root {
     --accent-glow: #23a6d5; 
-    --card-bg: rgba(20, 20, 30, 0.85); /* Darker for guaranteed contrast */
+    --card-bg: rgba(15, 15, 25, 0.75); 
     --card-border: rgba(255, 255, 255, 0.2);
 }
 
-/* --- Animated Background --- */
 body {
     background: linear-gradient(-45deg, #d35ecd, #5aad45, #23a6d5, #3a0eb3) !important;
     background-size: 400% 400% !important;
@@ -13,8 +11,7 @@ body {
     color: white !important;
     min-height: 100vh;
     font-family: 'Abel', sans-serif;
-    margin: 0;
-    padding: 0;
+    text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 @keyframes gradient {
@@ -23,91 +20,76 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* --- Profile Section --- */
-.profile-pictures-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding-top: 50px;
-}
-
-.profile-picture {
-    width: 150px !important;
-    height: 150px !important;
-    border-radius: 50% !important;
-    border: 3px solid white !important;
-    object-fit: cover !important;
-}
-
-.profile-name { 
-    font-family: 'Dosis', sans-serif; 
-    font-size: 3rem; 
-    text-align: center; 
-    margin-top: 20px;
-}
-
-.profile-about { 
-    font-family: 'Dosis', sans-serif; 
-    font-size: 1.2rem; 
-    text-align: center; 
-    max-width: 800px; 
-    margin: 0 auto 20px auto;
-}
-
-/* --- The Bento Cards --- */
+/* --- Bento Card Refinement --- */
 .bento-tile {
     background: var(--card-bg) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     border: 1px solid var(--card-border) !important;
     border-radius: 20px !important;
-    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
     text-decoration: none !important;
+    overflow: hidden;
 }
 
 .bento-tile:hover {
     transform: translateY(-10px) !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 15px var(--accent-glow) !important;
+    background: rgba(15, 15, 25, 0.85) !important;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 20px var(--accent-glow) !important;
 }
 
 .icon-box i {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     color: var(--accent-glow) !important;
-    margin-bottom: 15px;
+    filter: drop-shadow(0 0 8px var(--accent-glow));
 }
 
 .module-code {
     font-family: 'Roboto Mono', monospace;
     font-size: 0.75rem;
     color: var(--accent-glow);
-    letter-spacing: 1px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.9;
 }
 
-/* --- Skills --- */
-.skills-container { text-align: center; margin-bottom: 30px; }
-.skills-container span {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 5px 15px;
-    border-radius: 20px;
-    margin: 5px;
-    display: inline-block;
+/* --- Profile Styling --- */
+.profile-pictures-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
 }
 
-/* --- Social Footer --- */
+.profile-picture {
+    width: 140px !important;
+    height: 140px !important;
+    border-radius: 50% !important;
+    border: 3px solid white !important;
+    object-fit: cover !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.profile-name { font-family: 'Dosis', sans-serif; font-size: 3.5rem; }
+.profile-about { font-family: 'Dosis', sans-serif; font-size: 1.3rem; color: rgba(255,255,255,0.9); }
+
+/* --- Footer Socials --- */
 .links-footer {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: white !important;
     margin: 10px;
-    width: 50px; height: 50px;
+    width: 45px; height: 45px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    border-radius: 50% !important;
     background: rgba(255,255,255,0.1);
-    border: 1px solid white;
-    transition: 0.3s;
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: 0.3s ease;
 }
 
 .links-footer:hover {
     background: white !important;
     color: black !important;
+    transform: translateY(-5px);
 }
