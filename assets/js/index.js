@@ -1,7 +1,10 @@
 // --- TRUE TYPEWRITER BOOT SEQUENCE ---
-async function typeLine(element, text, speed = 50) {
-    element.textContent = ""; // Clear existing
-    element.style.opacity = '1';
+async function typeLine(elementId, text, speed = 30) {
+    const element = document.getElementById(elementId);
+    if (!element) return;
+    
+    element.textContent = ""; // Clear any existing text
+    element.parentElement.style.opacity = '1'; // Reveal the container line
     
     for (let i = 0; i < text.length; i++) {
         element.textContent += text.charAt(i);
@@ -11,50 +14,47 @@ async function typeLine(element, text, speed = 50) {
 
 async function runBootSequence() {
     const bootScreen = document.getElementById('boot-screen');
+    const cursor = document.getElementById('cursor');
+
+    // Remove cursor from flow initially
+    if(cursor) cursor.remove();
+
+    // Line 1: Technical initialization
     const line1 = document.getElementById('line-1');
-    const line2 = document.getElementById('line-2');
-    const line3 = document.getElementById('line-3');
-    const cursor = document.getElementById('cursor'); // We will move this
-
-    if (!bootScreen || !line1) return;
-
-    // Line 1
-    cursor.remove(); // Detach cursor to move it
-    line1.appendChild(cursor); // Attach to line 1
-    await typeLine(line1.firstChild, "INITIALIZING TELESCOPE UPLINK...", 40);
+    if (line1) line1.appendChild(cursor); 
+    await typeLine('text-1', "> INITIALIZING ENVIRONMENT...", 25);
     
-    // Line 2
-    await new Promise(r => setTimeout(r, 300));
-    cursor.remove();
-    line2.appendChild(cursor);
-    await typeLine(line2.firstChild, "CALIBRATING SENSORS...", 40);
+    // Line 2: Loading specific assets
+    await new Promise(r => setTimeout(r, 200));
+    if (line1 && cursor) cursor.remove();
+    const line2 = document.getElementById('line-2');
+    if (line2) line2.appendChild(cursor);
+    await typeLine('text-2', "> LOADING MODULES: ASSETS, CONFIG...", 25);
 
-    // Line 3
-    await new Promise(r => setTimeout(r, 300));
-    cursor.remove();
-    line3.appendChild(cursor);
-    line3.style.color = '#5aad45';
-    await typeLine(line3.firstChild, "CONNECTION ESTABLISHED.", 40);
+    // Line 3: Ready state
+    await new Promise(r => setTimeout(r, 200));
+    if (line2 && cursor) cursor.remove();
+    const line3 = document.getElementById('line-3');
+    if (line3) {
+        line3.appendChild(cursor);
+        line3.style.color = '#5aad45'; // Green status
+    }
+    await typeLine('text-3', "> READY.", 25);
 
     // Fade Out
-    await new Promise(r => setTimeout(r, 800));
-    bootScreen.style.opacity = '0';
-    setTimeout(() => {
-        bootScreen.style.display = 'none';
-    }, 1000);
+    await new Promise(r => setTimeout(r, 600));
+    if (bootScreen) {
+        bootScreen.style.opacity = '0';
+        setTimeout(() => {
+            bootScreen.style.display = 'none';
+        }, 800);
+    }
 }
 
-// Start Boot Sequence Immediately on Load
-window.addEventListener('load', () => {
-    try {
-        runBootSequence();
-    } catch (e) {
-        console.error("Boot sequence failed:", e);
-        const bs = document.getElementById('boot-screen');
-        if(bs) bs.style.display = 'none';
-    }
+// Start Boot Sequence
+document.addEventListener('DOMContentLoaded', () => {
+    runBootSequence();
 });
-
 
 // --- MAIN DASHBOARD LOGIC ---
 try {
@@ -63,7 +63,6 @@ try {
     if (container && typeof config !== 'undefined' && config.links) {
         container.innerHTML = "";
 
-        // Mapping relevant images to the cards
         const cardData = {
             "My Research Projects": { 
                 desc: "Analyzing AGN dust attenuation using JWST spectra and GLEAM fitting.",
@@ -72,7 +71,7 @@ try {
             },
             "Class Projects & Papers": { 
                 desc: "Computer vision pipelines, Arduino hardware, and theoretical physics.",
-                img: "assets/img/Theoretical_Lagrangian.png", /* Your specific image */
+                img: "assets/img/Theoretical_Lagrangian.png",
                 cls: "projects-card"
             },
             "View My CV": { 
@@ -104,7 +103,9 @@ try {
             col.innerHTML = `
                 <a href="${link.URL}" class="card h-100 bento-tile border-0 text-decoration-none ${data.cls}">
                     <div class="tile-bg" style="background-image: url('${data.img}');"></div>
+                    
                     <div class="tile-overlay"></div>
+
                     <div class="card-body d-flex flex-column align-items-center text-center p-4">
                         <div class="mt-auto"> 
                             <div class="icon-box"><i class="${link.icon_classes}"></i></div>
@@ -124,7 +125,7 @@ try {
             container.appendChild(col);
         });
 
-        // Spotlight Effect Logic
+        // Spotlight Effect
         const cards = document.querySelectorAll('.bento-tile');
         cards.forEach(card => {
             card.onmousemove = e => {
@@ -135,9 +136,7 @@ try {
                 card.style.setProperty('--mouse-y', `${y}px`);
             };
         });
-    } else {
-        console.error("Config not found or invalid!");
     }
 } catch (error) {
-    console.error("Critical error in dashboard logic:", error);
+    console.error("Dashboard error:", error);
 }
