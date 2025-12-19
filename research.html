@@ -1,169 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Dosis:wght@200&family=Handlee&display=swap"
-        rel="stylesheet">
-
-    <title>Joseph Havens | Research</title>
-
-    <link href="assets/img/profile_pic.png" rel="icon">
-    <link href="assets/img/profile_pic.png" rel="apple-touch-icon">
-
+    <link rel="stylesheet" href="assets/css/style.css?v=8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Dosis:wght@400;600&display=swap" rel="stylesheet">
+    
+    <title>Research | Joseph Havens</title>
+    
     <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
-            }
-        };
+        MathJax = { tex: { inlineMath: [['$', '$']] } };
     </script>
     <script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    
-    <meta name="author" content="Joseph Havens">
-    
-    <meta name="description" content="A detailed look at my research on AGN dust attenuation using JWST, JADES, and SMACS survey data.">
-    <meta name="keywords" content="Joseph Havens, Research, Astronomy, Physics, KU, JWST, JADES, SMACS, AGN, Dust Attenuation, GLEAM">
-
-    <meta property="og:title" content="Joseph Havens | Research Projects">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://josephhavens.me/research.html">
-    <meta property="og:image" content="https://josephhavens.me/assets/img/spectral_plot.png">
-    <meta property="og:image:alt" content="A plot showing a spectral fit from the GLEAM tool.">
-    <meta property="og:description" content="A detailed look at my research on AGN dust attenuation using JWST, JADES, and SMACS survey data.">
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://josephhavens.me/research.html">
-    <meta name="twitter:title" content="Joseph Havens | Research Projects">
-    <meta name="twitter:description" content="A detailed look at my research on AGN dust attenuation using JWST, JADES, and SMACS survey data.">
-    <meta name="twitter:image" content="https://josephhavens.me/assets/img/spectral_plot.png">
-
 </head>
-
 <body>
 
-    <div class="outreach-page-container">
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
 
-        <div class="outreach-header">
-            <h1>My Research</h1>
-            <a href="index.html" class="back-link">
-                <i class="fas fa-arrow-left"></i> Back to Home
-            </a>
+    <div class="container py-5">
+        <div class="page-header fade-in-up">
+            <h1 class="page-title">My Research</h1>
+            <p class="page-subtitle">AGN Dust Attenuation & Spectral Analysis with JWST</p>
         </div>
 
-        <div class="outreach-row">
-            <div class="outreach-image">
-                <img src="assets/img/prescott_fig1.png" alt="Prescott et al. 2022 Figure 1">
-                <p class="caption">
-                    This plot from <strong>Prescott et al. (2022)</strong> shows the problem with ground-based data.
-                    Many galaxies (blue dots) fall in "unphysical" regions (gray) due to observational biases.
-                </p>
+        <div class="content-row">
+            <div class="content-image">
+                <img src="assets/img/prescott_fig1.png" alt="Prescott et al. 2022">
             </div>
-            <div class="outreach-text">
+            <div class="content-text">
                 <h3>The Challenge: Seeing Through Cosmic Dust</h3>
-                <p>To understand the first galaxies and their supermassive black holes (AGN), we must
-                    first understand the <strong>dust</strong> that obscures them. A promising method to measure the
-                    "attenuation law" is to compare hydrogen line ratios (e.g., $H\alpha$, $H\beta$, $Pa\beta$). </p>
-                <p>This method has been notoriously difficult. As shown in <strong>Prescott et al. (2022)</strong>,
-                    ground-based attempts suffer from severe biases like "slit losses," making the results
-                    unreliable. The paper concluded that a single, powerful instrument that can
-                    capture all lines at once—like <strong>JWST</strong>—is required. </p>
-                
-                <a href="https://ui.adsabs.harvard.edu/abs/2022ApJ...928...71P/abstract" class="btn-paper-link" target="_blank">
-                    <i class="fas fa-file-alt"></i> Read Prescott+ 2022
-                </a>
+                <p>To understand the first galaxies and their supermassive black holes (AGN), we must first understand the <strong>dust</strong> that obscures them. A promising method is to compare hydrogen line ratios (e.g., $H\alpha$, $H\beta$, $Pa\beta$).</p>
+                <p>Ground-based attempts suffer from severe biases like "slit losses" (Prescott et al. 2022). A single, powerful instrument like <strong>JWST</strong> is required to capture all lines at once.</p>
+                <a href="https://ui.adsabs.harvard.edu/abs/2022ApJ...928...71P/abstract" class="btn-glass" target="_blank">Read Prescott+ 2022</a>
             </div>
         </div>
 
-        <div class="outreach-row reversed">
-            <div class="outreach-text">
-                <h3>My Research: Using JWST & GLEAM to Solve the Puzzle</h3>
-                <p>My research, as part of Dr. Kirkpatrick's group, is one of the first to apply this "three-line
-                    method" using new, high-quality data from the <strong>JADES</strong> and
-                    <strong>SMACS</strong> JWST surveys.</p>
-                <p>To measure the lines, I am using and testing the <strong>GLEAM</strong> fitting tool. My work
-                    involves running GLEAM on the JWST spectra to robustly fit the key emission lines and measure their
-                    flux ratios. This allows us to constrain the dust attenuation law (both $n$ and $\tau_V$)
-                    free from the biases of ground-based data.</p>
-
-                <a href="https://github.com/JHavens2187/Spectral_Analysis" class="btn-github-link" target="_blank">
-                    <i class="fab fa-github"></i> View Project on GitHub
-                </a>
+        <div class="content-row reversed">
+            <div class="content-text">
+                <h3>Using JWST & GLEAM to Solve the Puzzle</h3>
+                <p>My research utilizes new, high-quality data from the <strong>JADES</strong> and <strong>SMACS</strong> JWST surveys. I am testing the <strong>GLEAM</strong> fitting tool to robustly fit key emission lines and measure their flux ratios.</p>
+                <p>This allows us to constrain the dust attenuation law (both $n$ and $\tau_V$) free from the biases of ground-based data.</p>
+                <a href="https://github.com/JHavens2187/Spectral_Analysis" class="btn-glass" target="_blank"><i class="fab fa-github"></i> GitHub Project</a>
             </div>
-            <div class="outreach-image">
-                <img src="assets/img/spectral_plot.png" alt="AGN Spectral Analysis Plot using GLEAM">
-                <p class="caption">An example of my GLEAM fit to a SMACS spectrum with a sharp Gaussian fit over the
-                    OIII 5007 Emission Line</p>
+            <div class="content-image">
+                <img src="assets/img/spectral_plot.png" alt="Spectral Plot">
             </div>
         </div>
 
-        <div class="outreach-row">
-            <div class="outreach-image">
-                <img src="assets/img/shapley_fig4.png" alt="Shapley et al. 2023 Figure 4">
-                <p class="caption">
-                    This result from <strong>Shapley et al. (2023)</strong> shows the kind of science this method
-                    unlocks: relating dust attenuation ($H\alpha/H\beta$) to stellar mass.
-                </p>
+        <div class="content-row">
+            <div class="content-image">
+                <img src="assets/img/shapley_fig4.png" alt="Shapley Results">
             </div>
-            <div class="outreach-text">
-                <h3>Next Steps: Building a More Complete Model</h3>
-                <p>This project's recent addition is to use <strong>Star Formation Rates (SFRs)</strong> as
-                    an independent constraint. This is a cutting-edge field; for example, <strong>Shapley et al.
-                        (2023)</strong> used JWST to get dust-corrected $H\alpha$-based SFRs. </p>
-                <p>By combining our dust measurements (like the y-axis in the plot) with independent SFRs, we can
-                    break model degeneracies. The future of this work is to build a complete physical model connecting
-                    the AGN activity, star formation, and dust in these early-universe galaxies.</p>
-                
-                <a href="https://ui.adsabs.harvard.edu/abs/2023ApJ...954..157S/abstract" class="btn-paper-link" target="_blank">
-                    <i class="fas fa-file-alt"></i> Read Shapley+ 2023
-                </a>
-                </div>
-        </div>
-
-        <div class="outreach-row">
-            <div class="outreach-text">
-                <p style="margin-top: 20px;">
-                    A paper detailing the full results of this work is currently in preparation.
-                </p>
-                <!-- comment out when paper is published
-                <a href="[paper url when availible]" class="btn-paper-link" target="_blank">
-                    <i class="fas fa-file-alt"></i> Read Havens+2025
-                </a>
-                -->
+            <div class="content-text">
+                <h3>Next Steps: Building a Complete Model</h3>
+                <p>We are incorporating <strong>Star Formation Rates (SFRs)</strong> as an independent constraint. By combining our dust measurements with independent SFRs, we can break model degeneracies.</p>
+                <p>The goal is to build a complete physical model connecting AGN activity, star formation, and dust in early-universe galaxies.</p>
+                <a href="https://ui.adsabs.harvard.edu/abs/2023ApJ...954..157S/abstract" class="btn-glass" target="_blank">Read Shapley+ 2023</a>
             </div>
         </div>
-
-
-        
-        <footer>
-            <div>
-                <div style="text-align: center;">
-                    <a href="https://github.com/JHavens2187" target="_blank" class="hover , links-footer"><i
-                            class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/joseph-havens-1b3a73348/" target="_blank"
-                        class="hover , links-footer"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="https://bsky.app/profile/cosjoe.bsky.social" target="_blank"
-                        class="hover , links-footer"><i class="fa-brands fa-bluesky"></i></a>
-                    <a href="https://x.com/JoeHavens10" target="_blank" class="hover , links-footer"><i
-                            class="fa-brands fa-x-twitter"></i></a>
-                    <a href="https://orcid.org/0009-0006-9141-4381" target="_blank" class="hover , links-footer"><i
-                            class="fa-brands fa-orcid"></i></a>
-                    <a href="mailto:joe.havens79@ku.edu" class="hover , links-footer"><i
-                            class="fa-solid fa-envelope"></i></a>
-                </div>
-            </div>
-        </footer>
 
     </div>
-</body>
 
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.content-row').forEach((el) => observer.observe(el));
+    </script>
+
+</body>
 </html>
