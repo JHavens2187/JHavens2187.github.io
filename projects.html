@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Projects | Joseph Havens</title>
+    <style>
+        .card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            border: none;
+            border-radius: 12px;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.12) !important;
+        }
+        .project-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4" style="font-family: 'Abel', sans-serif;">Class Projects & Coursework</h1>
+            <p class="lead">Selected technical work from my undergraduate career at KU.</p>
+            <a href="index.html" class="btn btn-outline-secondary btn-sm mt-2">← Back to Home</a>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body d-flex flex-column">
+                        <div class="project-tag mb-2">Computer Vision • Physics</div>
+                        <h5 class="card-title"><i class="fa-solid fa-camera"></i> PYAXIOMA-JH Methodology</h5>
+                        <h6 class="card-subtitle mb-2 text-muted small">Python • OpenCV • Motion Analysis</h6>
+                        <p class="card-text small">Proposed a non-contact method for measuring angular displacement using color segmentation, Hough circle detection, and frame differencing[cite: 5, 7, 25]. Analyzed torque-induced oscillations in magnetic systems[cite: 62, 116].</p>
+                        <div class="mt-auto">
+                            <a href="assets/PYAXIOMA_Methodology.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Read Paper</a>
+                            <a href="https://github.com/JHavens2187/PYAXIOMA-JH" class="btn btn-dark btn-sm" target="_blank">View Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body d-flex flex-column">
+                        <div class="project-tag mb-2">Theoretical Mechanics</div>
+                        <h5 class="card-title"><i class="fa-solid fa-atom"></i> Magnetic Dipole Dynamics</h5>
+                        <h6 class="card-subtitle mb-2 text-muted small">Lagrangian Mechanics • LaTeX • Analytical Theory</h6>
+                        <p class="card-text small">Derived equations of motion for a symmetric top with a magnetic dipole moment[cite: 164, 165]. Analyzed precession direction reversal following external magnetic field inversion[cite: 169, 321].</p>
+                        <div class="mt-auto">
+                            <a href="assets/Magnetic_Dipole_Dynamics.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Read Paper</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body d-flex flex-column">
+                        <div class="project-tag mb-2">Instrumentation • Engineering</div>
+                        <h5 class="card-title"><i class="fa-solid fa-microchip"></i> Arduino Digital Multimeter</h5>
+                        <h6 class="card-subtitle mb-2 text-muted small">Arduino C++ • Hardware Design • Error Analysis</h6>
+                        <p class="card-text small">Designed a multi-function multimeter for measuring voltage, current, capacitance (via RC time constants), and resistance[cite: 629, 630]. Achieved 1% voltage measurement precision[cite: 830].</p>
+                        <div class="mt-auto">
+                            <a href="assets/DIY_Multimeter_Design.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Read Paper</a>
+                            <a href="https://github.com/JHavens2187/DIY_Multimeter" class="btn btn-dark btn-sm" target="_blank">View Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body d-flex flex-column">
+                        <div class="project-tag mb-2">Cosmology • Theoretical Physics</div>
+                        <h5 class="card-title"><i class="fa-solid fa-infinity"></i> Cosmic Cloning: Multiverse Theory</h5>
+                        <h6 class="card-subtitle mb-2 text-muted small">Cosmic Inflation • Conformal Field Theory (CFT)</h6>
+                        <p class="card-text small">Examined the theoretical exit from eternal inflation using dual CFT approaches[cite: 937, 938]. Explored mathematical foundations of bubble universes and cosmic microwave background anisotropies[cite: 948, 965].</p>
+                        <div class="mt-auto">
+                            <a href="assets/Cosmic_Cloning_Multiverse.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Read Paper</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body d-flex flex-column">
+                        <div class="project-tag mb-2">Observational Astronomy</div>
+                        <h5 class="card-title"><i class="fa-solid fa-star"></i> Stellar Cluster Ages (ASTR 591)</h5>
+                        <h6 class="card-subtitle mb-2 text-muted small">Python • GAIA Data • Isochrone Fitting</h6>
+                        <p class="card-text small">Utilized GAIA mission data and isochrone fitting to estimate the ages of twelve open and globular clusters[cite: 378, 379]. Correlated cluster age with galactic latitude[cite: 380, 586].</p>
+                        <div class="mt-auto">
+                            <a href="assets/Stellar_Cluster_Ages.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Read Paper</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> </div> </body>
+</html>
