@@ -1,14 +1,15 @@
+/* --- Global Variables & Glassmorphism --- */
 :root {
     --accent-glow: #23a6d5; 
-    --card-bg: rgba(15, 15, 25, 0.6); 
+    --card-bg: rgba(15, 15, 25, 0.7); /* Darker for better contrast */
     --card-border: rgba(255, 255, 255, 0.2);
 }
 
 body {
-    background: linear-gradient(-45deg, #d35ecd, #5aad45, #23a6d5, #3a0eb3);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-    color: white;
+    background: linear-gradient(-45deg, #d35ecd, #5aad45, #23a6d5, #3a0eb3) !important;
+    background-size: 400% 400% !important;
+    animation: gradient 15s ease infinite !important;
+    color: white !important;
     min-height: 100vh;
     font-family: 'Abel', sans-serif;
     text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
@@ -20,25 +21,25 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* --- Bento Tile Styling --- */
+/* --- Bento Tile Styling: FORCED OVERRIDES --- */
 .bento-tile {
     background: var(--card-bg) !important;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
     border: 1px solid var(--card-border) !important;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    border-radius: 20px;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) !important;
+    border-radius: 20px !important;
 }
 
 .bento-tile:hover {
-    transform: translateY(-10px);
-    background: rgba(15, 15, 25, 0.8) !important;
+    transform: translateY(-10px) !important;
+    background: rgba(15, 15, 25, 0.85) !important;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px var(--accent-glow) !important;
 }
 
 .icon-box i {
     font-size: 2.2rem;
-    color: var(--accent-glow);
+    color: var(--accent-glow) !important;
     filter: drop-shadow(0 0 5px var(--accent-glow));
 }
 
@@ -59,17 +60,19 @@ body {
 }
 
 .profile-picture {
-    width: 150px;
-    height: 150px;
-    border-radius: 50% !important; /* Force circle */
-    border: 3px solid white;
-    object-fit: cover;
+    width: 150px !important;
+    height: 150px !important;
+    border-radius: 50% !important; /* Forces the circle */
+    border: 3px solid white !important;
+    object-fit: cover !important;
+    display: block !important;
 }
 
-.profile-name { font-family: 'Dosis', sans-serif; font-size: 3rem; color: white; }
-.profile-about { font-family: 'Dosis', sans-serif; font-size: 1.2rem; color: white; }
+.profile-name { font-family: 'Dosis', sans-serif; font-size: 3rem; color: white; text-align: center; }
+.profile-about { font-family: 'Dosis', sans-serif; font-size: 1.2rem; color: white; text-align: center; }
 
 /* --- Skills & Footer --- */
+.skills-container { text-align: center; margin-top: 15px; }
 .skills-container span {
     background: rgba(255,255,255,0.1);
     border: 1px solid rgba(255,255,255,0.2);
@@ -81,19 +84,19 @@ body {
 
 .links-footer {
     font-size: 1.5rem;
-    color: white;
+    color: white !important;
     margin: 15px;
     width: 50px; height: 50px;
     display: flex; align-items: center; justify-content: center;
-    border-radius: 50%;
+    border-radius: 50% !important;
     background: rgba(255,255,255,0.1);
     border: 1px solid white;
     transition: 0.3s;
 }
 
 .links-footer:hover {
-    color: var(--accent-glow);
-    background: white;
+    color: var(--accent-glow) !important;
+    background: white !important;
     transform: translateY(-5px);
 }
 
