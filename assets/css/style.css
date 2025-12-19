@@ -1,8 +1,8 @@
 /* --- Global Variables --- */
 :root {
     --accent-glow: #23a6d5; 
-    --card-bg: rgba(15, 15, 25, 0.75); 
-    --card-border: rgba(255, 255, 255, 0.2);
+    --card-bg: rgba(15, 15, 25, 0.65); /* Slightly more transparent for glass effect */
+    --card-border: rgba(255, 255, 255, 0.1);
     /* Brand Colors */
     --gold: #ffcc33;
     --green: #5aad45;
@@ -17,7 +17,9 @@ body {
     color: white !important;
     min-height: 100vh;
     font-family: 'Abel', sans-serif;
-    overflow-x: hidden; /* Only hide X overflow */
+    overflow-x: hidden;
+    /* Perspective is key for 3D Tilt */
+    perspective: 1000px;
 }
 
 @keyframes gradient {
@@ -26,54 +28,45 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* --- Bento Grid & Specific Hover Colors (Video 1 Logic) --- */
+/* --- Bento Grid (3D Alive Logic) --- */
 .bento-tile {
     background: var(--card-bg) !important;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1.5px solid var(--card-border) !important;
-    border-radius: 20px !important;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    backdrop-filter: blur(20px); /* Heavier blur for premium feel */
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--card-border) !important;
+    border-radius: 24px !important; /* Apple-style rounded corners */
     text-decoration: none !important;
     position: relative;
     z-index: 1;
+    /* Smooth reset when mouse leaves */
+    transition: transform 0.1s ease-out, box-shadow 0.3s ease, border-color 0.3s ease !important;
+    transform-style: preserve-3d;
+    will-change: transform;
 }
 
-/* Generic Hover */
-.bento-tile:hover {
-    transform: translateY(-10px) scale(1.02) !important;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 20px rgba(255,255,255,0.2) !important;
-    border-color: white !important;
-    z-index: 10;
+/* Subtle inner shine effect */
+.bento-tile::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
 }
 
-/* Specific Hovers (Higher Specificity to win the war) */
-.bento-tile.research-card:hover { 
-    border-color: var(--gold) !important; 
-    box-shadow: 0 0 30px var(--gold) !important; 
-}
-.bento-tile.projects-card:hover { 
-    border-color: var(--green) !important; 
-    box-shadow: 0 0 30px var(--green) !important; 
-}
-.bento-tile.cv-card:hover { 
-    border-color: var(--blue) !important; 
-    box-shadow: 0 0 30px var(--blue) !important; 
-}
-.bento-tile.outreach-card:hover { 
-    border-color: var(--red) !important; 
-    box-shadow: 0 0 30px var(--red) !important; 
-}
+/* Hover States (Specific Colors) */
+.bento-tile.research-card:hover { border-color: var(--gold) !important; box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(255, 204, 51, 0.2) !important; }
+.bento-tile.projects-card:hover { border-color: var(--green) !important; box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(90, 173, 69, 0.2) !important; }
+.bento-tile.cv-card:hover { border-color: var(--blue) !important; box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(35, 166, 213, 0.2) !important; }
+.bento-tile.outreach-card:hover { border-color: var(--red) !important; box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(234, 67, 53, 0.2) !important; }
 
-/* Icons inside cards */
+/* Icons Pop in 3D */
 .icon-box i {
     transition: transform 0.3s ease;
-}
-.bento-tile:hover .icon-box i {
-    transform: scale(1.2);
+    transform: translateZ(20px); /* Pushes icon "out" of the card */
 }
 
-/* --- Glitch Text Effect (Video 3 Logic) --- */
+/* --- Glitch Text --- */
 .module-code {
     font-family: 'Roboto Mono', monospace;
     font-size: 0.75rem;
@@ -81,6 +74,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 2px;
     transition: 0.3s;
+    transform: translateZ(10px); /* Pushes text slightly out */
 }
 
 .bento-tile:hover .module-code {
@@ -98,76 +92,82 @@ body {
     100% { transform: translate(0); }
 }
 
-/* --- Planetary Social Menu (Video 2 Logic) --- */
+/* --- Planetary Menu (Fixed Centering) --- */
 .menu-container {
     position: relative;
-    width: 200px; height: 200px; /* Increased size to prevent clipping */
+    width: 260px; height: 260px; /* Big enough for orbit */
     display: flex; justify-content: center; align-items: center;
-    margin-top: 50px;
-    z-index: 100; /* Ensure it floats above everything */
+    margin: 40px auto 0 auto; /* Center horizontal */
 }
 
 #toggle { display: none; }
 
-/* The Main Sun Button */
 .btn-main {
     position: absolute;
     width: 70px; height: 70px;
     background: white; border-radius: 50%;
     z-index: 20; cursor: pointer;
+    box-shadow: 0 0 25px rgba(255,255,255,0.3);
+    /* Strict Centering */
     display: flex; justify-content: center; align-items: center;
-    transition: transform 0.5s;
-    box-shadow: 0 0 25px rgba(255,255,255,0.5);
+    transition: transform 0.6s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
 
-.btn-main i { font-size: 32px; color: #333; position: absolute; transition: 0.3s; }
-#close-icon { opacity: 0; transform: rotate(-180deg); }
+.btn-main i { 
+    font-size: 32px; color: #333; 
+    position: absolute; 
+    top: 50%; left: 50%; 
+    transform: translate(-50%, -50%); /* Perfect Center */
+    transition: opacity 0.3s, transform 0.3s; 
+}
 
-#toggle:checked ~ .btn-main { transform: rotate(180deg); background: var(--accent-glow); }
+#close-icon { 
+    opacity: 0; 
+    transform: translate(-50%, -50%) rotate(-180deg); /* Start rotated */
+}
+
+#toggle:checked ~ .btn-main { transform: rotate(180deg); background: var(--accent-glow); box-shadow: 0 0 30px var(--accent-glow); }
 #toggle:checked ~ .btn-main i { color: white; }
-#toggle:checked ~ .btn-main #menu-icon { opacity: 0; }
-#toggle:checked ~ .btn-main #close-icon { opacity: 1; transform: rotate(0); }
+#toggle:checked ~ .btn-main #menu-icon { opacity: 0; transform: translate(-50%, -50%) rotate(180deg); }
+#toggle:checked ~ .btn-main #close-icon { opacity: 1; transform: translate(-50%, -50%) rotate(0deg); }
 
-/* The Satellites */
 .menu-items a {
     position: absolute;
-    width: 50px; height: 50px;
+    width: 55px; height: 55px;
     background: white; border-radius: 50%;
     display: flex; justify-content: center; align-items: center;
     text-decoration: none; color: #333;
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Bouncy effect */
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     opacity: 0; z-index: 10;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-/* Expansion Mathematics */
 #toggle:checked ~ .menu-items a {
     opacity: 1;
-    /* 120px expansion distance */
-    transform: translate(calc(120px * var(--x)), calc(120px * var(--y)));
+    transform: translate(calc(100px * var(--x)), calc(100px * var(--y))); /* Orbit radius */
 }
 
-/* Satellite Brand Colors */
+.menu-items a i { font-size: 24px; }
+
+/* Brand Glows */
 .menu-items a.github:hover { background: #333; color: white; box-shadow: 0 0 20px #333; }
 .menu-items a.linkedin:hover { background: #0077b5; color: white; box-shadow: 0 0 20px #0077b5; }
 .menu-items a.bluesky:hover { background: #0085ff; color: white; box-shadow: 0 0 20px #0085ff; }
 .menu-items a.email:hover { background: #ea4335; color: white; box-shadow: 0 0 20px #ea4335; }
 
-
-/* --- Profile & Typography --- */
-.profile-pictures-container { display: flex; justify-content: center; gap: 20px; }
-.profile-picture { width: 140px; height: 140px; border-radius: 50% !important; border: 3px solid white; object-fit: cover; }
-.profile-name { font-family: 'Dosis', sans-serif; font-size: 3.5rem; letter-spacing: 1px; }
-.profile-about { font-family: 'Dosis', sans-serif; font-size: 1.3rem; color: rgba(255,255,255,0.9); }
+/* --- Profile & Hero --- */
+.profile-pictures-container { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; }
+.profile-picture { width: 150px; height: 150px; border-radius: 50% !important; border: 4px solid white; object-fit: cover; }
+.profile-name { font-family: 'Dosis', sans-serif; font-size: 4rem; letter-spacing: 1px; margin-bottom: 10px; }
+.profile-about { font-family: 'Dosis', sans-serif; font-size: 1.4rem; color: rgba(255,255,255,0.9); }
 
 .skills-container span {
     background: rgba(255,255,255,0.1);
     border: 1px solid rgba(255,255,255,0.2);
-    padding: 6px 15px; border-radius: 20px;
-    margin: 4px; display: inline-block; font-weight: 600;
+    padding: 6px 18px; border-radius: 25px;
+    margin: 6px; display: inline-block; font-weight: 600;
 }
 
-/* Animations */
 .fade-in-up { opacity: 0; animation: fadeInUp 0.8s forwards ease-out; }
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(40px); }
