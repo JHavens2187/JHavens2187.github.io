@@ -1,8 +1,8 @@
 /* --- Global Variables --- */
 :root {
     --accent-glow: #23a6d5; 
-    --card-bg: rgba(15, 15, 25, 0.75); 
-    --card-border: rgba(255, 255, 255, 0.2);
+    --card-bg: rgba(20, 20, 30, 0.6); /* Slightly more transparent for spotlight */
+    --card-border: rgba(255, 255, 255, 0.1);
     --gold: #ffcc33; --green: #5aad45; --blue: #23a6d5; --red: #ea4335;
 }
 
@@ -14,7 +14,6 @@ body {
     min-height: 100vh;
     font-family: 'Abel', sans-serif;
     overflow-x: hidden;
-    perspective: 1000px; /* Essential for 3D tilt */
 }
 
 @keyframes gradient {
@@ -23,7 +22,7 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* --- 3D Bento Grid --- */
+/* --- Bento Grid: The "Spotlight" Effect --- */
 .bento-tile {
     background: var(--card-bg) !important;
     backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
@@ -31,81 +30,90 @@ body {
     border-radius: 24px !important;
     text-decoration: none !important;
     position: relative; z-index: 1;
-    transition: transform 0.1s ease-out, box-shadow 0.3s ease, border-color 0.3s ease !important;
-    transform-style: preserve-3d; will-change: transform;
+    overflow: hidden; /* Contains the spotlight */
+    transition: transform 0.2s ease-out, box-shadow 0.3s ease, border-color 0.3s ease !important;
 }
 
-.bento-tile::after {
-    content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 24px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+/* The Spotlight Overlay */
+.bento-tile::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(
+        600px circle at var(--mouse-x) var(--mouse-y), 
+        rgba(255,255,255,0.15), 
+        transparent 40%
+    );
+    z-index: 2;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease;
     pointer-events: none;
 }
 
-.bento-tile.research-card:hover { border-color: var(--gold) !important; box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(255, 204, 51, 0.2) !important; }
-.bento-tile.projects-card:hover { border-color: var(--green) !important; box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(90, 173, 69, 0.2) !important; }
-.bento-tile.cv-card:hover { border-color: var(--blue) !important; box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(35, 166, 213, 0.2) !important; }
-.bento-tile.outreach-card:hover { border-color: var(--red) !important; box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(234, 67, 53, 0.2) !important; }
+/* Reveal spotlight on hover */
+.bento-tile:hover::before {
+    opacity: 1;
+}
 
-/* 3D Depth Elements */
-.icon-box i { transition: transform 0.3s ease; transform: translateZ(30px); }
+.bento-tile:hover {
+    transform: translateY(-5px) !important; /* Subtle lift */
+    border-color: rgba(255,255,255,0.5) !important;
+}
+
+/* Specific Border Colors on Hover */
+.bento-tile.research-card:hover { border-color: var(--gold) !important; box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 0 30px rgba(255, 204, 51, 0.1) !important; }
+.bento-tile.projects-card:hover { border-color: var(--green) !important; box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 0 30px rgba(90, 173, 69, 0.1) !important; }
+.bento-tile.cv-card:hover { border-color: var(--blue) !important; box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 0 30px rgba(35, 166, 213, 0.1) !important; }
+.bento-tile.outreach-card:hover { border-color: var(--red) !important; box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 0 30px rgba(234, 67, 53, 0.1) !important; }
+
+/* Icons & Text */
+.icon-box i { transition: transform 0.3s ease; z-index: 3; position: relative; }
+.bento-tile:hover .icon-box i { transform: scale(1.1); }
+
+/* --- Data Stream Text (Replaces Glitch) --- */
 .module-code {
-    font-family: 'Roboto Mono', monospace; font-size: 0.75rem; color: var(--accent-glow);
-    text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; transform: translateZ(20px);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    z-index: 3; position: relative;
 }
+
 .bento-tile:hover .module-code {
-    color: white; text-shadow: 2px 0 var(--red), -2px 0 var(--blue);
-    animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
-}
-@keyframes glitch {
-    0% { transform: translate(0); } 20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(-2px, -2px); } 60% { transform: translate(2px, 2px); }
-    80% { transform: translate(2px, -2px); } 100% { transform: translate(0); }
+    color: var(--accent-glow);
+    text-shadow: 0 0 8px var(--accent-glow);
+    letter-spacing: 3px; /* "Breathing" expansion */
 }
 
-/* --- Planetary Menu (Top Right Quarter-Circle) --- */
+/* --- Planetary Menu (Refined Spacing) --- */
 .menu-container {
-    position: fixed; /* Fixed to viewport */
-    top: 30px; 
-    right: 30px;
-    width: 60px; height: 60px;
-    z-index: 1000;
+    position: fixed; top: 30px; right: 30px;
+    width: 60px; height: 60px; z-index: 1000;
 }
-
 #toggle { display: none; }
 
 .btn-main {
     position: absolute; width: 60px; height: 60px;
-    background: rgba(255,255,255,0.15); /* Glassy button */
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 50%; cursor: pointer;
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
-    /* Flex centering is safer than absolute centering here */
+    background: rgba(255,255,255,0.15); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.3); border-radius: 50%;
+    cursor: pointer; z-index: 20;
     display: flex; justify-content: center; align-items: center;
     transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: 20;
 }
 
-/* Icons within the button */
-.btn-main i { 
-    font-size: 28px; color: white; position: absolute; 
-    transition: all 0.3s ease;
-    /* Remove translate(-50%) because Flexbox handles center */
-}
+.btn-main i { position: absolute; font-size: 28px; color: white; transition: 0.3s; }
+#menu-icon { opacity: 1; transform: rotate(0deg); }
+#close-icon { opacity: 0; transform: rotate(-90deg); }
 
-#menu-icon { opacity: 1; transform: rotate(0deg) scale(1); }
-#close-icon { opacity: 0; transform: rotate(-90deg) scale(0.5); }
-
-/* Toggle State */
-#toggle:checked ~ .btn-main { background: white; transform: scale(1.1); box-shadow: 0 0 30px rgba(255,255,255,0.6); }
+#toggle:checked ~ .btn-main { background: white; transform: scale(1.1); }
 #toggle:checked ~ .btn-main i { color: #333; }
+#toggle:checked ~ .btn-main #menu-icon { opacity: 0; transform: rotate(90deg); }
+#toggle:checked ~ .btn-main #close-icon { opacity: 1; transform: rotate(0deg); }
 
-#toggle:checked ~ .btn-main #menu-icon { opacity: 0; transform: rotate(90deg) scale(0.5); }
-#toggle:checked ~ .btn-main #close-icon { opacity: 1; transform: rotate(0deg) scale(1); }
-
-/* Satellites */
 .menu-items a {
-    position: absolute; top: 5px; left: 5px; /* Start roughly behind the button */
+    position: absolute; top: 5px; left: 5px;
     width: 50px; height: 50px;
     background: white; border-radius: 50%;
     display: flex; justify-content: center; align-items: center;
@@ -117,15 +125,15 @@ body {
 
 #toggle:checked ~ .menu-items a {
     opacity: 1; pointer-events: auto;
-    /* X is left (negative), Y is down (positive) */
-    transform: translate(calc(120px * var(--x)), calc(120px * var(--y))); 
+    /* Increased expansion distance to 130px to prevent overlap */
+    transform: translate(calc(130px * var(--x)), calc(130px * var(--y))); 
 }
 
 /* Brand Colors */
-.menu-items a.github:hover { background: #333; color: white; box-shadow: 0 0 20px #333; }
-.menu-items a.linkedin:hover { background: #0077b5; color: white; box-shadow: 0 0 20px #0077b5; }
-.menu-items a.bluesky:hover { background: #0085ff; color: white; box-shadow: 0 0 20px #0085ff; }
-.menu-items a.email:hover { background: #ea4335; color: white; box-shadow: 0 0 20px #ea4335; }
+.menu-items a.github:hover { background: #333; color: white; }
+.menu-items a.linkedin:hover { background: #0077b5; color: white; }
+.menu-items a.bluesky:hover { background: #0085ff; color: white; }
+.menu-items a.email:hover { background: #ea4335; color: white; }
 
 /* --- Profile & Hero --- */
 .profile-pictures-container { display: flex; justify-content: center; gap: 20px; }
