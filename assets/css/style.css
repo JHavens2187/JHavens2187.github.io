@@ -5,7 +5,7 @@
     --gold: #ffcc33; --green: #5aad45; --blue: #23a6d5; --red: #ea4335;
 }
 
-/* --- Body --- */
+/* --- Body & Background --- */
 body {
     background: linear-gradient(-45deg, #d35ecd, #5aad45, #23a6d5, #3a0eb3) !important;
     background-size: 400% 400% !important;
@@ -22,33 +22,6 @@ body {
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
-
-/* --- BOOT SCREEN (Professional) --- */
-#boot-screen {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: #050505; /* Deep black */
-    z-index: 9999;
-    display: flex; align-items: center; justify-content: center; flex-direction: column;
-    transition: opacity 0.8s ease-out;
-    animation: css-safe-fade 0.5s linear 4s forwards;
-    pointer-events: auto;
-}
-@keyframes css-safe-fade { to { opacity: 0; visibility: hidden; pointer-events: none; } }
-
-.terminal-container {
-    font-family: 'Roboto Mono', monospace; font-size: 1.1rem;
-    color: var(--accent-glow); text-transform: uppercase; letter-spacing: 2px;
-    text-align: left; min-width: 320px;
-}
-.terminal-line { min-height: 1.5rem; margin-bottom: 8px; display: flex; align-items: center; }
-
-/* The Cursor */
-.cursor {
-    display: inline-block; width: 10px; height: 1.2rem;
-    background: var(--accent-glow); animation: blink 0.8s infinite;
-    margin-left: 5px;
-}
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
 /* --- PROFILE GLASS --- */
 .profile-glass {
@@ -69,7 +42,7 @@ body {
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-/* --- BENTO CARDS --- */
+/* --- CINEMATIC BENTO CARDS --- */
 .bento-tile {
     background: transparent !important; 
     border: 1px solid var(--card-border) !important;
@@ -167,7 +140,7 @@ body {
 .menu-items a.bluesky:hover { background: #0085ff; color: white; }
 .menu-items a.email:hover { background: #ea4335; color: white; }
 
-/* --- Typography --- */
+/* --- Typography & Animations --- */
 .profile-name { font-family: 'Dosis', sans-serif; font-size: 4rem; letter-spacing: 1px; }
 .profile-about { font-family: 'Dosis', sans-serif; font-size: 1.4rem; color: rgba(255,255,255,0.9); }
 .skills-container span {
