@@ -5,7 +5,7 @@
     --gold: #ffcc33; --green: #5aad45; --blue: #23a6d5; --red: #ea4335;
 }
 
-/* --- Body & Background --- */
+/* --- Body & Background (THIS WAS MISSING) --- */
 body {
     background: linear-gradient(-45deg, #d35ecd, #5aad45, #23a6d5, #3a0eb3) !important;
     background-size: 400% 400% !important;
@@ -81,6 +81,7 @@ body {
     opacity: 0.95;
 }
 
+/* Text Reveal Animation */
 .reveal-text {
     max-height: 0;
     opacity: 0;
@@ -96,6 +97,7 @@ body {
     margin-top: 10px;
 }
 
+/* Icon Animation */
 .icon-box i {
     font-size: 3rem;
     transition: transform 0.4s ease;
