@@ -111,3 +111,87 @@ body {
     from { opacity: 0; transform: translateY(40px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+
+/* --- Content Page Layouts (Research & Outreach) --- */
+.outreach-page-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.outreach-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.outreach-row {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 100px;
+}
+
+/* This creates the zig-zag pattern */
+.outreach-row.reversed {
+    flex-direction: row-reverse;
+}
+
+.outreach-image {
+    flex: 1;
+}
+
+.outreach-image img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.outreach-text {
+    flex: 1;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.outreach-text h3 {
+    font-family: 'Dosis', sans-serif;
+    font-size: 2rem;
+    color: var(--accent-glow);
+    margin-bottom: 20px;
+}
+
+/* Buttons inside content pages */
+.btn-paper-link, .btn-github-link {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid var(--accent-glow);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.btn-paper-link:hover, .btn-github-link:hover {
+    background: var(--accent-glow);
+    box-shadow: 0 0 15px var(--accent-glow);
+    text-decoration: none;
+    color: white;
+}
+
+.caption {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+/* Mobile Responsiveness for Rows */
+@media (max-width: 768px) {
+    .outreach-row, .outreach-row.reversed {
+        flex-direction: column;
+    }
+}
