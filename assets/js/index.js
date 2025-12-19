@@ -1,49 +1,34 @@
-const link_container = document.getElementById("link-container");
+const container = document.getElementById("link-container");
 
-if (link_container) {
-    link_container.innerHTML = ""; 
+if (container && config && config.links) {
+    container.innerHTML = "";
 
-    const descriptions = {
-        "My Research Projects": "Analyzing AGN dust attenuation using JWST spectra and the GLEAM fitting tool.",
-        "Class Projects & Coursework": "Computer vision pipelines, Arduino instrumentation, and theoretical physics.",
-        "View My CV": "A comprehensive record of academic research, technical skills, and coursework.",
-        "Talks & Outreach": "Teaching assistance for ASTR 591 and public astronomy volunteering at KU."
+    const cardData = {
+        "My Research Projects": "Analyzing AGN dust attenuation using JWST spectra and the GLEAM tool.",
+        "Class Projects & Coursework": "Computer vision pipelines, Arduino hardware, and theoretical physics.",
+        "View My CV": "Full academic record, technical skills, and coursework history.",
+        "Talks & Outreach": "Teaching assistance for ASTR 591 and public astronomy volunteering."
     };
 
-    const professionalLinks = config.links.filter(link => 
-        !["LinkedIn", "Bluesky"].includes(link.Title)
-    );
+    config.links.forEach((link, i) => {
+        // Skip LinkedIn/Bluesky big buttons
+        if (["LinkedIn", "Bluesky"].includes(link.Title)) return;
 
-    professionalLinks.forEach((link, index) => {
         const col = document.createElement("div");
-        const isMajor = link.Title.includes("Research") || link.Title.includes("Projects");
-        
-        // Use col-12 on small screens, col-md-6 for the main ones on desktop
-        col.className = isMajor ? "col-12 col-md-6 mb-4 fade-in-up" : "col-12 col-md-4 mb-4 fade-in-up";
-        col.style.animationDelay = `${index * 0.1}s`;
+        // Research and Projects get half-width (6), others get third-width (4)
+        const isBig = link.Title.includes("Research") || link.Title.includes("Projects");
+        col.className = isBig ? "col-md-6 mb-4" : "col-md-4 mb-4";
 
         col.innerHTML = `
-            <a href="${link.URL}" class="text-decoration-none h-100 d-block">
-                <div class="card h-100 border-0 bento-tile">
-                    <div class="card-body d-flex flex-column align-items-center text-center p-4">
-                        <div class="icon-box mb-3">
-                            <i class="${link.icon_classes}"></i>
-                        </div>
-                        <h5 class="card-title text-white font-weight-bold mb-2">
-                            ${link.Title}
-                        </h5>
-                        <p class="card-text small text-white-50">
-                            ${descriptions[link.Title] || "Explore details."}
-                        </p>
-                        <div class="mt-auto pt-2">
-                            <span class="module-code">
-                                ACCESS_PORT // 0${index + 1}
-                            </span>
-                        </div>
-                    </div>
+            <a href="${link.URL}" class="card h-100 bento-tile text-center p-4">
+                <div class="card-body d-flex flex-column align-items-center">
+                    <div class="icon-box"><i class="${link.icon_classes}"></i></div>
+                    <h5 class="card-title text-white font-weight-bold">${link.Title}</h5>
+                    <p class="card-text small text-white-50">${cardData[link.Title] || "View details"}</p>
+                    <div class="mt-auto module-code">DATA_STREAM // 0${i+1}</div>
                 </div>
             </a>
         `;
-        link_container.appendChild(col);
+        container.appendChild(col);
     });
 }
