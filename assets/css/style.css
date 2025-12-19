@@ -195,3 +195,16 @@ body {
         flex-direction: column;
     }
 }
+
+/* --- Projects Page Specifics --- */
+.project-tag {
+    display: inline-block;
+    background: rgba(35, 166, 213, 0.2); /* Low opacity accent */
+    color: #23a6d5;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
