@@ -9,7 +9,7 @@ let config = {
       "icon_classes": "fa-solid fa-flask",
     },
     {
-      "Title": "Class Projects & Coursework",
+      "Title": "Class Projects & Papers",
       "URL": "projects.html", // We will create this file next
       "icon_classes": "fa-solid fa-laptop-code",
     },
