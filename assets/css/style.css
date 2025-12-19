@@ -5,7 +5,7 @@
     --gold: #ffcc33; --green: #5aad45; --blue: #23a6d5; --red: #ea4335;
 }
 
-/* --- Body & Background --- */
+/* --- Body --- */
 body {
     background: linear-gradient(-45deg, #d35ecd, #5aad45, #23a6d5, #3a0eb3) !important;
     background-size: 400% 400% !important;
@@ -23,100 +23,76 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* --- SYSTEM BOOT SCREEN --- */
+/* --- BOOT SCREEN (Professional) --- */
 #boot-screen {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: #000;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #050505; /* Deep black */
     z-index: 9999;
     display: flex; align-items: center; justify-content: center; flex-direction: column;
-    transition: opacity 1s ease-out;
-    /* Safety Net: Fades out after 5s if JS fails */
-    animation: css-safe-fade 0.5s linear 5s forwards;
+    transition: opacity 0.8s ease-out;
+    animation: css-safe-fade 0.5s linear 4s forwards;
     pointer-events: auto;
 }
-
 @keyframes css-safe-fade { to { opacity: 0; visibility: hidden; pointer-events: none; } }
 
 .terminal-container {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 1.2rem;
-    color: var(--accent-glow);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-align: left;
-    min-width: 320px;
+    font-family: 'Roboto Mono', monospace; font-size: 1.1rem;
+    color: var(--accent-glow); text-transform: uppercase; letter-spacing: 2px;
+    text-align: left; min-width: 320px;
 }
+.terminal-line { min-height: 1.5rem; margin-bottom: 8px; display: flex; align-items: center; }
 
-/* The cursor that follows the typing */
+/* The Cursor */
 .cursor {
-    display: inline-block;
-    width: 10px; height: 1.2rem;
-    background: var(--accent-glow);
-    animation: blink 0.8s infinite;
+    display: inline-block; width: 10px; height: 1.2rem;
+    background: var(--accent-glow); animation: blink 0.8s infinite;
     margin-left: 5px;
-    vertical-align: middle;
 }
-
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-/* --- PROFILE GLASS (New Porthole Look) --- */
+/* --- PROFILE GLASS --- */
 .profile-glass {
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 20px 30px;
-    border-radius: 100px; /* Pill shape */
-    display: inline-flex;
-    gap: 30px;
+    padding: 15px 25px;
+    border-radius: 100px;
+    display: inline-flex; gap: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     transition: transform 0.3s ease;
 }
-
-.profile-glass:hover {
-    transform: scale(1.02);
-    border-color: rgba(255, 255, 255, 0.4);
-}
+.profile-glass:hover { transform: scale(1.02); border-color: rgba(255, 255, 255, 0.4); }
 
 .profile-picture {
-    width: 140px; height: 140px;
-    border-radius: 50% !important;
-    border: 3px solid white;
-    object-fit: cover;
+    width: 130px; height: 130px;
+    border-radius: 50% !important; border: 3px solid white; object-fit: cover;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-/* --- CINEMATIC BENTO CARD (Fixed Overflow) --- */
+/* --- BENTO CARDS --- */
 .bento-tile {
     background: transparent !important; 
     border: 1px solid var(--card-border) !important;
     border-radius: 24px !important;
     text-decoration: none !important;
     position: relative; z-index: 1;
-    
-    /* CRITICAL FIX FOR GIANT IMAGES */
-    overflow: hidden !important; 
-    
+    overflow: hidden !important; /* Forces images to stay inside */
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
 }
 
-/* Background Image Layer */
 .tile-bg {
     position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    background-size: cover !important;
-    background-position: center center !important;
-    background-repeat: no-repeat !important;
+    background-size: cover !important; 
+    background-position: center !important;
     z-index: 0;
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-    filter: brightness(0.5) blur(0px);
-    transform: scale(1.05);
+    filter: brightness(0.6) blur(0px); transform: scale(1.05);
 }
 
 .tile-overlay {
     position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 100%);
-    z-index: 1; opacity: 0.7; transition: opacity 0.3s ease;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+    z-index: 1; opacity: 0.6; transition: opacity 0.3s ease;
 }
 
 .card-body {
@@ -124,7 +100,6 @@ body {
     justify-content: flex-end !important; padding-bottom: 30px !important;
 }
 
-/* Hover Effects */
 .bento-tile:hover {
     transform: translateY(-8px) !important;
     border-color: rgba(255,255,255,0.6) !important;
