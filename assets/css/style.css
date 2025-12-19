@@ -1,148 +1,104 @@
 /* --- Global Variables --- */
 :root {
     --accent-glow: #23a6d5; 
-    --card-bg: rgba(20, 20, 30, 0.6); /* Slightly more transparent for spotlight */
-    --card-border: rgba(255, 255, 255, 0.1);
+    --card-border: rgba(255, 255, 255, 0.2);
     --gold: #ffcc33; --green: #5aad45; --blue: #23a6d5; --red: #ea4335;
 }
 
-body {
-    background: linear-gradient(-45deg, #d35ecd, #5aad45, #23a6d5, #3a0eb3) !important;
-    background-size: 400% 400% !important;
-    animation: gradient 15s ease infinite !important;
-    color: white !important;
-    min-height: 100vh;
-    font-family: 'Abel', sans-serif;
-    overflow-x: hidden;
-}
+/* ... Body & Gradient CSS remains the same ... */
 
-@keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* --- Bento Grid: The "Spotlight" Effect --- */
+/* --- Cinematic Bento Card --- */
 .bento-tile {
-    background: var(--card-bg) !important;
-    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    /* No solid background color! We rely on the image + overlay */
+    background: transparent !important; 
     border: 1px solid var(--card-border) !important;
     border-radius: 24px !important;
     text-decoration: none !important;
     position: relative; z-index: 1;
-    overflow: hidden; /* Contains the spotlight */
-    transition: transform 0.2s ease-out, box-shadow 0.3s ease, border-color 0.3s ease !important;
+    overflow: hidden; /* Critical for image containment */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
 }
 
-/* The Spotlight Overlay */
-.bento-tile::before {
-    content: "";
+/* The Background Image Layer */
+.tile-bg {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(
-        600px circle at var(--mouse-x) var(--mouse-y), 
-        rgba(255,255,255,0.15), 
-        transparent 40%
-    );
-    z-index: 2;
-    opacity: 0; /* Hidden by default */
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    /* Slight dim by default so white text pops */
+    filter: brightness(0.6) blur(0px);
+    transform: scale(1.05); /* Slight zoom so we can zoom out on hover */
+}
+
+/* The Dark Gradient Overlay (Makes text readable) */
+.tile-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+    z-index: 1;
+    opacity: 0.6;
     transition: opacity 0.3s ease;
-    pointer-events: none;
 }
 
-/* Reveal spotlight on hover */
-.bento-tile:hover::before {
+/* Content Container */
+.card-body {
+    position: relative; z-index: 2;
+    height: 100%;
+    justify-content: flex-end !important; /* Push content to bottom */
+    padding-bottom: 30px !important;
+}
+
+/* --- HOVER EFFECTS --- */
+
+/* 1. Image Blurs & Darkens */
+.bento-tile:hover .tile-bg {
+    filter: brightness(0.3) blur(6px); /* The "Fog" Effect */
+    transform: scale(1.0);
+}
+
+.bento-tile:hover .tile-overlay {
+    opacity: 0.9; /* Darker background for text */
+}
+
+/* 2. Text Reveals */
+.reveal-text {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.bento-tile:hover .reveal-text {
+    max-height: 100px; /* Open up space */
     opacity: 1;
+    transform: translateY(0);
+    margin-top: 10px;
 }
 
+/* 3. Icon Movement */
+.icon-box i {
+    font-size: 3rem;
+    transition: transform 0.4s ease;
+    margin-bottom: 10px;
+}
+
+.bento-tile:hover .icon-box i {
+    transform: translateY(-10px) scale(0.8); /* Shrink slightly to make room */
+    color: var(--accent-glow) !important;
+}
+
+/* 4. Card Lift & Glow */
 .bento-tile:hover {
-    transform: translateY(-5px) !important; /* Subtle lift */
-    border-color: rgba(255,255,255,0.5) !important;
+    transform: translateY(-8px) !important;
+    border-color: rgba(255,255,255,0.6) !important;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5) !important;
 }
 
-/* Specific Border Colors on Hover */
-.bento-tile.research-card:hover { border-color: var(--gold) !important; box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 0 30px rgba(255, 204, 51, 0.1) !important; }
-.bento-tile.projects-card:hover { border-color: var(--green) !important; box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 0 30px rgba(90, 173, 69, 0.1) !important; }
-.bento-tile.cv-card:hover { border-color: var(--blue) !important; box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 0 30px rgba(35, 166, 213, 0.1) !important; }
-.bento-tile.outreach-card:hover { border-color: var(--red) !important; box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 0 30px rgba(234, 67, 53, 0.1) !important; }
-
-/* Icons & Text */
-.icon-box i { transition: transform 0.3s ease; z-index: 3; position: relative; }
-.bento-tile:hover .icon-box i { transform: scale(1.1); }
-
-/* --- Data Stream Text (Replaces Glitch) --- */
-.module-code {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.4);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    transition: all 0.3s ease;
-    z-index: 3; position: relative;
-}
-
-.bento-tile:hover .module-code {
-    color: var(--accent-glow);
-    text-shadow: 0 0 8px var(--accent-glow);
-    letter-spacing: 3px; /* "Breathing" expansion */
-}
-
-/* --- Planetary Menu (Refined Spacing) --- */
-.menu-container {
-    position: fixed; top: 30px; right: 30px;
-    width: 60px; height: 60px; z-index: 1000;
-}
-#toggle { display: none; }
-
-.btn-main {
-    position: absolute; width: 60px; height: 60px;
-    background: rgba(255,255,255,0.15); backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.3); border-radius: 50%;
-    cursor: pointer; z-index: 20;
-    display: flex; justify-content: center; align-items: center;
-    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.btn-main i { position: absolute; font-size: 28px; color: white; transition: 0.3s; }
-#menu-icon { opacity: 1; transform: rotate(0deg); }
-#close-icon { opacity: 0; transform: rotate(-90deg); }
-
-#toggle:checked ~ .btn-main { background: white; transform: scale(1.1); }
-#toggle:checked ~ .btn-main i { color: #333; }
-#toggle:checked ~ .btn-main #menu-icon { opacity: 0; transform: rotate(90deg); }
-#toggle:checked ~ .btn-main #close-icon { opacity: 1; transform: rotate(0deg); }
-
-.menu-items a {
-    position: absolute; top: 5px; left: 5px;
-    width: 50px; height: 50px;
-    background: white; border-radius: 50%;
-    display: flex; justify-content: center; align-items: center;
-    text-decoration: none; color: #333;
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    opacity: 0; z-index: 10; pointer-events: none;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-#toggle:checked ~ .menu-items a {
-    opacity: 1; pointer-events: auto;
-    /* Increased expansion distance to 130px to prevent overlap */
-    transform: translate(calc(130px * var(--x)), calc(130px * var(--y))); 
-}
-
-/* Brand Colors */
-.menu-items a.github:hover { background: #333; color: white; }
-.menu-items a.linkedin:hover { background: #0077b5; color: white; }
-.menu-items a.bluesky:hover { background: #0085ff; color: white; }
-.menu-items a.email:hover { background: #ea4335; color: white; }
-
-/* --- Profile & Hero --- */
-.profile-pictures-container { display: flex; justify-content: center; gap: 20px; }
-.profile-picture { width: 140px; height: 140px; border-radius: 50% !important; border: 4px solid white; object-fit: cover; }
-.profile-name { font-family: 'Dosis', sans-serif; font-size: 4rem; letter-spacing: 1px; }
-.profile-about { font-family: 'Dosis', sans-serif; font-size: 1.4rem; color: rgba(255,255,255,0.9); }
-.skills-container span {
-    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-    padding: 6px 18px; border-radius: 25px; margin: 6px; display: inline-block; font-weight: 600;
-}
-.fade-in-up { opacity: 0; animation: fadeInUp 0.8s forwards ease-out; }
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+/* Specific Border Glows */
+.bento-tile.research-card:hover { border-color: var(--gold) !important; }
+.bento-tile.projects-card:hover { border-color: var(--green) !important; }
+.bento-tile.cv-card:hover { border-color: var(--blue) !important; }
+.bento-tile.outreach-card:hover { border-color: var(--red) !important; }
