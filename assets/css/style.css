@@ -1,6 +1,7 @@
+/* --- Global Variables --- */
 :root {
-    --accent-glow: #23a6d5;
-    --card-bg: rgba(15, 15, 25, 0.75);
+    --accent-glow: #23a6d5; 
+    --card-bg: rgba(15, 15, 25, 0.75); 
     --card-border: rgba(255, 255, 255, 0.2);
 }
 
@@ -11,6 +12,7 @@ body {
     color: white !important;
     min-height: 100vh;
     font-family: 'Abel', sans-serif;
+    margin: 0; padding: 0;
     overflow-x: hidden;
 }
 
@@ -20,26 +22,30 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* --- Bento Tile Styling --- */
+/* --- Bento Grid Hover (Video 1 Influence) --- */
 .bento-tile {
     background: var(--card-bg) !important;
     backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
     border: 1.5px solid var(--card-border) !important;
     border-radius: 20px !important;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    text-decoration: none !important;
 }
 
 .bento-tile:hover {
-    transform: translateY(-12px) scale(1.02) !important;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 20px var(--accent-glow) !important;
-    border-color: var(--accent-glow) !important;
+    transform: translateY(-12px) scale(1.03) !important;
+    border-color: white !important;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 20px rgba(255,255,255,0.2) !important;
 }
 
-/* --- Planetary Social Menu --- */
+/* Specific Card Color Glows */
+.research-card:hover { border-color: #ffcc33 !important; box-shadow: 0 0 25px #ffcc33 !important; }
+.projects-card:hover { border-color: #5aad45 !important; box-shadow: 0 0 25px #5aad45 !important; }
+
+/* --- Planetary Social Menu (Video 2 Influence) --- */
 .menu-container {
     position: relative;
-    width: 200px; height: 100px;
+    width: 250px; height: 150px;
     display: flex; justify-content: center; align-items: center;
 }
 
@@ -47,15 +53,15 @@ body {
 
 .btn-main {
     position: absolute;
-    width: 60px; height: 60px;
+    width: 70px; height: 70px;
     background: white; border-radius: 50%;
     z-index: 10; cursor: pointer;
     display: flex; justify-content: center; align-items: center;
     transition: transform 0.5s;
-    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+    box-shadow: 0 0 20px rgba(255,255,255,0.4);
 }
 
-.btn-main i { font-size: 28px; color: #333; position: absolute; }
+.btn-main i { font-size: 32px; color: #333; position: absolute; transition: 0.3s; }
 #close-icon { opacity: 0; transform: rotate(-180deg); }
 
 #toggle:checked ~ .btn-main { transform: rotate(180deg); background: var(--accent-glow); }
@@ -65,27 +71,43 @@ body {
 
 .menu-items a {
     position: absolute;
-    width: 45px; height: 45px;
+    width: 50px; height: 50px;
     background: white; border-radius: 50%;
     display: flex; justify-content: center; align-items: center;
     text-decoration: none; color: #333;
-    transition: all 0.5s;
+    transition: all 0.5s cubic-bezier(0.87, -0.41, 0.19, 1.44);
     transition-delay: calc(0.1s * var(--i));
     opacity: 0; z-index: 1; transform: translate(0,0);
 }
 
 #toggle:checked ~ .menu-items a {
     opacity: 1;
-    transform: translate(calc(100px * var(--x)), calc(100px * var(--y)));
+    transform: translate(calc(110px * var(--x)), calc(110px * var(--y)));
 }
 
-/* Brand-Specific Glows for Radial Satellites */
-.menu-items a.github:hover { background: #333; color: white; box-shadow: 0 0 15px #333; }
-.menu-items a.linkedin:hover { background: #0077b5; color: white; box-shadow: 0 0 15px #0077b5; }
-.menu-items a.email:hover { background: #ea4335; color: white; box-shadow: 0 0 15px #ea4335; }
+/* Brand Glows for Satellites */
+.menu-items a.github:hover { background: #333; color: white; box-shadow: 0 0 20px #333; }
+.menu-items a.linkedin:hover { background: #0077b5; color: white; box-shadow: 0 0 20px #0077b5; }
+.menu-items a.bluesky:hover { background: #0085ff; color: white; box-shadow: 0 0 20px #0085ff; }
+.menu-items a.email:hover { background: #ea4335; color: white; box-shadow: 0 0 20px #ea4335; }
 
-/* --- Profile Styling --- */
+/* --- Profile & Hero (Video 3 Influence: Split View) --- */
+.hero-header { margin-bottom: 60px; padding-top: 40px; }
 .profile-pictures-container { display: flex; justify-content: center; gap: 20px; }
 .profile-picture { width: 140px; height: 140px; border-radius: 50% !important; border: 3px solid white; object-fit: cover; }
-.profile-name { font-family: 'Dosis', sans-serif; font-size: 3.5rem; margin-top: 15px; }
-.module-code { font-family: 'Roboto Mono', monospace; font-size: 0.75rem; color: var(--accent-glow); }
+.profile-name { font-family: 'Dosis', sans-serif; font-size: 3.8rem; letter-spacing: 2px; }
+.profile-about { font-family: 'Dosis', sans-serif; font-size: 1.4rem; color: rgba(255,255,255,0.9); }
+
+.skills-container span {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 6px 18px; border-radius: 25px;
+    margin: 6px; display: inline-block; font-weight: bold;
+}
+
+/* Animations */
+.fade-in-up { opacity: 0; animation: fadeInUp 0.8s forwards ease-out; }
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
