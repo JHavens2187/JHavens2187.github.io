@@ -10,7 +10,6 @@ if (link_container) {
         "Talks & Outreach": "Teaching assistance for ASTR 591 and public astronomy volunteering at KU."
     };
 
-    // Filter out LinkedIn/Bluesky big buttons as requested
     const professionalLinks = config.links.filter(link => 
         !["LinkedIn", "Bluesky"].includes(link.Title)
     );
@@ -18,12 +17,14 @@ if (link_container) {
     professionalLinks.forEach((link, index) => {
         const col = document.createElement("div");
         const isMajor = link.Title.includes("Research") || link.Title.includes("Projects");
-        col.className = isMajor ? "col-md-6 mb-4 fade-in-up" : "col-md-6 col-lg-4 mb-4 fade-in-up";
+        
+        // Use col-12 on small screens, col-md-6 for the main ones on desktop
+        col.className = isMajor ? "col-12 col-md-6 mb-4 fade-in-up" : "col-12 col-md-4 mb-4 fade-in-up";
         col.style.animationDelay = `${index * 0.1}s`;
 
         col.innerHTML = `
             <a href="${link.URL}" class="text-decoration-none h-100 d-block">
-                <div class="card h-100 shadow-lg border-0 bento-tile">
+                <div class="card h-100 border-0 bento-tile">
                     <div class="card-body d-flex flex-column align-items-center text-center p-4">
                         <div class="icon-box mb-3">
                             <i class="${link.icon_classes}"></i>
@@ -32,7 +33,7 @@ if (link_container) {
                             ${link.Title}
                         </h5>
                         <p class="card-text small text-white-50">
-                            ${descriptions[link.Title] || "Explore this module."}
+                            ${descriptions[link.Title] || "Explore details."}
                         </p>
                         <div class="mt-auto pt-2">
                             <span class="module-code">
