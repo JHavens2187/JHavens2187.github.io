@@ -320,3 +320,90 @@ body {
 .delay-100 { transition-delay: 0.1s; }
 .delay-200 { transition-delay: 0.2s; }
 .delay-300 { transition-delay: 0.3s; }
+
+
+/* --- Add these to the bottom of style.css --- */
+
+/* ABOUT PAGE SPLIT LAYOUT */
+.split-container {
+    display: flex;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.split-col {
+    flex: 1;
+    background: rgba(20, 20, 30, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    transition: all 0.4s ease;
+}
+
+.split-col:hover {
+    background: rgba(20, 20, 30, 0.7);
+    border-color: var(--accent-glow);
+    transform: translateY(-5px);
+}
+
+.split-icon {
+    font-size: 3rem;
+    color: var(--accent-glow);
+    margin-bottom: 20px;
+}
+
+.bio-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Timeline / History Section */
+.timeline-item {
+    border-left: 2px solid var(--accent-glow);
+    padding-left: 20px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -6px; top: 0;
+    width: 10px; height: 10px;
+    background: var(--accent-glow);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.timeline-date {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--gold);
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+/* Boot Screen Styles (Ensuring they are present) */
+#boot-screen {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #050505;
+    z-index: 9999;
+    display: flex; align-items: center; justify-content: center; flex-direction: column;
+    /* We handle the fade out via JS now */
+}
+
+.terminal-container {
+    font-family: 'Roboto Mono', monospace; font-size: 1.1rem;
+    color: var(--accent-glow); text-transform: uppercase; letter-spacing: 2px;
+    text-align: left; min-width: 320px;
+}
+.terminal-line { min-height: 1.5rem; margin-bottom: 8px; display: flex; align-items: center; }
+.cursor {
+    display: inline-block; width: 10px; height: 1.2rem;
+    background: var(--accent-glow); animation: blink 0.8s infinite; margin-left: 5px;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+@media (max-width: 768px) {
+    .split-container { flex-direction: column; }
+}
