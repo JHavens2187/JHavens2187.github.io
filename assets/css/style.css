@@ -1,8 +1,9 @@
 /* --- Global Variables & Glassmorphism --- */
 :root {
     --accent-glow: #23a6d5; /* Deep Space Cyan */
-    --card-bg: rgba(255, 255, 255, 0.07);
-    --card-border: rgba(255, 255, 255, 0.2);
+    /* Increased opacity for better contrast */
+    --card-bg: rgba(15, 15, 25, 0.4); 
+    --card-border: rgba(255, 255, 255, 0.3);
 }
 
 body {
@@ -11,6 +12,8 @@ body {
     animation: gradient 15s ease infinite;
     color: white;
     min-height: 100vh;
+    /* Added text shadow for legibility against bright gradient colors */
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 @keyframes gradient {
@@ -22,9 +25,9 @@ body {
 /* --- Project Card Styling --- */
 .card {
     background: var(--card-bg) !important;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid var(--card-border) !important;
+    backdrop-filter: blur(12px); /* Slightly stronger blur */
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid var(--card-border) !important; /* Slightly thicker border */
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border-radius: 15px;
     color: white !important;
@@ -33,15 +36,17 @@ body {
 .card:hover {
     transform: translateY(-8px) scale(1.02);
     border-color: var(--accent-glow) !important;
-    box-shadow: 0 0 20px var(--accent-glow);
+    /* Stronger, more defined glow for high contrast */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-glow) !important;
+    background: rgba(15, 15, 25, 0.6) !important;
 }
 
 .project-tag {
     font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     font-weight: bold;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--accent-glow); /* Changed to accent color for punchy contrast */
 }
 
 /* --- Profile & Links (Index) --- */
@@ -60,7 +65,7 @@ img { border-radius: 50%; }
     height: 160px;
     object-fit: cover;
     border: 4px solid #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .profile-name {
@@ -82,11 +87,12 @@ img { border-radius: 50%; }
     margin-bottom: 20px;
 }
 
+/* Link buttons on Home Page */
 .links {
     text-align: center;
     margin: 20px auto;
     padding: 20px;
-    border: 1px solid rgb(255, 255, 255);
+    border: 1px solid white;
     width: 490px;
     display: block;
     border-radius: 40px;
@@ -95,21 +101,18 @@ img { border-radius: 50%; }
     font-size: 20px;
     letter-spacing: 3px;
     transition: transform 0.2s ease-in-out;
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .links:hover {
     transform: scale(1.03);
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 1);
+    color: black !important;
 }
 
 .hover {
     text-decoration: none;
     color: rgb(255, 255, 255);
-}
-
-.hover:hover {
-    color: rgb(0, 0, 0);
-    background: rgb(255, 255, 255);
 }
 
 /* --- Skills Section --- */
@@ -119,7 +122,7 @@ img { border-radius: 50%; }
 }
 
 .skills-container span {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.15);
     color: #ffffff;
     padding: 5px 12px;
     font-size: 14px;
@@ -128,6 +131,7 @@ img { border-radius: 50%; }
     display: inline-block;
     font-family: 'Dosis', sans-serif;
     font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* --- Page Containers --- */
@@ -137,37 +141,9 @@ img { border-radius: 50%; }
     padding: 30px;
     background-color: rgba(255, 255, 255, 0.95);
     border-radius: 10px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     color: #333;
 }
-
-/* --- Headers & Buttons --- */
-.outreach-header {
-    text-align: center;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 20px;
-    margin-bottom: 30px;
-}
-
-.outreach-header h1 {
-    font-family: 'Dosis', sans-serif;
-    font-size: 2.8rem;
-    color: #111;
-}
-
-.btn-github-link, .btn-paper-link {
-    display: inline-block;
-    padding: 10px 18px;
-    margin-top: 15px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-family: 'Dosis', sans-serif;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.btn-github-link { background-color: #333; color: #fff; }
-.btn-paper-link { background-color: #007bff; color: #fff; }
 
 /* --- Layout Rows --- */
 .outreach-row {
@@ -183,14 +159,6 @@ img { border-radius: 50%; }
 
 .outreach-image { flex: 1; min-width: 250px; }
 .outreach-image img { width: 100%; border-radius: 8px; }
-.outreach-image .caption {
-    font-family: 'Abel', sans-serif;
-    font-size: 0.95rem;
-    font-style: italic;
-    color: #666;
-    margin-top: 10px;
-    text-align: center;
-}
 
 .outreach-text { flex: 1.5; }
 
@@ -203,11 +171,11 @@ img { border-radius: 50%; }
     border-radius: 30px;
     margin: 10px;
     margin-top: 50px;
+    background: rgba(255,255,255,0.1);
 }
 
-/* --- Media Queries --- */
 @media (max-width: 768px) {
     .outreach-row, .outreach-row.reversed { flex-direction: column; }
-    .links { width: 290px; }
+    .links { width: 90%; }
     .profile-name { font-size: 1.8rem; }
 }
