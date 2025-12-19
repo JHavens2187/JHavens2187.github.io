@@ -303,3 +303,20 @@ body {
     .content-row, .content-row.reversed { flex-direction: column; }
     .content-image img { max-width: 100%; }
 }
+
+/* --- UNIVERSAL SCROLL REVEAL --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px); /* Starts 50px lower */
+    transition: all 1s cubic-bezier(0.5, 0, 0, 1); /* Ultra smooth ease-out */
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0); /* Slides into place */
+}
+
+/* Staggered delays for grids (optional helper classes) */
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
