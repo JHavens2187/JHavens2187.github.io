@@ -34,19 +34,19 @@ if (container && config && config.links) {
         container.appendChild(col);
     });
 
-    // 3D Tilt Logic
+    // --- SPOTLIGHT EFFECT LOGIC (Apple Style) ---
+    // Instead of tilting the card, we move a radial gradient based on mouse position
     const cards = document.querySelectorAll('.bento-tile');
+    
     cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
+        card.onmousemove = e => {
             const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            const rotateX = (y / rect.height) * -10; 
-            const rotateY = (x / rect.width) * 10;
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-        });
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale(1)`;
-        });
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            // Set CSS variables that the ::before pseudo-element uses
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        };
     });
 }
