@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="assets/css/style.css?v=8">
+    <link rel="stylesheet" href="assets/css/style.css?v=9">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Dosis:wght@400;600&display=swap" rel="stylesheet">
@@ -14,12 +14,12 @@
     <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
 
     <div class="container py-5">
-        <div class="page-header fade-in-up">
+        <div class="page-header reveal">
             <h1 class="page-title">Teaching & Outreach</h1>
             <p class="page-subtitle">Inspiring the next generation of physicists and astronomers.</p>
         </div>
 
-        <div class="content-row">
+        <div class="content-row reveal">
             <div class="content-image">
                 <img src="assets/img/KU_phys_astro_logo.png" alt="KU Logo">
             </div>
@@ -29,7 +29,7 @@
             </div>
         </div>
 
-        <div class="content-row reversed">
+        <div class="content-row reversed reveal">
             <div class="content-text">
                 <h3>Society of Physics Students (SPS)</h3>
                 <p>As an active member of the KU chapter, I assist with leadership tasks and co-lead logistics for conference attendance. I help organize social events, faculty panels, and outreach for local schools to build a strong physics community.</p>
@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        <div class="content-row">
+        <div class="content-row reveal">
             <div class="content-image">
                 <img src="assets/img/outreach_pic.png" alt="Telescope Night">
             </div>
@@ -52,12 +52,14 @@
     </div>
 
     <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.content-row').forEach((el) => observer.observe(el));
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
     </script>
 
 </body>
