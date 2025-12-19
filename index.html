@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="assets/css/style.css?v=4">
+    <link rel="stylesheet" href="assets/css/style.css?v=5">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -14,9 +14,10 @@
 
     <div id="boot-screen">
         <div class="terminal-container">
-            <div class="terminal-line" id="line-1"></div>
-            <div class="terminal-line" id="line-2"></div>
-            <div class="terminal-line" id="line-3"></div>
+            <div class="terminal-line" id="line-1"><span></span></div>
+            <div class="terminal-line" id="line-2"><span></span></div>
+            <div class="terminal-line" id="line-3"><span></span></div>
+            <div class="cursor" id="cursor"></div>
         </div>
     </div>
 
@@ -36,10 +37,13 @@
 
     <div class="container py-5">
         <header class="text-center mb-5 fade-in-up">
-            <div class="profile-pictures-container mb-4">
-                <img src="assets/img/profile_pic.png" alt="Researcher" class="profile-picture shadow-lg">
-                <img src="assets/img/outreach_pic.png" alt="Outreach" class="profile-picture shadow-lg">
+            <div class="d-flex justify-content-center mb-4">
+                <div class="profile-glass">
+                    <img src="assets/img/profile_pic.png" alt="Researcher" class="profile-picture">
+                    <img src="assets/img/outreach_pic.png" alt="Outreach" class="profile-picture">
+                </div>
             </div>
+
             <h1 class="profile-name">Joseph Havens</h1>
             <p class="profile-about px-md-5 mx-auto" style="max-width: 800px;">
                 Undergraduate Researcher | Dr. Allison Kirkpatrick | KU Physics and Astronomy Dept.
