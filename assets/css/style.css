@@ -23,23 +23,20 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* --- SYSTEM BOOT SCREEN (Safety Net Added) --- */
+/* --- SYSTEM BOOT SCREEN --- */
 #boot-screen {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     background: #000;
     z-index: 9999;
     display: flex; align-items: center; justify-content: center; flex-direction: column;
-    transition: opacity 0.8s ease-out;
-    
-    /* SAFETY NET: Forces the screen to vanish after 3.5s even if JS crashes */
-    animation: css-safe-fade 0.5s linear 3.5s forwards;
+    transition: opacity 1s ease-out;
+    /* Safety Net: Fades out after 5s if JS fails */
+    animation: css-safe-fade 0.5s linear 5s forwards;
     pointer-events: auto;
 }
 
-@keyframes css-safe-fade {
-    to { opacity: 0; visibility: hidden; pointer-events: none; }
-}
+@keyframes css-safe-fade { to { opacity: 0; visibility: hidden; pointer-events: none; } }
 
 .terminal-container {
     font-family: 'Roboto Mono', monospace;
@@ -48,44 +45,78 @@ body {
     text-transform: uppercase;
     letter-spacing: 2px;
     text-align: left;
-    min-width: 300px;
+    min-width: 320px;
 }
 
-.terminal-line {
-    min-height: 1.5rem;
-    margin-bottom: 10px;
-    opacity: 0;
+/* The cursor that follows the typing */
+.cursor {
+    display: inline-block;
+    width: 10px; height: 1.2rem;
+    background: var(--accent-glow);
+    animation: blink 0.8s infinite;
+    margin-left: 5px;
+    vertical-align: middle;
 }
-
-.terminal-line::after {
-    content: '█'; animation: blink 0.8s infinite; margin-left: 5px; display: none;
-}
-.terminal-line.active::after { display: inline-block; }
 
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-/* --- Cinematic Bento Card --- */
+/* --- PROFILE GLASS (New Porthole Look) --- */
+.profile-glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 20px 30px;
+    border-radius: 100px; /* Pill shape */
+    display: inline-flex;
+    gap: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.profile-glass:hover {
+    transform: scale(1.02);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.profile-picture {
+    width: 140px; height: 140px;
+    border-radius: 50% !important;
+    border: 3px solid white;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* --- CINEMATIC BENTO CARD (Fixed Overflow) --- */
 .bento-tile {
     background: transparent !important; 
     border: 1px solid var(--card-border) !important;
     border-radius: 24px !important;
     text-decoration: none !important;
     position: relative; z-index: 1;
-    overflow: hidden; 
+    
+    /* CRITICAL FIX FOR GIANT IMAGES */
+    overflow: hidden !important; 
+    
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
 }
 
+/* Background Image Layer */
 .tile-bg {
     position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    background-size: cover; background-position: center; z-index: 0;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    z-index: 0;
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-    filter: brightness(0.6) blur(0px); transform: scale(1.05);
+    filter: brightness(0.5) blur(0px);
+    transform: scale(1.05);
 }
 
 .tile-overlay {
     position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
-    z-index: 1; opacity: 0.6; transition: opacity 0.3s ease;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 100%);
+    z-index: 1; opacity: 0.7; transition: opacity 0.3s ease;
 }
 
 .card-body {
@@ -125,11 +156,9 @@ body {
 
 /* --- Planetary Menu --- */
 .menu-container {
-    position: fixed; top: 30px; right: 30px;
-    width: 60px; height: 60px; z-index: 1000;
+    position: fixed; top: 30px; right: 30px; width: 60px; height: 60px; z-index: 1000;
 }
 #toggle { display: none; }
-
 .btn-main {
     position: absolute; width: 60px; height: 60px;
     background: rgba(255,255,255,0.15); backdrop-filter: blur(10px);
@@ -141,15 +170,12 @@ body {
 .btn-main i { position: absolute; font-size: 28px; color: white; transition: 0.3s; }
 #menu-icon { opacity: 1; transform: rotate(0deg); }
 #close-icon { opacity: 0; transform: rotate(-90deg); }
-
 #toggle:checked ~ .btn-main { background: white; transform: scale(1.1); }
 #toggle:checked ~ .btn-main i { color: #333; }
 #toggle:checked ~ .btn-main #menu-icon { opacity: 0; transform: rotate(90deg); }
 #toggle:checked ~ .btn-main #close-icon { opacity: 1; transform: rotate(0deg); }
-
 .menu-items a {
-    position: absolute; top: 5px; left: 5px;
-    width: 50px; height: 50px;
+    position: absolute; top: 5px; left: 5px; width: 50px; height: 50px;
     background: white; border-radius: 50%;
     display: flex; justify-content: center; align-items: center;
     text-decoration: none; color: #333;
@@ -157,10 +183,21 @@ body {
     opacity: 0; z-index: 10; pointer-events: none;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
-
 #toggle:checked ~ .menu-items a {
     opacity: 1; pointer-events: auto;
     transform: translate(calc(130px * var(--x)), calc(130px * var(--y))); 
 }
+.menu-items a.github:hover { background: #333; color: white; }
+.menu-items a.linkedin:hover { background: #0077b5; color: white; }
+.menu-items a.bluesky:hover { background: #0085ff; color: white; }
+.menu-items a.email:hover { background: #ea4335; color: white; }
 
-.
+/* --- Typography --- */
+.profile-name { font-family: 'Dosis', sans-serif; font-size: 4rem; letter-spacing: 1px; }
+.profile-about { font-family: 'Dosis', sans-serif; font-size: 1.4rem; color: rgba(255,255,255,0.9); }
+.skills-container span {
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    padding: 6px 18px; border-radius: 25px; margin: 6px; display: inline-block; font-weight: 600;
+}
+.fade-in-up { opacity: 0; animation: fadeInUp 0.8s forwards ease-out; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
