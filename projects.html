@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="assets/css/style.css?v=9">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css?v=8">
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Dosis:wght@400;600&display=swap" rel="stylesheet">
     <title>Class Projects | Joseph Havens</title>
 </head>
@@ -14,13 +14,13 @@
     <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
 
     <div class="container py-5">
-        <div class="page-header fade-in-up">
+        <div class="page-header reveal">
             <h1 class="page-title">Class Projects</h1>
             <p class="page-subtitle">Technical implementations, instrumentation pipelines, and theoretical physics derivations.</p>
         </div>
 
         <div class="row">
-            <div class="col-md-6 mb-4 fade-in-up" style="animation-delay: 0.1s;">
+            <div class="col-md-6 mb-4 reveal delay-100">
                 <div class="project-card">
                     <div class="project-tag">Computer Vision • Instrumentation</div>
                     <h4 class="text-white font-weight-bold mb-3">PYAXIOMA-JH Methodology</h4>
@@ -33,7 +33,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6 mb-4 fade-in-up" style="animation-delay: 0.2s;">
+            <div class="col-md-6 mb-4 reveal delay-200">
                 <div class="project-card">
                     <div class="project-tag">Theoretical Mechanics</div>
                     <h4 class="text-white font-weight-bold mb-3">Magnetic Dipole Dynamics</h4>
@@ -45,7 +45,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6 mb-4 fade-in-up" style="animation-delay: 0.3s;">
+            <div class="col-md-6 mb-4 reveal delay-100">
                 <div class="project-card">
                     <div class="project-tag">Electronics • Arduino</div>
                     <h4 class="text-white font-weight-bold mb-3">Digital Multimeter Design</h4>
@@ -58,7 +58,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6 mb-4 fade-in-up" style="animation-delay: 0.4s;">
+            <div class="col-md-6 mb-4 reveal delay-200">
                 <div class="project-card">
                     <div class="project-tag">Observational Astronomy</div>
                     <h4 class="text-white font-weight-bold mb-3">Stellar Cluster Ages</h4>
@@ -71,5 +71,19 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
+    </script>
 </body>
 </html>
