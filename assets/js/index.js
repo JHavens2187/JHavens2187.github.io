@@ -3,29 +3,46 @@ const container = document.getElementById("link-container");
 if (container && config && config.links) {
     container.innerHTML = "";
 
-    // Specific descriptions for the Bento tiles
-    const cardDetails = {
-        "My Research Projects": "AGN dust attenuation analysis via JWST & GLEAM.",
-        "Class Projects & Coursework": "Computer vision pipelines and theoretical physics.",
-        "View My CV": "Academic record, technical skills, and coursework.",
-        "Talks & Outreach": "Teaching assistance and public astronomy volunteering."
+    const cardMeta = {
+        "My Research Projects": {
+            desc: "Analyzing AGN dust attenuation using JWST spectra and GLEAM fitting.",
+            cls: "research-card"
+        },
+        "Class Projects & Papers": {
+            desc: "Computer vision pipelines, Arduino hardware, and theoretical physics.",
+            cls: "projects-card"
+        },
+        "View My CV": {
+            desc: "Full academic record, technical skills, and coursework history.",
+            cls: "cv-card"
+        },
+        "Talks & Outreach": {
+            desc: "Teaching assistance for ASTR 591 and public astronomy volunteering.",
+            cls: "outreach-card"
+        }
     };
 
     const mainLinks = config.links.filter(link => !["LinkedIn", "Bluesky"].includes(link.Title));
 
     mainLinks.forEach((link, i) => {
         const col = document.createElement("div");
-        // Logic: 2 columns for major projects, 3 for others
         const isBig = link.Title.includes("Research") || link.Title.includes("Projects");
-        col.className = isBig ? "col-md-6 mb-4" : "col-md-6 col-lg-4 mb-4";
+        col.className = isBig ? "col-12 col-md-6 mb-4 fade-in-up" : "col-12 col-md-6 col-lg-4 mb-4 fade-in-up";
+        col.style.animationDelay = `${(i + 1) * 0.15}s`;
+
+        const meta = cardMeta[link.Title] || { desc: "View module.", cls: "default-card" };
 
         col.innerHTML = `
-            <a href="${link.URL}" class="card h-100 bento-tile border-0 text-decoration-none">
+            <a href="${link.URL}" class="card h-100 bento-tile border-0 text-decoration-none ${meta.cls}">
                 <div class="card-body d-flex flex-column align-items-center text-center p-4">
-                    <div class="icon-box mb-3"><i class="${link.icon_classes}"></i></div>
-                    <h5 class="card-title text-white font-weight-bold mb-2">${link.Title}</h5>
-                    <p class="card-text small text-white-50">${cardDetails[link.Title] || "View details."}</p>
-                    <div class="mt-auto module-code pt-3">ACCESS_PORT // 0${i+1}</div>
+                    <div class="icon-box mb-3" style="font-size: 2.2rem; color: var(--accent-glow);">
+                        <i class="${link.icon_classes}"></i>
+                    </div>
+                    <h5 class="card-title text-white font-weight-bold mb-2" style="font-family: 'Dosis', sans-serif;">${link.Title}</h5>
+                    <p class="card-text small text-white-50" style="font-family: 'Abel', sans-serif;">${meta.desc}</p>
+                    <div class="mt-auto module-code pt-3" style="font-family: 'Roboto Mono', monospace; font-size: 0.75rem; color: var(--accent-glow);">
+                        DATA_STREAM // 0${i+1}
+                    </div>
                 </div>
             </a>
         `;
