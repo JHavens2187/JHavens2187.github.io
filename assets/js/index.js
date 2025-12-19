@@ -1,8 +1,6 @@
 const link_container = document.getElementById("link-container");
 
-if (!link_container) {
-    console.error("Error: 'link-container' not found.");
-} else {
+if (link_container) {
     link_container.innerHTML = ""; 
 
     const descriptions = {
@@ -12,7 +10,7 @@ if (!link_container) {
         "Talks & Outreach": "Teaching assistance for ASTR 591 and public astronomy volunteering at KU."
     };
 
-    // Filter out social links to keep the Bento grid focused on "Work"
+    // Filter out LinkedIn/Bluesky big buttons as requested
     const professionalLinks = config.links.filter(link => 
         !["LinkedIn", "Bluesky"].includes(link.Title)
     );
@@ -20,11 +18,8 @@ if (!link_container) {
     professionalLinks.forEach((link, index) => {
         const col = document.createElement("div");
         const isMajor = link.Title.includes("Research") || link.Title.includes("Projects");
-        col.className = isMajor ? "col-md-6 mb-4" : "col-md-6 col-lg-4 mb-4";
-        
-        // Added a delay style for a staggered entrance effect
+        col.className = isMajor ? "col-md-6 mb-4 fade-in-up" : "col-md-6 col-lg-4 mb-4 fade-in-up";
         col.style.animationDelay = `${index * 0.1}s`;
-        col.className += " fade-in-up"; 
 
         col.innerHTML = `
             <a href="${link.URL}" class="text-decoration-none h-100 d-block">
@@ -33,11 +28,11 @@ if (!link_container) {
                         <div class="icon-box mb-3">
                             <i class="${link.icon_classes}"></i>
                         </div>
-                        <h5 class="card-title text-white font-weight-bold mb-2" style="font-family: 'Dosis', sans-serif;">
+                        <h5 class="card-title text-white font-weight-bold mb-2">
                             ${link.Title}
                         </h5>
-                        <p class="card-text small text-white-50" style="font-family: 'Abel', sans-serif;">
-                            ${descriptions[link.Title] || "Click to explore more details."}
+                        <p class="card-text small text-white-50">
+                            ${descriptions[link.Title] || "Explore this module."}
                         </p>
                         <div class="mt-auto pt-2">
                             <span class="module-code">
