@@ -3,33 +3,19 @@ const container = document.getElementById("link-container");
 if (container && config && config.links) {
     container.innerHTML = "";
 
-    // Specific Metadata for Cards
     const cardMeta = {
-        "My Research Projects": {
-            desc: "Analyzing AGN dust attenuation using JWST spectra and GLEAM fitting.",
-            cls: "research-card"
-        },
-        "Class Projects & Papers": {
-            desc: "Computer vision pipelines, Arduino hardware, and theoretical physics.",
-            cls: "projects-card"
-        },
-        "View My CV": {
-            desc: "Full academic record, technical skills, and coursework history.",
-            cls: "cv-card"
-        },
-        "Talks & Outreach": {
-            desc: "Teaching assistance for ASTR 591 and public astronomy volunteering.",
-            cls: "outreach-card"
-        }
+        "My Research Projects": { desc: "Analyzing AGN dust attenuation using JWST spectra.", cls: "research-card" },
+        "Class Projects & Papers": { desc: "Computer vision pipelines & Arduino instrumentation.", cls: "projects-card" },
+        "View My CV": { desc: "Academic record, technical skills, and coursework.", cls: "cv-card" },
+        "Talks & Outreach": { desc: "Teaching assistance and public astronomy volunteering.", cls: "outreach-card" }
     };
 
     const mainLinks = config.links.filter(link => !["LinkedIn", "Bluesky"].includes(link.Title));
 
     mainLinks.forEach((link, i) => {
         const col = document.createElement("div");
-        // Force 2 columns on desktop
         col.className = "col-12 col-md-6 mb-4 fade-in-up"; 
-        col.style.animationDelay = `${(i + 1) * 0.15}s`;
+        col.style.animationDelay = `${(i + 1) * 0.1}s`;
 
         const meta = cardMeta[link.Title] || { desc: "View module.", cls: "default-card" };
 
@@ -41,12 +27,33 @@ if (container && config && config.links) {
                     </div>
                     <h5 class="card-title text-white font-weight-bold mb-2" style="font-family: 'Dosis', sans-serif;">${link.Title}</h5>
                     <p class="card-text small text-white-50" style="font-family: 'Abel', sans-serif;">${meta.desc}</p>
-                    <div class="mt-auto module-code pt-3">
-                        DATA_STREAM // 0${i+1}
-                    </div>
+                    <div class="mt-auto module-code pt-3">DATA_STREAM // 0${i+1}</div>
                 </div>
             </a>
         `;
         container.appendChild(col);
+    });
+
+    // --- 3D TILT LOGIC (Apple/Active Theory Style) ---
+    const cards = document.querySelectorAll('.bento-tile');
+
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            // Calculate mouse position relative to card center
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            // Rotation intensity (lower is more subtle)
+            const rotateX = (y / rect.height) * -15; // Invert Y for natural tilt
+            const rotateY = (x / rect.width) * 15;
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            // Reset position smoothly
+            card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale(1)`;
+        });
     });
 }
