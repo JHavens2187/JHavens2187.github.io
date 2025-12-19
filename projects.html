@@ -1,84 +1,111 @@
-<div class="container py-5">
-    <div class="text-center mb-5">
-        <h1 class="display-4" style="font-family: 'Dosis', sans-serif; color: white;">Class Projects</h1>
-        <p class="lead" style="color: rgba(255,255,255,0.8);">Technical implementations from Physics and Astronomy coursework.</p>
-        <a href="index.html" class="btn btn-outline-light btn-sm mt-2">
-            <i class="fas fa-arrow-left"></i> Back to Home
-        </a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Dosis:wght@400;600&display=swap" rel="stylesheet">
+
+    <title>Class Projects | Joseph Havens</title>
+    <link href="assets/img/profile_pic.png" rel="icon">
+</head>
+<body>
+
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4" style="font-family: 'Dosis', sans-serif;">Class Projects</h1>
+            <p class="lead">Selected technical work and theoretical derivations from KU coursework.</p>
+            <a href="index.html" class="btn btn-outline-light btn-sm mt-2">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+
+        <div class="row">
+            
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body d-flex flex-column">
+                        <div class="project-tag mb-2">Computer Vision • Physics</div>
+                        <h5 class="card-title"><i class="fa-solid fa-camera"></i> PYAXIOMA-JH Methodology</h5>
+                        <h6 class="card-subtitle mb-2 text-white-50 small">Python • OpenCV • Motion Analysis</h6>
+                        <p class="card-text small">Proposed a non-contact method for measuring angular displacement using color segmentation, Hough circle detection, and frame differencing to analyze torque-induced oscillations. [cite: 5, 25, 45]</p>
+                        <div class="mt-auto pt-3">
+                            <a href="assets/PYAXIOMA_Methodology.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Read Paper</a>
+                            <a href="https://github.com/JHavens2187/PYAXIOMA-JH" class="btn btn-dark btn-sm" target="_blank">View Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body d-flex flex-column">
+                        <div class="project-tag mb-2">Theoretical Mechanics</div>
+                        <h5 class="card-title"><i class="fa-solid fa-atom"></i> Magnetic Dipole Dynamics</h5>
+                        <h6 class="card-subtitle mb-2 text-white-50 small">Lagrangian Mechanics • LaTeX • Theory</h6>
+                        <p class="card-text small">Derived the equations of motion for a symmetric magnetic top using Euler angle formalism to explain precession reversal following field inversion. [cite: 160, 165, 179]</p>
+                        <div class="mt-auto pt-3">
+                            <a href="assets/Magnetic_Dipole_Dynamics.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Read Paper</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body d-flex flex-column">
+                        <div class="project-tag mb-2">Instrumentation • Engineering</div>
+                        <h5 class="card-title"><i class="fa-solid fa-microchip"></i> Arduino Digital Multimeter</h5>
+                        <h6 class="card-subtitle mb-2 text-white-50 small">Arduino C++ • Hardware Design • Statistics</h6>
+                        <p class="card-text small">Designed a multi-functional multimeter measuring voltage, current, and capacitance (via RC time constants), achieving a 1% precision comparable to commercial Fluke units. [cite: 629, 630, 831]</p>
+                        <div class="mt-auto pt-3">
+                            <a href="assets/DIY_Multimeter_Design.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Read Paper</a>
+                            <a href="https://github.com/JHavens2187/DIY_Multimeter" class="btn btn-dark btn-sm" target="_blank">View Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body d-flex flex-column">
+                        <div class="project-tag mb-2">Cosmology • Theory</div>
+                        <h5 class="card-title"><i class="fa-solid fa-infinity"></i> Cosmic Cloning: Multiverse</h5>
+                        <h6 class="card-subtitle mb-2 text-white-50 small">Cosmic Inflation • Conformal Field Theory</h6>
+                        <p class="card-text small">Examined theoretical exits from eternal inflation using dual CFT models and analyzed cosmic microwave background anisotropies. [cite: 935, 936, 965]</p>
+                        <div class="mt-auto pt-3">
+                            <a href="assets/Cosmic_Cloning_Multiverse.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Read Paper</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body d-flex flex-column">
+                        <div class="project-tag mb-2">Astronomy</div>
+                        <h5 class="card-title"><i class="fa-solid fa-star"></i> Stellar Cluster Ages</h5>
+                        <h6 class="card-subtitle mb-2 text-white-50 small">Python • GAIA Data • Isochrone Fitting</h6>
+                        <p class="card-text small">Estimated the ages of 12 clusters by fitting GAIA DR3 data to theoretical isochrones and correlated age with galactic latitude. [cite: 378, 379, 380]</p>
+                        <div class="mt-auto pt-3">
+                            <a href="assets/Stellar_Cluster_Ages.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Read Paper</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <footer class="text-center mt-5">
+            <div class="social-links">
+                <a href="https://github.com/JHavens2187" target="_blank" class="hover links-footer"><i class="fa-brands fa-github"></i></a>
+                <a href="mailto:joe.havens79@ku.edu" class="hover links-footer"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </footer>
     </div>
 
-    <div class="row">
-        
-        <div class="col-md-6 mb-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body d-flex flex-column">
-                    <div class="project-tag mb-2">Computer Vision • Instrumentation</div>
-                    <h5 class="card-title"><i class="fa-solid fa-camera"></i> PYAXIOMA-JH Method</h5>
-                    <h6 class="card-subtitle mb-2 text-white-50 small">Python • OpenCV • Hough Transforms</h6>
-                    <p class="card-text small">Proposed a non-contact method for measuring angular displacement using HSV color segmentation and frame differencing to analyze magnetic torque.</p>
-                    <div class="mt-auto">
-                        <a href="assets/PYAXIOMA_Methodology.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Read Paper</a>
-                        <a href="https://github.com/JHavens2187/PYAXIOMA-JH" class="btn btn-dark btn-sm" target="_blank">View Code</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6 mb-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body d-flex flex-column">
-                    <div class="project-tag mb-2">Theoretical Mechanics</div>
-                    <h5 class="card-title"><i class="fa-solid fa-atom"></i> Magnetic Dipole Dynamics</h5>
-                    <h6 class="card-subtitle mb-2 text-white-50 small">Lagrangian Mechanics • LaTeX • Euler Angles</h6>
-                    <p class="card-text small">Derived equations of motion for a symmetric magnetic top in external fields. Analyzed precession reversal following magnetic field inversion.</p>
-                    <div class="mt-auto">
-                        <a href="assets/Magnetic_Dipole_Dynamics.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Read Paper</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6 mb-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body d-flex flex-column">
-                    <div class="project-tag mb-2">Electronics • Arduino</div>
-                    <h5 class="card-title"><i class="fa-solid fa-microchip"></i> Digital Multimeter Design</h5>
-                    <h6 class="card-subtitle mb-2 text-white-50 small">Arduino C++ • Circuit Design • RC Time Constants</h6>
-                    <p class="card-text small">Engineered a multi-functional DMM measuring voltage, current, and capacitance. Achieved 1% precision, comparable to commercial Fluke units.</p>
-                    <div class="mt-auto">
-                        <a href="assets/DIY_Multimeter_Design.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Read Paper</a>
-                        <a href="https://github.com/JHavens2187/DIY_Multimeter" class="btn btn-dark btn-sm" target="_blank">View Code</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6 mb-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body d-flex flex-column">
-                    <div class="project-tag mb-2">Observational Astronomy</div>
-                    <h5 class="card-title"><i class="fa-solid fa-star"></i> Stellar Cluster Ages</h5>
-                    <h6 class="card-subtitle mb-2 text-white-50 small">Python • GAIA DR3 • Isochrone Fitting</h6>
-                    <p class="card-text small">Analyzed twelve stellar clusters using GAIA data to estimate ages via isochrone fitting and correlated age with galactic latitude.</p>
-                    <div class="mt-auto">
-                        <a href="assets/Stellar_Cluster_Ages.pdf" class="btn btn-outline-primary btn-sm" target="_blank">Read Paper</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div> </div> ```
-
-### 2. A Design Detail: The "Glow" Colors
-Since we haven't locked in the colors for the glow yet, you can experiment with these "Astro-themed" accents in your `:root` variables in **`style.css`**:
-
-* **"Nebula Pink":** `#d35ecd` (matches the start of your gradient).
-* **"Supernova Gold":** `#ffcc33` (provides a high-contrast pop against the dark blues).
-* **"Deep Space Cyan":** `#23a6d5` (matches your current link theme).
-
-### 3. Visualizing the Scientific Content
-To make your page even more authoritative, consider including a sample diagram from your papers next to the text. [cite_start]For example, your **Stellar Cluster** project relies on identifying the "turn-off point" on a Color-Magnitude Diagram to estimate age[cite: 418, 419].
-
-
-
-**Next Step:** Once you've seen how the cards look with the animated background, would you like me to help you create a similar "Gallery" layout for your **Research** page? We could use larger, single-column cards to showcase your **GLEAM fits** and **JWST spectra**.
+</body>
+</html>
