@@ -3,6 +3,11 @@
     --accent-glow: #23a6d5; 
     --card-bg: rgba(15, 15, 25, 0.75); 
     --card-border: rgba(255, 255, 255, 0.2);
+    /* Brand Colors */
+    --gold: #ffcc33;
+    --green: #5aad45;
+    --blue: #23a6d5;
+    --red: #ea4335;
 }
 
 body {
@@ -12,8 +17,7 @@ body {
     color: white !important;
     min-height: 100vh;
     font-family: 'Abel', sans-serif;
-    margin: 0; padding: 0;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Only hide X overflow */
 }
 
 @keyframes gradient {
@@ -22,43 +26,98 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* --- Bento Grid Hover (Video 1 Influence) --- */
+/* --- Bento Grid & Specific Hover Colors (Video 1 Logic) --- */
 .bento-tile {
     background: var(--card-bg) !important;
     backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     border: 1.5px solid var(--card-border) !important;
     border-radius: 20px !important;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
     text-decoration: none !important;
+    position: relative;
+    z-index: 1;
 }
 
+/* Generic Hover */
 .bento-tile:hover {
-    transform: translateY(-12px) scale(1.03) !important;
-    border-color: white !important;
+    transform: translateY(-10px) scale(1.02) !important;
     box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 20px rgba(255,255,255,0.2) !important;
+    border-color: white !important;
+    z-index: 10;
 }
 
-/* Specific Card Color Glows */
-.research-card:hover { border-color: #ffcc33 !important; box-shadow: 0 0 25px #ffcc33 !important; }
-.projects-card:hover { border-color: #5aad45 !important; box-shadow: 0 0 25px #5aad45 !important; }
+/* Specific Hovers (Higher Specificity to win the war) */
+.bento-tile.research-card:hover { 
+    border-color: var(--gold) !important; 
+    box-shadow: 0 0 30px var(--gold) !important; 
+}
+.bento-tile.projects-card:hover { 
+    border-color: var(--green) !important; 
+    box-shadow: 0 0 30px var(--green) !important; 
+}
+.bento-tile.cv-card:hover { 
+    border-color: var(--blue) !important; 
+    box-shadow: 0 0 30px var(--blue) !important; 
+}
+.bento-tile.outreach-card:hover { 
+    border-color: var(--red) !important; 
+    box-shadow: 0 0 30px var(--red) !important; 
+}
 
-/* --- Planetary Social Menu (Video 2 Influence) --- */
+/* Icons inside cards */
+.icon-box i {
+    transition: transform 0.3s ease;
+}
+.bento-tile:hover .icon-box i {
+    transform: scale(1.2);
+}
+
+/* --- Glitch Text Effect (Video 3 Logic) --- */
+.module-code {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent-glow);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
+
+.bento-tile:hover .module-code {
+    color: white;
+    text-shadow: 2px 0 var(--red), -2px 0 var(--blue);
+    animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+/* --- Planetary Social Menu (Video 2 Logic) --- */
 .menu-container {
     position: relative;
-    width: 250px; height: 150px;
+    width: 200px; height: 200px; /* Increased size to prevent clipping */
     display: flex; justify-content: center; align-items: center;
+    margin-top: 50px;
+    z-index: 100; /* Ensure it floats above everything */
 }
 
 #toggle { display: none; }
 
+/* The Main Sun Button */
 .btn-main {
     position: absolute;
     width: 70px; height: 70px;
     background: white; border-radius: 50%;
-    z-index: 10; cursor: pointer;
+    z-index: 20; cursor: pointer;
     display: flex; justify-content: center; align-items: center;
     transition: transform 0.5s;
-    box-shadow: 0 0 20px rgba(255,255,255,0.4);
+    box-shadow: 0 0 25px rgba(255,255,255,0.5);
 }
 
 .btn-main i { font-size: 32px; color: #333; position: absolute; transition: 0.3s; }
@@ -69,40 +128,43 @@ body {
 #toggle:checked ~ .btn-main #menu-icon { opacity: 0; }
 #toggle:checked ~ .btn-main #close-icon { opacity: 1; transform: rotate(0); }
 
+/* The Satellites */
 .menu-items a {
     position: absolute;
     width: 50px; height: 50px;
     background: white; border-radius: 50%;
     display: flex; justify-content: center; align-items: center;
     text-decoration: none; color: #333;
-    transition: all 0.5s cubic-bezier(0.87, -0.41, 0.19, 1.44);
-    transition-delay: calc(0.1s * var(--i));
-    opacity: 0; z-index: 1; transform: translate(0,0);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Bouncy effect */
+    opacity: 0; z-index: 10;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
+/* Expansion Mathematics */
 #toggle:checked ~ .menu-items a {
     opacity: 1;
-    transform: translate(calc(110px * var(--x)), calc(110px * var(--y)));
+    /* 120px expansion distance */
+    transform: translate(calc(120px * var(--x)), calc(120px * var(--y)));
 }
 
-/* Brand Glows for Satellites */
+/* Satellite Brand Colors */
 .menu-items a.github:hover { background: #333; color: white; box-shadow: 0 0 20px #333; }
 .menu-items a.linkedin:hover { background: #0077b5; color: white; box-shadow: 0 0 20px #0077b5; }
 .menu-items a.bluesky:hover { background: #0085ff; color: white; box-shadow: 0 0 20px #0085ff; }
 .menu-items a.email:hover { background: #ea4335; color: white; box-shadow: 0 0 20px #ea4335; }
 
-/* --- Profile & Hero (Video 3 Influence: Split View) --- */
-.hero-header { margin-bottom: 60px; padding-top: 40px; }
+
+/* --- Profile & Typography --- */
 .profile-pictures-container { display: flex; justify-content: center; gap: 20px; }
 .profile-picture { width: 140px; height: 140px; border-radius: 50% !important; border: 3px solid white; object-fit: cover; }
-.profile-name { font-family: 'Dosis', sans-serif; font-size: 3.8rem; letter-spacing: 2px; }
-.profile-about { font-family: 'Dosis', sans-serif; font-size: 1.4rem; color: rgba(255,255,255,0.9); }
+.profile-name { font-family: 'Dosis', sans-serif; font-size: 3.5rem; letter-spacing: 1px; }
+.profile-about { font-family: 'Dosis', sans-serif; font-size: 1.3rem; color: rgba(255,255,255,0.9); }
 
 .skills-container span {
     background: rgba(255,255,255,0.1);
     border: 1px solid rgba(255,255,255,0.2);
-    padding: 6px 18px; border-radius: 25px;
-    margin: 6px; display: inline-block; font-weight: bold;
+    padding: 6px 15px; border-radius: 20px;
+    margin: 4px; display: inline-block; font-weight: 600;
 }
 
 /* Animations */
@@ -110,101 +172,4 @@ body {
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(40px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
-
-/* --- Content Page Layouts (Research & Outreach) --- */
-.outreach-page-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 60px 20px;
-}
-
-.outreach-header {
-    text-align: center;
-    margin-bottom: 80px;
-}
-
-.outreach-row {
-    display: flex;
-    align-items: center;
-    gap: 50px;
-    margin-bottom: 100px;
-}
-
-/* This creates the zig-zag pattern */
-.outreach-row.reversed {
-    flex-direction: row-reverse;
-}
-
-.outreach-image {
-    flex: 1;
-}
-
-.outreach-image img {
-    width: 100%;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-.outreach-text {
-    flex: 1;
-    font-size: 1.1rem;
-    line-height: 1.6;
-}
-
-.outreach-text h3 {
-    font-family: 'Dosis', sans-serif;
-    font-size: 2rem;
-    color: var(--accent-glow);
-    margin-bottom: 20px;
-}
-
-/* Buttons inside content pages */
-.btn-paper-link, .btn-github-link {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 10px 20px;
-    background: rgba(255,255,255,0.1);
-    border: 1px solid var(--accent-glow);
-    color: white;
-    text-decoration: none;
-    border-radius: 30px;
-    transition: all 0.3s ease;
-}
-
-.btn-paper-link:hover, .btn-github-link:hover {
-    background: var(--accent-glow);
-    box-shadow: 0 0 15px var(--accent-glow);
-    text-decoration: none;
-    color: white;
-}
-
-.caption {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.6);
-    text-align: center;
-    margin-top: 10px;
-    font-style: italic;
-}
-
-/* Mobile Responsiveness for Rows */
-@media (max-width: 768px) {
-    .outreach-row, .outreach-row.reversed {
-        flex-direction: column;
-    }
-}
-
-/* --- Projects Page Specifics --- */
-.project-tag {
-    display: inline-block;
-    background: rgba(35, 166, 213, 0.2); /* Low opacity accent */
-    color: #23a6d5;
-    padding: 4px 12px;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
 }
