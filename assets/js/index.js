@@ -1,54 +1,107 @@
-// --- MAIN DASHBOARD LOGIC ---
+// --- BOOT SEQUENCE LOGIC ---
+async function typeLine(elementId, text, speed = 30) {
+    const element = document.getElementById(elementId);
+    if (!element) return;
+    
+    element.textContent = ""; 
+    element.parentElement.style.opacity = '1'; 
+    
+    for (let i = 0; i < text.length; i++) {
+        element.textContent += text.charAt(i);
+        await new Promise(r => setTimeout(r, speed));
+    }
+}
+
+async function runBootSequence() {
+    const bootScreen = document.getElementById('boot-screen');
+    // Only run if the boot screen exists on this page (about.html)
+    if (!bootScreen) return; 
+
+    const cursor = document.getElementById('cursor');
+    if(cursor) cursor.remove();
+
+    // Line 1
+    const line1 = document.getElementById('line-1');
+    if (line1) line1.appendChild(cursor); 
+    await typeLine('text-1', "> INITIALIZING BIOMETRICS...", 25);
+    
+    // Line 2
+    await new Promise(r => setTimeout(r, 200));
+    if (line1 && cursor) cursor.remove();
+    const line2 = document.getElementById('line-2');
+    if (line2) line2.appendChild(cursor);
+    await typeLine('text-2', "> LOADING ARCHIVES: 2022-2025...", 25);
+
+    // Line 3
+    await new Promise(r => setTimeout(r, 200));
+    if (line2 && cursor) cursor.remove();
+    const line3 = document.getElementById('line-3');
+    if (line3) {
+        line3.appendChild(cursor);
+        line3.style.color = '#5aad45';
+    }
+    await typeLine('text-3', "> PROFILE LOADED.", 25);
+
+    // Fade Out
+    await new Promise(r => setTimeout(r, 600));
+    if (bootScreen) {
+        bootScreen.style.opacity = '0';
+        setTimeout(() => {
+            bootScreen.style.display = 'none';
+        }, 800);
+    }
+}
+
+// --- UNIVERSAL SCROLL OBSERVER (The Fix) ---
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. Check for Boot Screen
+    runBootSequence();
+
+    // 2. Setup Scroll Animation (Replay on Scroll Up)
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Element is in view: Fade In
+                entry.target.classList.add('active');
+            } else {
+                // Element left view: Fade Out (so it can replay)
+                entry.target.classList.remove('active');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    
+    // 3. Dashboard Logic (Only runs if link-container exists)
     try {
         const container = document.getElementById("link-container");
-
         if (container && typeof config !== 'undefined' && config.links) {
+            // ... (Your existing dashboard code here - no changes needed) ...
+            // Just make sure to keep the code inside this block
             container.innerHTML = "";
-
-            const cardData = {
-                "My Research Projects": { 
-                    desc: "Analyzing AGN dust attenuation using JWST spectra and GLEAM fitting.",
-                    img: "assets/img/spectral_plot.png",
-                    cls: "research-card"
-                },
-                "Class Projects & Papers": { 
-                    desc: "Computer vision pipelines, Arduino hardware, and theoretical physics.",
-                    img: "assets/img/Theoretical_Lagrangian.png",
-                    cls: "projects-card"
-                },
-                "View My CV": { 
-                    desc: "Full academic record, technical skills, and coursework history.",
-                    img: "assets/img/KU_phys_astro_logo.png",
-                    cls: "cv-card"
-                },
-                "Talks & Outreach": { 
-                    desc: "Teaching assistance for ASTR 591 and public astronomy volunteering.",
-                    img: "assets/img/outreach_pic.png",
-                    cls: "outreach-card"
-                }
+            // ... [Paste your existing Card Generation Code here] ...
+            
+            // Re-paste the card generation code to be safe:
+             const cardData = {
+                "My Research Projects": { desc: "Analyzing AGN dust attenuation using JWST spectra.", img: "assets/img/spectral_plot.png", cls: "research-card" },
+                "Class Projects & Papers": { desc: "Computer vision pipelines & Arduino hardware.", img: "assets/img/Theoretical_Lagrangian.png", cls: "projects-card" },
+                "View My CV": { desc: "Full academic record & skills.", img: "assets/img/KU_phys_astro_logo.png", cls: "cv-card" },
+                "Talks & Outreach": { desc: "Teaching & volunteering.", img: "assets/img/outreach_pic.png", cls: "outreach-card" }
             };
-
+            
             const mainLinks = config.links.filter(link => !["LinkedIn", "Bluesky"].includes(link.Title));
-
+            
             mainLinks.forEach((link, i) => {
                 const col = document.createElement("div");
                 const isBig = link.Title.includes("Research") || link.Title.includes("Projects");
                 col.className = isBig ? "col-12 col-md-6 mb-4 fade-in-up" : "col-12 col-md-6 col-lg-4 mb-4 fade-in-up";
                 col.style.animationDelay = `${(i + 1) * 0.15}s`;
-
-                const data = cardData[link.Title] || { 
-                    desc: "View module.", 
-                    img: "assets/img/profile_pic.png", 
-                    cls: "default-card" 
-                };
+                 const data = cardData[link.Title] || { desc: "View module.", img: "assets/img/profile_pic.png", cls: "default-card" };
 
                 col.innerHTML = `
                     <a href="${link.URL}" class="card h-100 bento-tile border-0 text-decoration-none ${data.cls}">
                         <div class="tile-bg" style="background-image: url('${data.img}');"></div>
-                        
                         <div class="tile-overlay"></div>
-
                         <div class="card-body d-flex flex-column align-items-center text-center p-4">
                             <div class="mt-auto"> 
                                 <div class="icon-box"><i class="${link.icon_classes}"></i></div>
@@ -67,8 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
                 container.appendChild(col);
             });
-
-            // Spotlight Effect
+             // Spotlight Effect
             const cards = document.querySelectorAll('.bento-tile');
             cards.forEach(card => {
                 card.onmousemove = e => {
@@ -80,7 +132,5 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
             });
         }
-    } catch (error) {
-        console.error("Dashboard error:", error);
-    }
+    } catch (e) { console.log("Not on dashboard page"); }
 });
