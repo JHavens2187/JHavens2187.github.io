@@ -5,7 +5,7 @@
     --gold: #ffcc33; --green: #5aad45; --blue: #23a6d5; --red: #ea4335;
 }
 
-/* --- Body & Background (CRITICAL FOR VISIBILITY) --- */
+/* --- Body & Background --- */
 body {
     background: linear-gradient(-45deg, #d35ecd, #5aad45, #23a6d5, #3a0eb3) !important;
     background-size: 400% 400% !important;
