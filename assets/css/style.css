@@ -1,63 +1,66 @@
-/* Add these at the very top of style.css */
+/* --- Global Variables & Glassmorphism --- */
 :root {
-    --accent-glow: #23a6d5; /* We can change this to pink, green, or gold later */
+    --accent-glow: #23a6d5; /* Deep Space Cyan */
     --card-bg: rgba(255, 255, 255, 0.07);
     --card-border: rgba(255, 255, 255, 0.2);
-}
-
-/* Update your Project/Research Cards */
-.card {
-    background: var(--card-bg) !important;
-    backdrop-filter: blur(10px); /* This creates the "frosted glass" effect */
-    border: 1px solid var(--card-border) !important;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    color: white !important;
-}
-
-.card:hover {
-    transform: translateY(-8px) scale(1.02);
-    border-color: var(--accent-glow) !important;
-    box-shadow: 0 0 20px var(--accent-glow); /* This is your "Glow" */
-}
-
-/* Ensure headings inside glass cards are visible */
-.card-title {
-    font-family: "Dosis", sans-serif;
-    font-weight: 600;
-    letter-spacing: 1px;
 }
 
 body {
     background: linear-gradient(-45deg, #d35ecd, #5aad45, #23a6d5, #3a0eb3);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
+    color: white;
+    min-height: 100vh;
 }
 
 @keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-img {
-    border-radius: 50%;
+/* --- Project Card Styling --- */
+.card {
+    background: var(--card-bg) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 15px;
+    color: white !important;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--accent-glow) !important;
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.project-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* --- Profile & Links (Index) --- */
+img { border-radius: 50%; }
+
+.profile-pictures-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 5%;
 }
 
 .profile-picture {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5%;
-    height: auto;
-    max-width: 100px;
+    max-width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .profile-name {
@@ -65,7 +68,7 @@ img {
     padding: 10px;
     font-family: "Dosis", sans-serif;
     color: white;
-    font-size: 22px;
+    font-size: 2.5rem;
     letter-spacing: 2px;
 }
 
@@ -74,20 +77,18 @@ img {
     padding: 2px;
     font-family: "Dosis", sans-serif;
     color: white;
-    font-size: 15px;
+    font-size: 1.25rem;
     letter-spacing: 2px;
+    margin-bottom: 20px;
 }
 
 .links {
     text-align: center;
-    margin-top: 20px;
+    margin: 20px auto;
     padding: 20px;
-    border: 0.5px solid rgb(255, 255, 255);
-    border-width: 1px;
+    border: 1px solid rgb(255, 255, 255);
     width: 490px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
     border-radius: 40px;
     font-family: "Dosis", sans-serif;
     position: relative;
@@ -96,101 +97,25 @@ img {
     transition: transform 0.2s ease-in-out;
 }
 
-.links-in {
-    padding: 5px;
-    border: 0.5px solid rgba(255, 255, 255, 0);
-    border-width: 1px;
-    width: 30px;
-    display: block;
-    border-radius: 40px;
-    left: 20px;
-    position: absolute;
-    font-size: 20px;
+.links:hover {
+    transform: scale(1.03);
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .hover {
     text-decoration: none;
     color: rgb(255, 255, 255);
-    transition: color 1s;
 }
 
 .hover:hover {
     color: rgb(0, 0, 0);
     background: rgb(255, 255, 255);
-    text-decoration: none;
-}
-
-.bottom-text {
-    text-decoration: none;
-    text-align: center;
-    margin-top: 30px;
-    font-size: 20px;
-    color: rgb(255, 255, 255);
-    font-family: "Handlee", cursive;
-}
-
-.link-hide {
-    text-decoration: none;
-}
-
-.link-hide:hover {
-    text-decoration: none;
-}
-
-@media (max-width: 548px) {
-    .links {
-        text-align: center;
-        margin-top: 20px;
-        padding: 20px;
-        border: 0.5px solid rgb(255, 255, 255);
-        border-width: 1px;
-        width: 290px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        border-radius: 40px;
-        font-family: "Dosis", sans-serif;
-        position: relative;
-    }
-
-    .profile-about {
-        text-align: center;
-        padding: 2px;
-        font-family: "Dosis", sans-serif;
-        color: white;
-        font-size: 15px;
-        letter-spacing: 1px;
-    }
-}
-
-.links-footer {
-    padding: 4px;
-    border: 0.5px solid rgb(255, 255, 255);
-    border-width: 1px;
-    width: 40px;
-    display: inline-block;
-    border-radius: 30px;
-    font-size: 20px;
-    text-align: center;
-    margin: 10px;
-    margin-top: 50px;
-    transition: transform 0.2s ease-in-out;
-}
-
-/* --- Hover Animations --- */
-.links:hover {
-    transform: scale(1.03);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.links-footer:hover {
-    transform: scale(1.1);
 }
 
 /* --- Skills Section --- */
 .skills-container {
     text-align: center;
-    margin: 15px 0 10px 0;
+    margin: 15px 0;
 }
 
 .skills-container span {
@@ -205,65 +130,18 @@ img {
     font-weight: 600;
 }
 
-
-/* =========================================
-   NEW STYLES (OCT 2025)
-   ========================================= */
-
-/* 1. Make Name and Title Bigger */
-.profile-name {
-    font-size: 2.5rem;
-    /* Increased from 22px */
-}
-
-.profile-about {
-    font-size: 1.25rem;
-    /* Increased from 15px */
-    margin-bottom: 20px;
-    /* Added space below title */
-}
-
-/* 2. Container for the two profile pictures */
-.profile-pictures-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    /* This adds a nice space between the pictures */
-    margin-top: 5%;
-    /* This replaces the old margin-top on the single image */
-}
-
-/* 3. Make Pictures Bigger */
-.profile-picture {
-    max-width: 160px;
-    /* Increased from 100px */
-    height: 160px;
-    /* Make it square for a perfect circle */
-    object-fit: cover;
-    /* Prevents image from stretching */
-    margin: 0;
-    /* Resets old margins */
-    border: 4px solid #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* =========================================
-   NEW OUTREACH PAGE STYLES (OCT 2025)
-   ========================================= */
-
-/* Main container for the new page */
+/* --- Page Containers --- */
 .outreach-page-container {
     max-width: 960px;
     margin: 40px auto;
     padding: 30px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.95);
     border-radius: 10px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     color: #333;
 }
 
-/* Header for the new page */
+/* --- Headers & Buttons --- */
 .outreach-header {
     text-align: center;
     border-bottom: 2px solid #eee;
@@ -274,24 +152,24 @@ img {
 .outreach-header h1 {
     font-family: 'Dosis', sans-serif;
     font-size: 2.8rem;
-    font-weight: 600;
     color: #111;
 }
 
-.back-link {
-    font-family: 'Abel', sans-serif;
-    font-size: 1.1rem;
-    color: #007bff;
+.btn-github-link, .btn-paper-link {
+    display: inline-block;
+    padding: 10px 18px;
+    margin-top: 15px;
+    border-radius: 5px;
     text-decoration: none;
-    transition: color 0.3s ease;
+    font-family: 'Dosis', sans-serif;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
-.back-link:hover {
-    color: #0056b3;
-    text-decoration: none;
-}
+.btn-github-link { background-color: #333; color: #fff; }
+.btn-paper-link { background-color: #007bff; color: #fff; }
 
-/* Row styles for the alternating layout */
+/* --- Layout Rows --- */
 .outreach-row {
     display: flex;
     align-items: center;
@@ -301,162 +179,10 @@ img {
     border-bottom: 1px solid #eee;
 }
 
-.outreach-row:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
-}
+.outreach-row.reversed { flex-direction: row-reverse; }
 
-/* This class reverses the order for the alt layout */
-.outreach-row.reversed {
-    flex-direction: row-reverse;
-}
-
-/* Image container */
-.outreach-image {
-    flex: 1;
-    /* Takes up 1 part of the space */
-    min-width: 250px;
-}
-
-.outreach-image img {
-    width: 100%;
-    border-radius: 8px; /* Softer square corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Text container */
-.outreach-text {
-    flex: 1.5;
-    /* Takes up 1.5 parts of the space (a bit more) */
-}
-
-.outreach-text h3 {
-    font-family: 'Dosis', sans-serif;
-    font-size: 2rem;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-.outreach-text p {
-    font-family: 'Abel', sans-serif;
-    font-size: 1.15rem;
-    line-height: 1.7;
-    color: #555;
-}
-
-/* --- Responsive styles for mobile --- */
-@media (max-width: 768px) {
-    .outreach-page-container {
-        margin: 20px 10px;
-        padding: 20px;
-    }
-
-    .outreach-row,
-    .outreach-row.reversed {
-        /* Stack vertically on mobile */
-        flex-direction: column;
-    }
-
-    .outreach-text {
-        /* Make text appear below image on mobile */
-        order: 2;
-    }
-
-    .outreach-image {
-        /* Make image appear above text on mobile */
-        order: 1;
-        width: 100%;
-    }
-}
-
-/* =========================================
-   RESEARCH PAGE STYLES (OCT 2025)
-   ========================================= */
-
-/* Style for the "View on GitHub" button */
-.btn-github-link {
-    display: inline-block;
-    padding: 10px 18px;
-    margin-top: 15px;
-    margin-right: 10px; /* Add space between buttons */
-    background-color: #333; /* Dark background */
-    color: #fff; /* White text */
-    border-radius: 5px;
-    text-decoration: none;
-    font-family: 'Dosis', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.btn-github-link:hover {
-    background-color: #111; /* Even darker on hover */
-    color: #fff;
-    text-decoration: none;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.btn-github-link i {
-    margin-right: 8px; /* Space between icon and text */
-}
-
-/* Style for the new "Read Paper" button */
-.btn-paper-link {
-    display: inline-block;
-    padding: 10px 18px;
-    margin-top: 15px;
-    background-color: #007bff; /* Primary blue */
-    color: #fff; /* White text */
-    border-radius: 5px;
-    text-decoration: none;
-    font-family: 'Dosis', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.btn-paper-link:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-    color: #fff;
-    text-decoration: none;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.btn-paper-link i {
-    margin-right: 8px; /* Space between icon and text */
-}
-
-/* New style for the text-only blocks */
-.research-text-block {
-    padding: 20px 10px;
-    margin-bottom: 40px;
-    border-bottom: 1px solid #eee;
-}
-
-.research-text-block:last-child {
-    border-bottom: none;
-}
-
-.research-text-block h3 {
-    font-family: 'Dosis', sans-serif;
-    font-size: 2rem;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-.research-text-block p {
-    font-family: 'Abel', sans-serif;
-    font-size: 1.15rem;
-    line-height: 1.7;
-    color: #555;
-}
-
-/* New style for the image caption */
+.outreach-image { flex: 1; min-width: 250px; }
+.outreach-image img { width: 100%; border-radius: 8px; }
 .outreach-image .caption {
     font-family: 'Abel', sans-serif;
     font-size: 0.95rem;
@@ -464,4 +190,24 @@ img {
     color: #666;
     margin-top: 10px;
     text-align: center;
+}
+
+.outreach-text { flex: 1.5; }
+
+/* --- Footer --- */
+.links-footer {
+    padding: 4px;
+    border: 1px solid white;
+    width: 40px;
+    display: inline-block;
+    border-radius: 30px;
+    margin: 10px;
+    margin-top: 50px;
+}
+
+/* --- Media Queries --- */
+@media (max-width: 768px) {
+    .outreach-row, .outreach-row.reversed { flex-direction: column; }
+    .links { width: 290px; }
+    .profile-name { font-size: 1.8rem; }
 }
