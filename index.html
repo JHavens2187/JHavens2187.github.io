@@ -12,42 +12,38 @@
 </head>
 <body>
 
-    <div class="container min-vh-100 d-flex flex-column justify-content-center py-5">
+    <div class="container py-5">
         
-        <div class="row align-items-center">
-            
-            <div class="col-lg-5 text-center text-lg-left mb-5 mb-lg-0 fade-in-up">
-                <div class="profile-pictures-container justify-content-center justify-content-lg-start mb-4">
-                    <img src="assets/img/profile_pic.png" alt="Researcher" class="profile-picture shadow">
-                    <img src="assets/img/outreach_pic.png" alt="Outreach" class="profile-picture shadow">
-                </div>
-                <h1 class="profile-name">Joseph Havens</h1>
-                <p class="profile-about pr-lg-5">Undergraduate Researcher | Dr. Allison Kirkpatrick | KU Physics and Astronomy Dept.</p>
-                <div class="skills-container mt-3 justify-content-center justify-content-lg-start">
-                    <span>Python</span><span>Astropy</span><span>Spectral Analysis</span><span>AGN</span><span>LaTeX</span>
-                </div>
-
-                <div class="menu-container mx-auto mx-lg-0 mt-5">
-                    <input type="checkbox" id="toggle">
-                    <label for="toggle" class="btn-main">
-                        <i class="material-icons" id="menu-icon">explore</i>
-                        <i class="material-icons" id="close-icon">close</i>
-                    </label>
-                    <div class="menu-items">
-                        <a href="https://github.com/JHavens2187" style="--i:1; --x:-1; --y:0;" target="_blank" class="github"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/joseph-havens-1b3a73348/" style="--i:2; --x:0; --y:-1;" target="_blank" class="linkedin"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://bsky.app/profile/cosmicjoe.bsky.social" style="--i:3; --x:0; --y:1;" target="_blank" class="bluesky"><i class="fa-brands fa-bluesky"></i></a>
-                        <a href="mailto:joe.havens79@ku.edu" style="--i:4; --x:1; --y:0;" class="email"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
+        <header class="text-center mb-5 fade-in-up">
+            <div class="profile-pictures-container">
+                <img src="assets/img/profile_pic.png" alt="Researcher" class="profile-picture shadow-lg">
+                <img src="assets/img/outreach_pic.png" alt="Outreach" class="profile-picture shadow-lg">
             </div>
-
-            <div class="col-lg-7">
-                <div class="row" id="link-container">
-                    </div>
+            <h1 class="profile-name">Joseph Havens</h1>
+            <p class="profile-about px-md-5 mx-auto" style="max-width: 800px;">
+                Undergraduate Researcher | Dr. Allison Kirkpatrick | KU Physics and Astronomy Dept.
+            </p>
+            <div class="skills-container mt-3">
+                <span>Python</span><span>Astropy</span><span>Spectral Analysis</span><span>AGN</span><span>LaTeX</span>
             </div>
+        </header>
 
+        <div class="row justify-content-center" id="link-container"></div>
+
+        <div class="menu-container fade-in-up" style="animation-delay: 0.5s;">
+            <input type="checkbox" id="toggle">
+            <label for="toggle" class="btn-main">
+                <i class="material-icons" id="menu-icon">explore</i>
+                <i class="material-icons" id="close-icon">close</i>
+            </label>
+            <div class="menu-items">
+                <a href="https://github.com/JHavens2187" style="--i:1; --x:-1; --y:-1;" target="_blank" class="github"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/joseph-havens-1b3a73348/" style="--i:2; --x:1; --y:-1;" target="_blank" class="linkedin"><i class="fab fa-linkedin"></i></a>
+                <a href="https://bsky.app/profile/cosmicjoe.bsky.social" style="--i:3; --x:-1; --y:1;" target="_blank" class="bluesky"><i class="fa-brands fa-bluesky"></i></a>
+                <a href="mailto:joe.havens79@ku.edu" style="--i:4; --x:1; --y:1;" class="email"><i class="fas fa-envelope"></i></a>
+            </div>
         </div>
+
     </div>
 
     <script src="assets/config.js"></script>
