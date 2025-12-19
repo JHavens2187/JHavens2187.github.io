@@ -7,12 +7,12 @@ if (container && config && config.links) {
     const cardData = {
         "My Research Projects": { 
             desc: "Analyzing AGN dust attenuation using JWST spectra and GLEAM fitting.",
-            img: "assets/img/spectral_plot.png", // Ensure this file exists!
+            img: "assets/img/spectral_plot.png",
             cls: "research-card"
         },
         "Class Projects & Papers": { 
             desc: "Computer vision pipelines, Arduino hardware, and theoretical physics.",
-            img: "assets/img/prescott_fig1.png", 
+            img: "assets/img/Theoretical_Lagrangian.png", 
             cls: "projects-card"
         },
         "View My CV": { 
