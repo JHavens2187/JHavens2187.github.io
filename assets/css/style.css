@@ -1,6 +1,6 @@
 :root {
-    --accent-glow: #23a6d5; 
-    --card-bg: rgba(15, 15, 25, 0.75); 
+    --accent-glow: #23a6d5;
+    --card-bg: rgba(15, 15, 25, 0.75);
     --card-border: rgba(255, 255, 255, 0.2);
 }
 
@@ -11,7 +11,7 @@ body {
     color: white !important;
     min-height: 100vh;
     font-family: 'Abel', sans-serif;
-    text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.6);
+    overflow-x: hidden;
 }
 
 @keyframes gradient {
@@ -20,90 +20,72 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* --- Bento Card Refinement (Inspiration: Video 2 & 3) --- */
+/* --- Bento Tile Styling --- */
 .bento-tile {
     background: var(--card-bg) !important;
-    backdrop-filter: blur(15px) !important;
-    -webkit-backdrop-filter: blur(15px) !important;
-    border: 1px solid var(--card-border) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1.5px solid var(--card-border) !important;
     border-radius: 20px !important;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
 
 .bento-tile:hover {
     transform: translateY(-12px) scale(1.02) !important;
-    background: rgba(15, 15, 25, 0.85) !important;
     box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 20px var(--accent-glow) !important;
     border-color: var(--accent-glow) !important;
 }
 
-.icon-box i {
-    font-size: 2.2rem;
-    color: var(--accent-glow) !important;
-    transition: transform 0.3s ease;
+/* --- Planetary Social Menu --- */
+.menu-container {
+    position: relative;
+    width: 200px; height: 100px;
+    display: flex; justify-content: center; align-items: center;
 }
 
-.bento-tile:hover .icon-box i {
-    transform: scale(1.2);
+#toggle { display: none; }
+
+.btn-main {
+    position: absolute;
+    width: 60px; height: 60px;
+    background: white; border-radius: 50%;
+    z-index: 10; cursor: pointer;
+    display: flex; justify-content: center; align-items: center;
+    transition: transform 0.5s;
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
 }
 
-.module-code {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--accent-glow);
-    text-transform: uppercase;
-    letter-spacing: 2px;
+.btn-main i { font-size: 28px; color: #333; position: absolute; }
+#close-icon { opacity: 0; transform: rotate(-180deg); }
+
+#toggle:checked ~ .btn-main { transform: rotate(180deg); background: var(--accent-glow); }
+#toggle:checked ~ .btn-main i { color: white; }
+#toggle:checked ~ .btn-main #menu-icon { opacity: 0; }
+#toggle:checked ~ .btn-main #close-icon { opacity: 1; transform: rotate(0); }
+
+.menu-items a {
+    position: absolute;
+    width: 45px; height: 45px;
+    background: white; border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    text-decoration: none; color: #333;
+    transition: all 0.5s;
+    transition-delay: calc(0.1s * var(--i));
+    opacity: 0; z-index: 1; transform: translate(0,0);
 }
+
+#toggle:checked ~ .menu-items a {
+    opacity: 1;
+    transform: translate(calc(100px * var(--x)), calc(100px * var(--y)));
+}
+
+/* Brand-Specific Glows for Radial Satellites */
+.menu-items a.github:hover { background: #333; color: white; box-shadow: 0 0 15px #333; }
+.menu-items a.linkedin:hover { background: #0077b5; color: white; box-shadow: 0 0 15px #0077b5; }
+.menu-items a.email:hover { background: #ea4335; color: white; box-shadow: 0 0 15px #ea4335; }
 
 /* --- Profile Styling --- */
-.profile-pictures-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 50px;
-}
-
-.profile-picture {
-    width: 140px !important;
-    height: 140px !important;
-    border-radius: 50% !important;
-    border: 3px solid white !important;
-    object-fit: cover !important;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-
-.profile-name { font-family: 'Dosis', sans-serif; font-size: 3.5rem; }
-.profile-about { font-family: 'Dosis', sans-serif; font-size: 1.3rem; color: rgba(255,255,255,0.9); margin-bottom: 25px;}
-
-/* --- Social Footer (Inspiration: Video 1) --- */
-.links-footer {
-    font-size: 1.5rem;
-    color: white !important;
-    margin: 10px;
-    width: 50px; height: 50px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50% !important;
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.3);
-    transition: all 0.3s ease-in-out;
-}
-
-.links-footer:hover {
-    transform: scale(1.25) translateY(-5px); /* From Video 1 code */
-    background: white !important;
-    color: var(--accent-glow) !important;
-    box-shadow: 0 0 15px white;
-}
-
-/* --- Entrance Animation (Inspiration: Video 3) --- */
-.fade-in-up {
-    opacity: 0;
-    animation: fadeInUp 0.8s forwards ease-out;
-}
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+.profile-pictures-container { display: flex; justify-content: center; gap: 20px; }
+.profile-picture { width: 140px; height: 140px; border-radius: 50% !important; border: 3px solid white; object-fit: cover; }
+.profile-name { font-family: 'Dosis', sans-serif; font-size: 3.5rem; margin-top: 15px; }
+.module-code { font-family: 'Roboto Mono', monospace; font-size: 0.75rem; color: var(--accent-glow); }
