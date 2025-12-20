@@ -52,19 +52,17 @@ async function runBootSequence() {
     }
 }
 
-// --- UNIVERSAL SCROLL OBSERVER (The Fix) ---
+// --- MAIN INITIALIZATION & DASHBOARD LOGIC ---
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Check for Boot Screen
+    // 1. Run Boot Sequence (if applicable)
     runBootSequence();
 
-    // 2. Setup Scroll Animation (Replay on Scroll Up)
+    // 2. Setup Universal Scroll Observer (Fade In/Out on scroll)
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Element is in view: Fade In
                 entry.target.classList.add('active');
             } else {
-                // Element left view: Fade Out (so it can replay)
                 entry.target.classList.remove('active');
             }
         });
@@ -72,31 +70,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     
-    // 3. Dashboard Logic (Only runs if link-container exists)
+    // 3. Dashboard Card Generation (Only runs if link-container exists)
     try {
         const container = document.getElementById("link-container");
         if (container && typeof config !== 'undefined' && config.links) {
-            // ... (Your existing dashboard code here - no changes needed) ...
-            // Just make sure to keep the code inside this block
-            container.innerHTML = "";
-            // ... [Paste your existing Card Generation Code here] ...
             
-            // Re-paste the card generation code to be safe:
-             const cardData = {
-                "My Research Projects": { desc: "Analyzing AGN dust attenuation using JWST spectra.", img: "assets/img/spectral_plot.png", cls: "research-card" },
-                "Class Projects & Papers": { desc: "Computer vision pipelines & Arduino hardware.", img: "assets/img/Theoretical_Lagrangian.png", cls: "projects-card" },
-                "View My CV": { desc: "Full academic record & skills.", img: "assets/img/KU_phys_astro_logo.png", cls: "cv-card" },
-                "Talks & Outreach": { desc: "Teaching & volunteering.", img: "assets/img/outreach_pic.png", cls: "outreach-card" }
+            container.innerHTML = "";
+            
+            // Map specific images and descriptions to card titles
+            const cardData = {
+                "My Research Projects": { 
+                    desc: "Analyzing AGN dust attenuation using JWST spectra.", 
+                    img: "assets/img/spectral_plot.png", 
+                    cls: "research-card" 
+                },
+                "Class Projects & Papers": { 
+                    desc: "Computer vision pipelines & Arduino hardware.", 
+                    img: "assets/img/Theoretical_Lagrangian.png", 
+                    cls: "projects-card" 
+                },
+                "View My CV": { 
+                    desc: "Full academic record & skills.", 
+                    img: "assets/img/KU_phys_astro_logo.png", 
+                    cls: "cv-card" 
+                },
+                "About Me": { 
+                    desc: "The Scientist, The Architect, and The Origin Story.", 
+                    img: "assets/img/profile_pic.png", 
+                    cls: "cv-card" 
+                },
+                "Talks & Outreach": { 
+                    desc: "Teaching & volunteering.", 
+                    img: "assets/img/outreach_pic.png", 
+                    cls: "outreach-card" 
+                }
             };
             
+            // Filter out social links (LinkedIn, Bluesky) from the main grid
             const mainLinks = config.links.filter(link => !["LinkedIn", "Bluesky"].includes(link.Title));
             
             mainLinks.forEach((link, i) => {
                 const col = document.createElement("div");
+                // Research and Projects get full-width (col-md-6) on medium screens, 
+                // others can fit 3 per row (col-lg-4) on large screens.
                 const isBig = link.Title.includes("Research") || link.Title.includes("Projects");
                 col.className = isBig ? "col-12 col-md-6 mb-4 fade-in-up" : "col-12 col-md-6 col-lg-4 mb-4 fade-in-up";
                 col.style.animationDelay = `${(i + 1) * 0.15}s`;
-                 const data = cardData[link.Title] || { desc: "View module.", img: "assets/img/profile_pic.png", cls: "default-card" };
+
+                const data = cardData[link.Title] || { desc: "View module.", img: "assets/img/profile_pic.png", cls: "default-card" };
 
                 col.innerHTML = `
                     <a href="${link.URL}" class="card h-100 bento-tile border-0 text-decoration-none ${data.cls}">
@@ -120,7 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
                 container.appendChild(col);
             });
-             // Spotlight Effect
+
+            // Spotlight Effect for Cards
             const cards = document.querySelectorAll('.bento-tile');
             cards.forEach(card => {
                 card.onmousemove = e => {
@@ -132,5 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
             });
         }
-    } catch (e) { console.log("Not on dashboard page"); }
+    } catch (e) { 
+        // Silent catch: console.log("Not on dashboard page") is unnecessary in production
+    }
 });
