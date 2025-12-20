@@ -12,7 +12,7 @@ const config = {
         },
         {
             "Title": "View My CV",
-            "URL": "assets/pdf/Joseph_Havens_CV.pdf",
+            "URL": "assets/Joseph_Havens_CV.pdf",
             "icon_classes": "fas fa-file-pdf",
         },
         // --- NEW BUTTON ---
