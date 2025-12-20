@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "About Me": { 
                     desc: "The Scientist, The Architect, and The Origin Story.", 
                     img: "assets/img/profile_pic.png", 
-                    cls: "cv-card" 
+                    cls: "about-card"
                 },
                 "Talks & Outreach": { 
                     desc: "Teaching & volunteering.", 
