@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Dosis:wght@400;600&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <title>Project: NFL Predictor | Maireannacht</title>
+</head>
+<body>
+
+    <a href="about.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+
+    <div class="container py-5">
+
+        <div class="row mb-5 reveal">
+            <div class="col-lg-8">
+                <div class="d-flex align-items-center mb-2">
+                    <span class="badge badge-success mr-2">COMPLETED</span>
+                    <small class="text-white-50 font-weight-bold" style="letter-spacing: 1px;">SYSTEM_ARCHIVE_01</small>
+                </div>
+                <h1 class="page-title mb-3">NFL Predictive Engine</h1>
+                <p class="page-subtitle">A multi-model ensemble system to detect edge opportunities against Vegas betting lines.</p>
+            </div>
+            <div class="col-lg-4 text-right">
+                <div class="content-glass p-3 text-left">
+                    <h6 class="text-white border-bottom pb-2 mb-3" style="border-color: rgba(255,255,255,0.1)!important;">TECH STACK</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Python</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Scikit-Learn</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">XGBoost</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Pandas</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">NumPy</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Streamlit</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-row reveal delay-100">
+            <div class="content-text">
+                <h3><i class="fa-solid fa-clipboard-list text-info"></i> Executive Summary</h3>
+                <p>This NFL Prediction System is a professional-grade analytics platform designed to identify inefficiencies in betting lines. Unlike traditional prediction models, it compares a "Vegas-Aware" baseline to a "Pure Football" ensemble to detect true value edges.</p>
+            </div>
+        </div>
+
+        <div class="content-row reveal delay-200 reversed">
+            <div class="content-text">
+                <h3><i class="fa-solid fa-database" style="color: var(--accent-glow);"></i> Data Architecture & Ingestion</h3>
+                <ul class="text-white-50 mt-3">
+                    <li><i class="fa-solid fa-check text-success mr-2"></i> <strong>Core Data:</strong> nflreadpy library via nflverse ecosystem (2002-2024)</li>
+                    <li><i class="fa-solid fa-check text-success mr-2"></i> <strong>Granularity:</strong> Play-by-play EPA, WPA, and participation reports</li>
+                    <li><i class="fa-solid fa-check text-success mr-2"></i> <strong>Environmental:</strong> Stadium Surface (Turf/Grass), Roof Status, Wind/Temp</li>
+                    <li><i class="fa-solid fa-check text-success mr-2"></i> <strong>Officials:</strong> Referee crew assignments included to detect officiating bias</li>
+                </ul>
+                <p>Using EPA instead of box scores allows the system to judge the context-sensitive value of plays, improving predictive quality.</p>
+            </div>
+        </div>
+
+        <div class="content-row reveal delay-300">
+            <div class="content-text">
+                <h3><i class="fa-solid fa-brain text-warning"></i> Feature Engineering ("The Brain")</h3>
+                <ul class="text-white-50 mt-3">
+                    <li>Rolling averages for key metrics (3, 5, 8 games) to capture "Form"</li>
+                    <li>Matchup differentials: Offense vs Defense efficiency comparison</li>
+                    <li><strong>Roster Health:</strong> 'key_players_out' and 'injury_advantage' variables</li>
+                    <li>Rest differential: Calculation of 'rest_days' skew (e.g. Bye Week vs Short Week)</li>
+                    <li>Standardization via StandardScaler</li>
+                </ul>
+                <p>Rolling windows capture hot streaks while smoothing out random noise, providing a responsive measure of team form.</p>
+            </div>
+        </div>
+
+        <div class="content-row reveal delay-400 reversed">
+            <div class="content-text">
+                <h3><i class="fa-solid fa-network-wired text-success"></i> Modeling Philosophy: Dual-Key Protocol</h3>
+                <p>The system operates two parallel tracks:</p>
+                <ul class="text-white-50 mt-3">
+                    <li><strong>Track A: Vegas-Aware Baseline</strong> – Logistic Regression including Vegas spread (67.3% Accuracy)</li>
+                    <li><strong>Track B: No-Vegas Ensemble</strong> – Pure football metrics ensemble:</li>
+                    <ul class="text-white-50 mt-1 ml-4">
+                        <li><strong>Optimization Strategy:</strong> Brute-force Grid Search used to determine optimal voting weights.</li>
+                        <li><strong>XGBoost (Weight: 2):</strong> Gradient Boosting to handle non-linear decision trees.</li>
+                        <li><strong>SVM (Weight: 14):</strong> Support Vector Machine (RBF kernel) identified as the stabilizer for defensive variance.</li>
+                        <li><strong>Neural Network (Weight: 8):</strong> MLP (64->32 neurons) captures abstract deep-learning patterns.</li>
+                    </ul>
+                    <li>Weighted ensemble final accuracy: 59.93%</li>
+                </ul>
+                <p>The ensemble uses weighted voting to balance strengths and weaknesses of individual models, smoothing over their biases.</p>
+            </div>
+        </div>
+
+        <div class="content-row reveal delay-500">
+            <div class="content-text">
+                <h3><i class="fa-solid fa-chess-king text-danger"></i> War Room: Strategy & Execution</h3>
+                <ul class="text-white-50 mt-3">
+                    <li>Convert Vegas spreads to implied win probabilities</li>
+                    <li>Edge calculation: Edge = Model Probability – Vegas Probability</li>
+                    <li>Money management: Quarter Kelly criterion proportional to edge</li>
+                    <li>Streamlit dashboard: Live data fetching, edge highlighting, bankroll simulation</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row reveal delay-600 mt-5">
+            <div class="col-12">
+                <div class="content-glass">
+                    <div class="d-flex align-items-center mb-3 border-bottom pb-2" style="border-color: rgba(255,255,255,0.1)!important;">
+                        <i class="fa-solid fa-terminal mr-2 text-success"></i>
+                        <span class="font-weight-bold text-white small">logic_core.py</span>
+                    </div>
+                    <pre class="text-white-50 small" style="font-family: 'Roboto Mono', monospace;">
+# Ensemble Voting Logic (Dual-Key Protocol)
+def get_ensemble_prediction(matchup_data):
+    # Retrieve individual model probabilities
+    p_xgb = model_xgb.predict_proba(matchup_data)[0][1]
+    p_svm = model_svm.predict_proba(matchup_data)[0][1]
+    p_nn  = model_nn.predict_proba(matchup_data)[0][1]
+    
+    # Apply Grid-Search Optimized Weights
+    # Weights: SVM(14) > NN(8) > XGB(2)
+    weighted_score = (p_xgb * 2) + (p_svm * 14) + (p_nn * 8)
+    final_prob = weighted_score / 24.0
+    
+    return final_prob
+                    </pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center py-5 mt-4 reveal delay-700">
+            <h4 class="text-white mb-3">Status: <span class="text-success">Operational</span></h4>
+            <a href="https://github.com/JHavens2187/NFL-Prediction-System" class="btn-glass" target="_blank">
+                <i class="fab fa-github"></i> View Source Code
+            </a>
+        </div>
+
+    </div>
+
+    <script src="assets/js/index.js"></script>
+</body>
+</html>

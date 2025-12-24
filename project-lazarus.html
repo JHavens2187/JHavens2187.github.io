@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Dosis:wght@400;600&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <title>Project: Lazarus | Maireannacht</title>
+</head>
+<body>
+
+    <a href="about.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+
+    <div class="container py-5">
+
+        <div class="row mb-5 reveal">
+            <div class="col-lg-8">
+                <div class="d-flex align-items-center mb-2">
+                    <span class="badge badge-warning text-dark mr-2">IN PROGRESS</span>
+                    <small class="text-white-50 font-weight-bold" style="letter-spacing: 1px;">SYSTEM_ARCHIVE_02</small>
+                </div>
+                <h1 class="page-title mb-3">Project: Lazarus</h1>
+                <p class="page-subtitle">Retrofitting a 2013 iMac (Late 2013) to defy planned obsolescence using OpenCore Legacy Patcher and modern silicon.</p>
+            </div>
+            <div class="col-lg-4 text-right">
+                <div class="content-glass p-3 text-left">
+                    <h6 class="text-white border-bottom pb-2 mb-3" style="border-color: rgba(255,255,255,0.1)!important;">HARDWARE / SOFTWARE</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge badge-dark border border-secondary p-2 m-1">OCLP</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">macOS Sonoma</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Windows 11</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Thermal Sensors</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">SATA III SSD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-row reveal delay-100">
+            <div class="content-text">
+                <h3><i class="fa-solid fa-code-branch text-success"></i> Phase 1: Software Injection</h3>
+                <p>The first step was proving the architecture could handle the load. Using <strong>OpenCore Legacy Patcher (OCLP)</strong>, I spoofed the SMBIOS to trick the kernel into accepting a modern OS.</p>
+                <ul class="text-white-50 mt-3">
+                    <li><i class="fa-solid fa-check text-success mr-2"></i> <strong>Target:</strong> macOS Sonoma</li>
+                    <li><i class="fa-solid fa-check text-success mr-2"></i> <strong>Result:</strong> Successful Boot. Graphics acceleration patched.</li>
+                    <li><i class="fa-solid fa-triangle-exclamation text-warning mr-2"></i> <strong>Bottleneck:</strong> The 10-year-old 5400RPM HDD is throttling the system to a crawl.</li>
+                </ul>
+            </div>
+            <div class="content-image">
+                <div class="content-glass d-flex align-items-center justify-content-center h-100" style="min-height: 200px;">
+                    <i class="fa-brands fa-apple fa-4x text-white-50"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-row reveal delay-200 reversed">
+            <div class="content-text">
+                <h3><i class="fa-solid fa-screwdriver-wrench text-info"></i> Phase 2: The Transplant</h3>
+                <p>To make the system usable, I must perform open-heart surgery. This involves cutting the display adhesive to access the internal SATA bus.</p>
+                <p><strong>The Thermal Trap:</strong> Apple proprietary HDDs contain internal thermal firmware. Replacing the drive with a generic SSD causes the system fans to spin at 100% (Safety Mode).</p>
+                <p><strong>The Fix:</strong> I will be installing an OWC In-line Digital Thermal Sensor to intercept the temperature data and normalize fan speeds.</p>
+            </div>
+            <div class="content-image">
+                 <div class="content-glass d-flex align-items-center justify-content-center h-100" style="min-height: 200px;">
+                    <i class="fa-solid fa-microchip fa-4x text-white-50"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-row reveal delay-300">
+            <div class="content-text">
+                <h3><i class="fa-brands fa-windows text-primary"></i> Phase 3: Dual-Boot Architecture</h3>
+                <p>Once the SSD provides the necessary IOPS, the final goal is a partitioned system running two distinct environments:</p>
+                <ul class="text-white-50 mt-3">
+                    <li><strong>Partition A (Daily Driver):</strong> macOS Sonoma for development and UNIX-based workflows.</li>
+                    <li><strong>Partition B (The Console):</strong> Windows 11 for gaming support.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row reveal delay-400 mt-5">
+            <div class="col-12">
+                <div class="content-glass">
+                    <div class="d-flex align-items-center mb-3 border-bottom pb-2" style="border-color: rgba(255,255,255,0.1)!important;">
+                        <i class="fa-solid fa-terminal mr-2 text-warning"></i>
+                        <span class="font-weight-bold text-white small">system_diagnostics.log</span>
+                    </div>
+                    <pre class="text-white-50 small" style="font-family: 'Roboto Mono', monospace;">
+> DISK I/O CHECK...
+  [WARNING] Write Speed: 45 MB/s (CRITICAL LOW)
+  [WARNING] Read Speed:  70 MB/s
+  [ANALYSIS] HDD Thrashing detected. System unresponsive during spotlight indexing.
+
+> THERMAL SENSOR CHECK...
+  [ALERT] HDD Temp Sensor: NOT DETECTED
+  [ACTION] SMC Defaulting to MAX FAN RPM (2800)
+  
+> SOLUTION PROTOCOL:
+  1. Initialize hardware retrofit.
+  2. Install OWC thermal bypass.
+  3. Re-flash OCLP post-install patches.
+                    </pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center py-5 mt-4 reveal delay-500">
+            <h4 class="text-white mb-3">Current Status: <span class="text-warning">Awaiting Hardware</span></h4>
+            
+            <div class="progress mx-auto mb-3" style="height: 10px; width: 60%; background: rgba(255,255,255,0.1);">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 10%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <p class="text-white-50 small">30% Complete (Software Validation) / 10% In-Progress (Procurement)</p>
+        </div>
+
+    </div>
+
+    <script src="assets/js/index.js"></script>
+</body>
+</html>

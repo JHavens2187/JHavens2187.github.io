@@ -3,76 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="assets/css/style.css?v=9">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Dosis:wght@400;600&display=swap" rel="stylesheet">
-    
-    <title>Research | Joseph Havens</title>
     
     <script>
-        MathJax = { tex: { inlineMath: [['$', '$']] } };
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
     </script>
-    <script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Dosis:wght@400;600&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <title>Research: AGN Dust Attenuation | Maireannacht</title>
 </head>
 <body>
 
     <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
 
     <div class="container py-5">
-        <div class="page-header reveal">
-            <h1 class="page-title">My Research</h1>
-            <p class="page-subtitle">AGN Dust Attenuation & Spectral Analysis with JWST</p>
-        </div>
 
-        <div class="content-row reveal">
-            <div class="content-image">
-                <img src="assets/img/prescott_fig1.png" alt="Prescott et al. 2022">
+        <div class="row mb-5 reveal">
+            <div class="col-lg-8">
+                <div class="d-flex align-items-center mb-2">
+                    <span class="badge badge-warning text-dark mr-2">DRAFT MANUSCRIPT</span>
+                    <small class="text-white-50 font-weight-bold" style="letter-spacing: 1px;">NASA_JWST_CYCLE_1</small>
+                </div>
+                <h1 class="page-title mb-3">Constraining Dust Attenuation in AGN</h1>
+                <p class="page-subtitle">Breaking the fundamental degeneracy between dust content and attenuation slope ($k(\lambda)$) in Active Galactic Nuclei using multi-line diagnostics.</p>
             </div>
-            <div class="content-text">
-                <h3>The Challenge: Seeing Through Cosmic Dust</h3>
-                <p>To understand the first galaxies and their supermassive black holes (AGN), we must first understand the <strong>dust</strong> that obscures them. A promising method is to compare hydrogen line ratios (e.g., $H\alpha$, $H\beta$, $Pa\beta$).</p>
-                <p>Ground-based attempts suffer from severe biases like "slit losses" (Prescott et al. 2022). A single, powerful instrument like <strong>JWST</strong> is required to capture all lines at once.</p>
-                <a href="https://ui.adsabs.harvard.edu/abs/2022ApJ...928...71P/abstract" class="btn-glass" target="_blank">Read Prescott+ 2022</a>
-            </div>
-        </div>
-
-        <div class="content-row reversed reveal">
-            <div class="content-text">
-                <h3>Using JWST & GLEAM to Solve the Puzzle</h3>
-                <p>My research utilizes new, high-quality data from the <strong>JADES</strong> and <strong>SMACS</strong> JWST surveys. I am testing the <strong>GLEAM</strong> fitting tool to robustly fit key emission lines and measure their flux ratios.</p>
-                <p>This allows us to constrain the dust attenuation law (both $n$ and $\tau_V$) free from the biases of ground-based data.</p>
-                <a href="https://github.com/JHavens2187/Spectral_Analysis" class="btn-glass" target="_blank"><i class="fab fa-github"></i> GitHub Project</a>
-            </div>
-            <div class="content-image">
-                <img src="assets/img/spectral_plot.png" alt="Spectral Plot">
+            <div class="col-lg-4 text-right">
+                <div class="content-glass p-3 text-left">
+                    <h6 class="text-white border-bottom pb-2 mb-3" style="border-color: rgba(255,255,255,0.1)!important;">INSTRUMENTATION & TOOLS</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge badge-dark border border-secondary p-2 m-1">JWST / NIRSpec</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Python</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">LMFIT</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Astropy</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">GLEAM Pipeline</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="content-row reveal">
-            <div class="content-image">
-                <img src="assets/img/shapley_fig4.png" alt="Shapley Results">
-            </div>
+        <div class="content-row reveal delay-100">
             <div class="content-text">
-                <h3>Next Steps: Building a Complete Model</h3>
-                <p>We are incorporating <strong>Star Formation Rates (SFRs)</strong> as an independent constraint. By combining our dust measurements with independent SFRs, we can break model degeneracies.</p>
-                <p>The goal is to build a complete physical model connecting AGN activity, star formation, and dust in early-universe galaxies.</p>
-                <a href="https://ui.adsabs.harvard.edu/abs/2023ApJ...954..157S/abstract" class="btn-glass" target="_blank">Read Shapley+ 2023</a>
+                <h3><i class="fa-solid fa-satellite-dish" style="color: var(--accent-glow);"></i> The Physics Problem</h3>
+                <p>The standard method for estimating dust attenuation (the Balmer Decrement) is <strong>fundamentally degenerate</strong>. It can only solve for the normalization ($E(B-V)$) if the slope of the attenuation curve ($k(\lambda)$) is assumed, or vice versa.</p>
+                <p><strong>The Solution:</strong> This research introduces a third constraint by combining Hydrogen Balmer lines ($H\alpha, H\beta$) with Paschen lines ($Pa\alpha, Pa\beta$) available via JWST. This breaks the degeneracy, allowing us to simultaneously derive both the dust content and the attenuation law specific to the complex AGN torus environment.</p>
+            </div>
+             <div class="content-image">
+                <div class="content-glass d-flex align-items-center justify-content-center h-100" style="min-height: 200px;">
+                    <i class="fa-solid fa-galaxy fa-4x text-white-50"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-row reveal delay-200 reversed">
+            <div class="content-text">
+                <h3><i class="fa-solid fa-laptop-code text-warning"></i> The Engine: GLEAM v2.0</h3>
+                <p>I re-engineered the <strong>Galaxy Line Emission Analysis and Measurement (GLEAM)</strong> pipeline to handle large-scale spectral analysis for SMACS and JADES surveys.</p>
+                <p><strong>System Upgrades (Oct 2025):</strong></p>
+                <ul class="text-white-50 mt-3">
+                    <li><i class="fa-solid fa-check text-success mr-2"></i> <strong>Numerical Stability:</strong> Implemented pre-fit scaling to prevent LMFIT crashes on small flux values ($10^{-19}$).</li>
+                    <li><i class="fa-solid fa-check text-success mr-2"></i> <strong>Error Propagation:</strong> Developed a custom <code>RandomVariable</code> class to propagate uncertainties through complex flux calculations.</li>
+                    <li><i class="fa-solid fa-check text-success mr-2"></i> <strong>Detection Logic:</strong> Added automated S/N thresholds; results below $3\sigma$ are now flagged as upper limits.</li>
+                </ul>
+            </div>
+             <div class="content-image">
+                <div class="content-glass d-flex align-items-center justify-content-center h-100" style="min-height: 200px;">
+                    <i class="fa-solid fa-chart-area fa-4x text-white-50"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="row reveal delay-300 mt-5">
+            <div class="col-12">
+                <div class="content-glass">
+                    <div class="d-flex align-items-center mb-3 border-bottom pb-2" style="border-color: rgba(255,255,255,0.1)!important;">
+                        <i class="fa-solid fa-code mr-2 text-info"></i>
+                        <span class="font-weight-bold text-white small">gaussian_fitting.py (Custom Class)</span>
+                    </div>
+                    <pre class="text-white-50 small" style="font-family: 'Roboto Mono', monospace;">
+@dataclass
+class RandomVariable:
+    """
+    Custom class to handle error propagation for Multiplication and Division 
+    during flux calculations. Solves the NaN issue in previous GLEAM versions.
+    """
+    value: Qty
+    error: Qty
+
+    def _propagate_multiplication_error(self, other):
+        # Standard error propagation formula: |xy| * sqrt((dx/x)^2 + (dy/y)^2)
+        if self.error is None or other.error is None:
+            return np.nan
+        
+        val1 = self.value if self.value != 0 else 1e-9
+        val2 = other.value if other.value != 0 else 1e-9
+
+        relative_err_sq = (self.error / val1) ** 2 + (other.error / val2) ** 2
+        return abs(self.value * other.value) * np.sqrt(relative_err_sq)
+                    </pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-row reveal delay-400 mt-5">
+            <div class="col-12">
+                <div class="text-center mb-4">
+                    <h3><i class="fa-solid fa-clipboard-list text-success"></i> Status: Analysis & Writing</h3>
+                    <p class="text-white-50" style="max-width: 700px; margin: 0 auto;">
+                        The pipeline is fully operational. We are currently analyzing Star Formation Rates (SFR) and performing diagnostic plotting (utilizing standard BPT, VO87, and OHNO diagrams) to distinguish AGN activity from star-forming regions in the SMACS, JADES, and GLASS dataset.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center py-5 mt-4 reveal delay-500">
+            <h4 class="text-white mb-3">Authors: <span class="text-info">Joseph Havens, Owen Zafuta, Dr. Bren Backhaus</span></h4>
+            <div class="d-flex justify-content-center gap-3">
+                <button class="btn-glass" disabled style="opacity: 0.6; cursor: not-allowed;">
+                    <i class="fas fa-file-pdf"></i> Paper in Prep
+                </button>
             </div>
         </div>
 
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) entry.target.classList.add('active');
-                });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        });
-    </script>
-
+    <script src="assets/js/index.js"></script>
 </body>
 </html>
