@@ -358,6 +358,8 @@ body {
   padding: 25px;
   height: 100%;
   transition: all 0.3s ease;
+  /* Added for Stretched Link Logic */
+  position: relative;
 }
 
 .project-card:hover {
@@ -365,6 +367,12 @@ body {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   border-color: var(--accent-glow);
+}
+
+/* Fix: Ensure buttons inside cards are clickable above the stretched link */
+.project-card .btn-glass {
+  position: relative;
+  z-index: 2;
 }
 
 .project-tag {

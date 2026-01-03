@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="assets/css/style.css?v=22">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Dosis:wght@400;600&display=swap" rel="stylesheet">
+    <title>Personal Projects | Joseph Havens</title>
+</head>
+<body>
+
+    <a href="about.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+
+    <div class="container py-5">
+        <div class="page-header reveal">
+            <h1 class="page-title">Personal R&D</h1>
+            <p class="page-subtitle">Where I build things simply because I can. Systems, retrofits, and predictive engines.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-4 reveal delay-100">
+                <div class="project-card h-100 d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div class="project-tag mb-0">Machine Learning</div>
+                        <span class="badge badge-success p-2">COMPLETED</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-white font-weight-bold mb-0">NFL Predictive Engine</h4>
+                        <i class="fa-solid fa-football-ball fa-2x text-warning"></i>
+                    </div>
+                    <p class="small text-white-50 mb-3">Python • XGBoost • Scikit-Learn</p>
+                    <p class="text-white flex-grow-1">A multi-model ensemble system (XGBoost, SVM, Neural Net) designed to identify inefficiencies in Vegas betting lines using a "Dual-Key" voting protocol.</p>
+                    <a href="nfl-predictor.html" class="stretched-link"></a>
+                    <div class="mt-4">
+                        <a href="https://github.com/JHavens2187/NFL-Prediction-System" class="btn-glass btn-sm" target="_blank"><i class="fab fa-github"></i> Source Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4 reveal delay-200">
+                <div class="project-card h-100 d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div class="project-tag mb-0">Hardware • Retrofit</div>
+                        <span class="badge badge-warning text-dark p-2">IN PROGRESS</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-white font-weight-bold mb-0">Project: Lazarus</h4>
+                        <i class="fa-brands fa-apple fa-2x text-white"></i>
+                    </div>
+                    <p class="small text-white-50 mb-3">OpenCore • Hardware Mod • Systems</p>
+                    <p class="text-white flex-grow-1">Retrofitting a 2013 iMac to defy planned obsolescence. Features a custom OCLP patch to run macOS Sonoma, thermal sensor bypass, and SSD integration.</p>
+                    <a href="project-lazarus.html" class="stretched-link"></a>
+                    <div class="mt-4">
+                        <div class="d-flex align-items-center">
+                            <span class="small text-white-50 mr-2">Phase 2:</span>
+                            <div class="progress flex-grow-1" style="height: 6px; background: rgba(255,255,255,0.1);">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 40%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4 reveal delay-300">
+                <div class="project-card h-100 d-flex flex-column" style="opacity: 0.8; border-color: rgba(255,255,255,0.1);">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div class="project-tag mb-0">Automation • Cloud Systems</div>
+                        <span class="badge badge-secondary p-2">ARCHIVED</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-white-50 font-weight-bold mb-0">KSHSAA SB-TMS</h4>
+                        <i class="fa-solid fa-sitemap fa-2x text-white-50"></i>
+                    </div>
+                    <p class="small text-white-50 mb-3">Python • Pandas • Google API</p>
+                    <p class="text-white-50 flex-grow-1">A "Headless" tournament management system that uses Google Sheets as a distributed frontend database to manage real-time scoring, seeding, and complex tie-breaker logic.</p>
+                    <a href="project-bracket.html" class="stretched-link"></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="assets/js/index.js"></script>
+</body>
+</html>

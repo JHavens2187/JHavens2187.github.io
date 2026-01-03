@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Dosis:wght@400;600&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <title>Magnetic Dipole | Maireannacht</title>
+</head>
+<body>
+    <a href="projects.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+    <div class="container py-5">
+        <div class="row mb-5 reveal">
+            <div class="col-lg-8">
+                <div class="d-flex align-items-center mb-2">
+                    <span class="badge badge-success mr-2">COMPLETED</span>
+                    <small class="text-white-50 font-weight-bold">THEORY_ARCHIVE_02</small>
+                </div>
+                <h1 class="page-title mb-3">Magnetic Dipole Dynamics</h1>
+                <p class="page-subtitle">Lagrangian formulation of a symmetric magnetic top in external \(\vec{B}\) and \(\vec{g}\) fields.</p>
+            </div>
+            <div class="col-lg-4 text-right">
+                <div class="content-glass p-3 text-left">
+                    <h6 class="text-white border-bottom pb-2 mb-3">TECH STACK</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Classical Mechanics</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">LaTeX</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Lagrangian</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Euler Angles</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-row reveal delay-100">
+            <div class="content-text">
+                <h3><i class="fa-solid fa-atom text-info"></i> Abstract</h3>
+                <p>This paper derives the equations of motion for a rigid, symmetric body with a magnetic dipole moment \(\vec{\mu}\) subject to both uniform magnetic ($\vec{B}$) and gravitational ($\vec{g}$) fields.</p>
+                <p>Using the Euler angle formalism ($\phi, \theta, \psi$), we investigated the conditions under which the precession direction reverses when the external magnetic field is inverted, even while the spin of the body remains constant.</p>
+            </div>
+        </div>
+
+        <div class="row reveal delay-300 mt-5">
+            <div class="col-12">
+                <div class="content-glass">
+                    <div class="d-flex align-items-center mb-3 border-bottom pb-2" style="border-color: rgba(255,255,255,0.1)!important;">
+                        <i class="fa-solid fa-square-root-variable mr-2 text-warning"></i>
+                        <span class="font-weight-bold text-white small">The Lagrangian (Eq. 7)</span>
+                    </div>
+                    <div class="text-white text-center py-3">
+                        $$ \mathcal{L} = \frac{1}{2}I_{1}(\dot{\phi}^{2}+\dot{\theta}^{2}\sin^{2}\theta) + \frac{1}{2}I_{3}(\dot{\psi}+\dot{\phi}\cos \theta)^{2} - (-\mu B + Mgl)\cos \theta $$
+                    </div>
+                    <p class="text-white-50 small text-center">
+                        where \(T\) (kinetic energy) utilizes symmetric moments of inertia \(I_1=I_2\), and \(V\) (potential energy) accounts for both magnetic alignment and gravitational height.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-row reveal delay-400 reversed mt-5">
+            <div class="content-text">
+                <h3><i class="fa-solid fa-sync text-success"></i> Field Reversal & Precession</h3>
+                <p>We derived the approximate precession rate for a "fast top":</p>
+                <p>$$ \Omega_p \approx \frac{Mgl - \mu B}{p_{\psi}} $$</p>
+                <p>Crucially, if the magnetic field is reversed ($\vec{B} \to -\vec{B}$), the effective torque changes sign if $|\mu B| \gg |Mgl|$. This theoretically predicts the reversal of precession direction (red arrows) observed in the TeachSpin experiments.</p>
+            </div>
+             <div class="content-image">
+                <img src="assets/img/flip-data.png" alt="Frame-by-frame analysis of precession reversal" class="img-fluid rounded border border-secondary">
+                <p class="text-white-50 extra-small mt-2">Frame-by-frame analysis showing the change in gradient/precession direction.</p>
+            </div>
+        </div>
+
+        <div class="text-center py-5 mt-4 reveal delay-500">
+            <h4 class="text-white mb-3">Resources</h4>
+            <a href="assets/pdf/Magnetic_Dipole_Dynamics.pdf" class="btn-glass" target="_blank"><i class="fas fa-file-pdf"></i> Read Full Derivation</a>
+        </div>
+    </div>
+    <script src="assets/js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Dosis:wght@400;600&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <title>Digital Multimeter | Maireannacht</title>
+</head>
+<body>
+    <a href="projects.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+    <div class="container py-5">
+        <div class="row mb-5 reveal">
+            <div class="col-lg-8">
+                <div class="d-flex align-items-center mb-2">
+                    <span class="badge badge-success mr-2">COMPLETED</span>
+                    <small class="text-white-50 font-weight-bold">HARDWARE_ARCHIVE_03</small>
+                </div>
+                <h1 class="page-title mb-3">Digital Multimeter Design</h1>
+                <p class="page-subtitle">A multi-function measurement system built on the Arduino microcontroller.</p>
+            </div>
+            <div class="col-lg-4 text-right">
+                <div class="content-glass p-3 text-left">
+                    <h6 class="text-white border-bottom pb-2 mb-3">TECH STACK</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge badge-dark border border-secondary p-2 m-1">C++</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Arduino</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Circuit Design</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Error Analysis</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-row reveal delay-100">
+            <div class="content-text">
+                <h3><i class="fa-solid fa-bolt text-warning"></i> Objectives & Hardware</h3>
+                <p>This project implemented a portable digital multimeter capable of measuring voltage, current, capacitance, resistance, and continuity. The system uses an Arduino Uno, utilizing transistors to switch between measurement modes.</p>
+                <ul class="text-white-50 mt-3">
+                    <li><strong>Voltage:</strong> Voltage divider circuit feeding the 10-bit ADC ($0 \text{ V} - 5 \text{ V}$).</li>
+                    <li><strong>Current:</strong> Shunt resistor ($10 \text{ } \Omega$) in series with the load.</li>
+                    <li><strong>Capacitance:</strong> RC time constant method ($t = RC$), measuring time to reach $63\%$ of supply voltage.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-row reveal delay-200 reversed">
+             <div class="content-text">
+                <h3><i class="fa-solid fa-chart-line text-success"></i> Error Analysis</h3>
+                <p>The system was rigorously tested against commercial reference units (Fluke 179 and Tenma LCR45).</p>
+                <ul class="text-white-50 mt-3">
+                    <li><strong>Voltage Accuracy:</strong> $\approx 1\%$ error margin (comparable to Fluke 179 at $0.9\%$).</li>
+                    <li><strong>Current Accuracy:</strong> $\approx 5\%$ error margin due to shunt resistor tolerance and ADC quantization.</li>
+                    <li><strong>Capacitance:</strong> Large discrepancy ($\approx 30\%$) observed, likely due to capacitor tolerance issues.</li>
+                </ul>
+            </div>
+             <div class="content-image">
+                <img src="assets/img/dmm_circuit.png" alt="Tinkercad Circuit Diagram" class="img-fluid rounded border border-secondary">
+            </div>
+        </div>
+
+        <div class="text-center py-5 mt-4 reveal delay-400">
+            <h4 class="text-white mb-3">Resources</h4>
+            <a href="assets/pdf/DIY_Multimeter_Design.pdf" class="btn-glass mr-2" target="_blank"><i class="fas fa-file-pdf"></i> Read Paper</a>
+            <a href="https://github.com/JHavens2187/DIY_Multimeter" class="btn-glass" target="_blank"><i class="fab fa-github"></i> View Firmware</a>
+        </div>
+    </div>
+    <script src="assets/js/index.js"></script>
+</body>
+</html>

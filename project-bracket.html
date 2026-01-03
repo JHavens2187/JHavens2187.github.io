@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Dosis:wght@400;600&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <title>SB-TMS | Maireannacht</title>
+</head>
+<body>
+    <a href="personal-projects.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+
+    <div class="container py-5">
+        <div class="row mb-5 reveal">
+            <div class="col-lg-8">
+                <div class="d-flex align-items-center mb-2">
+                    <span class="badge badge-secondary mr-2">ARCHIVED</span>
+                    <small class="text-white-50 font-weight-bold">LEGACY_SYS_01</small>
+                </div>
+                <h1 class="page-title mb-3">KSHSAA SB-TMS</h1>
+                <p class="page-subtitle">Scholars Bowl Tournament Management System: A distributed scoring engine using Google Sheets as the UI.</p>
+            </div>
+            <div class="col-lg-4 text-right">
+                <div class="content-glass p-3 text-left">
+                    <h6 class="text-white border-bottom pb-2 mb-3">TECH STACK</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Python</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Pandas</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Google Sheets API</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Gspread</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-row reveal delay-100">
+            <div class="content-text">
+                <h3><i class="fa-solid fa-server text-info"></i> The Architecture</h3>
+                <p>The core challenge of running a Scholars Bowl tournament is data entry. Volunteers in 8+ rooms generate data simultaneously, and manual aggregation is slow and error-prone.</p>
+                <p><strong>The Solution:</strong> I built a "Headless" system. The backend logic runs in Python (Pandas), but the "Frontend" is simply Google Sheets. Volunteers enter scores into a shared Sheet. The Python `ScoreboardManager` polls the API, ingests the data into a DataFrame, calculates standings, and pushes updates back to a Master Scoreboard in real-time.</p>
+            </div>
+        </div>
+
+        <div class="content-row reveal delay-200 reversed">
+            <div class="content-text">
+                <h3><i class="fa-solid fa-terminal" style="color: var(--gold);"></i> Remote Command Injection</h3>
+                <p>One of the system's most unique features is the ability to execute Python commands remotely via the spreadsheet.</p>
+                <p>By entering a specific syntax (e.g., `Bowl['Room 6']['Round 4']`) into a designated "Command Cell" on the Data Sheet, the Python backend intercepts the string, executes it against the internal state dictionary, and writes the resulting DataFrame back to the sheet. This allowed for deep debugging of tournament state without needing SSH access to the host machine.</p>
+            </div>
+             <div class="content-image">
+                <div class="content-glass d-flex align-items-center justify-content-center h-100" style="min-height: 200px;">
+                    <i class="fa-solid fa-keyboard fa-4x text-white-50"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-row reveal delay-300">
+            <div class="content-text">
+                <h3><i class="fa-solid fa-scale-balanced text-success"></i> Algorithmic Tie-Breaking</h3>
+                <p>The system implements a rigorous, multi-stage tie-breaker protocol based on KSHSAA rules. It automatically detects ties in pool play and attempts to resolve them in this specific order:</p>
+                <ul class="text-white-50 mt-3">
+                    <li><strong>1. Head-to-Head:</strong> Direct comparison of match results between tied teams.</li>
+                    <li><strong>2. Margin of Victory:</strong> If H2H is split, the system calculates the cumulative point differential.</li>
+                    <li><strong>3. Total Points:</strong> As a final algorithmic step, total points scored are compared.</li>
+                    <li><strong>4. Sudden Death:</strong> If all logic fails, the system flags the admin to schedule a tie-breaker match.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row reveal delay-400 mt-5">
+            <div class="col-12">
+                <div class="content-glass">
+                    <div class="d-flex align-items-center mb-3 border-bottom pb-2" style="border-color: rgba(255,255,255,0.1)!important;">
+                        <i class="fa-solid fa-terminal mr-2 text-warning"></i>
+                        <span class="font-weight-bold text-white small">tie_breaker.py</span>
+                    </div>
+                    <pre class="text-white-50 small" style="font-family: 'Roboto Mono', monospace;">
+def resolve_ties_for_rank(self, tied_teams, pool, df, start_rank):
+    # Stage 1: Head-to-Head
+    resolved, new_rankings = self.head_to_head_comparison(df, tied_teams, pool)
+    
+    if not resolved:
+        # Stage 2: Margin of Victory
+        resolved, rankings = self.margin_of_victory_comparison(df, tied_teams, pool)
+        
+        if not resolved:
+            # Stage 3: Total Points
+            resolved, rankings = self.total_points_comparison(df, tied_teams, pool)
+            
+            if not resolved:
+                self.call_for_additional_matches(tied_teams)
+    
+    self.update_rankings(rankings, start_rank, pool)
+                    </pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center py-5 mt-4 reveal delay-500">
+            <h4 class="text-white mb-3">Status: <span class="text-secondary">Archived</span></h4>
+            <p class="text-white-50 small">Documentation and User Guide available on request.</p>
+        </div>
+    </div>
+    <script src="assets/js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Dosis:wght@400;600&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <title>PYAXIOMA-JH | Maireannacht</title>
+</head>
+<body>
+    <a href="projects.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+    <div class="container py-5">
+        <div class="row mb-5 reveal">
+            <div class="col-lg-8">
+                <div class="d-flex align-items-center mb-2">
+                    <span class="badge badge-success mr-2">COMPLETED</span>
+                    <small class="text-white-50 font-weight-bold">INST_ARCHIVE_01</small>
+                </div>
+                <h1 class="page-title mb-3">PYAXIOMA-JH Methodology</h1>
+                <p class="page-subtitle">Non-contact angular displacement measurement using computer vision and optical flow.</p>
+            </div>
+            <div class="col-lg-4 text-right">
+                <div class="content-glass p-3 text-left">
+                    <h6 class="text-white border-bottom pb-2 mb-3">TECH STACK</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Python</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">OpenCV</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Hough Transforms</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Morphological Filters</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-row reveal delay-100">
+            <div class="content-text">
+                <h3><i class="fa-solid fa-eye text-info"></i> The Problem</h3>
+                <p>Measuring the angular displacement of a magnetic torque oscillator typically requires physical sensors (rotary encoders) that introduce friction and damping, altering the system's natural physics.</p>
+                <p><strong>The Solution:</strong> I developed PYAXIOMA-JH, a computer vision pipeline that tracks colored markers via a standard 1080p webcam. This allows for the capture of torque-induced oscillations and precession without physical contact.</p>
+            </div>
+        </div>
+
+        <div class="content-row reveal delay-200 reversed">
+            <div class="content-text">
+                <h3><i class="fa-solid fa-code" style="color: var(--accent-glow);"></i> The Pipeline</h3>
+                <ul class="text-white-50 mt-3">
+                    <li><strong>1. Detection:</strong> Used Hough Circle Transform and HSV color masking to locate the cue ball and isolate the marker.</li>
+                    <li><strong>2. Motion Masking:</strong> Implemented frame differencing with a binary threshold ($1.75$) to create a motion mask, removing static background noise.</li>
+                    <li><strong>3. Filtering:</strong> Applied a $5 \times 5$ morphological closing operation to bridge gaps in the motion contours.</li>
+                    <li><strong>4. Tracking:</strong> Calculated the centroid $(c_{x, \text{black}}, c_{y, \text{black}})$ of the largest motion contour to determine the marker's precise location.</li>
+                </ul>
+            </div>
+             <div class="content-image">
+                <img src="assets/img/positive_tracking.png" alt="PYAXIOMA Tracking Interface" class="img-fluid rounded border border-secondary">
+            </div>
+        </div>
+
+        <div class="row reveal delay-300 mt-5">
+            <div class="col-12">
+                <div class="content-glass">
+                    <div class="d-flex align-items-center mb-3 border-bottom pb-2" style="border-color: rgba(255,255,255,0.1)!important;">
+                        <i class="fa-solid fa-terminal mr-2 text-warning"></i>
+                        <span class="font-weight-bold text-white small">angle_computation.py</span>
+                    </div>
+                    <div class="text-white text-center py-3">
+                        $$ \theta = \arccos \left( \frac{\vec{A} \cdot \vec{B}}{|\vec{A}| |\vec{B}|} \right) $$
+                    </div>
+                    <p class="text-white-50 small">
+                        Where vector $\vec{A}$ connects the cue ball center to the marker, and $\vec{B}$ is the horizontal reference vector.
+                        Quadrant-specific corrections were applied to map the result to a full $[-90^{\circ}, 270^{\circ}]$ range.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-row reveal delay-300 mt-5">
+            <div class="content-text">
+                <h3><i class="fa-solid fa-chart-area text-danger"></i> Result Analysis</h3>
+                <p>The system successfully tracked the damped harmonic motion of the oscillator. The sinusoidal trend superimposed on the exponential decay (seen in the graph) reveals the precessional motion of the axis.</p>
+                <p>The blue dots represent the calculated <strong>Confidence Score</strong>, a metric I developed based on angular velocity and jerk to filter out low-quality frames.</p>
+            </div>
+            <div class="content-image">
+                <img src="assets/img/sample_angles.png" alt="Angular Displacement Graph" class="img-fluid rounded border border-secondary">
+            </div>
+        </div>
+
+        <div class="text-center py-5 mt-4 reveal delay-400">
+            <h4 class="text-white mb-3">Status: <span class="text-success">Operational</span></h4>
+            <p class="text-white-50 small mb-4">Integrated with PYAXIOMA-LC (dual-camera setup) to resolve 3D precession dynamics.</p>
+            <a href="assets/pdf/PYAXIOMA_Methodology.pdf" class="btn-glass mr-2" target="_blank"><i class="fas fa-file-pdf"></i> Read Paper</a>
+            <a href="https://github.com/JHavens2187/PYAXIOMA-JH" class="btn-glass" target="_blank"><i class="fab fa-github"></i> View Code</a>
+        </div>
+    </div>
+    <script src="assets/js/index.js"></script>
+</body>
+</html>
