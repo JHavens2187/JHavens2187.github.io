@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Dosis:wght@400;600&family=Roboto+Mono&display=swap" rel="stylesheet">
-    <title>Research: AGN Dust Attenuation | Maireannacht</title>
+    <title>Research: AGN Dust Attenuation | ICARUS</title>
 </head>
 <body>
 
@@ -32,7 +32,7 @@
                     <span class="badge badge-warning text-dark mr-2">DRAFT MANUSCRIPT</span>
                     <small class="text-white-50 font-weight-bold" style="letter-spacing: 1px;">NASA_JWST_CYCLE_1</small>
                 </div>
-                <h1 class="page-title mb-3">Constraining Dust Attenuation in AGN</h1>
+                <h1 class="page-title mb-3">Constraining Dust Attenuation in Star Forming Galaxies</h1>
                 <p class="page-subtitle">Breaking the fundamental degeneracy between dust content and attenuation slope ($k(\lambda)$) in Active Galactic Nuclei using multi-line diagnostics.</p>
             </div>
             <div class="col-lg-4 text-right">
@@ -40,10 +40,10 @@
                     <h6 class="text-white border-bottom pb-2 mb-3" style="border-color: rgba(255,255,255,0.1)!important;">INSTRUMENTATION & TOOLS</h6>
                     <div class="d-flex flex-wrap gap-2">
                         <span class="badge badge-dark border border-secondary p-2 m-1">JWST / NIRSpec</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Chandra / ACIS</span>
                         <span class="badge badge-dark border border-secondary p-2 m-1">Python</span>
                         <span class="badge badge-dark border border-secondary p-2 m-1">LMFIT</span>
-                        <span class="badge badge-dark border border-secondary p-2 m-1">Astropy</span>
-                        <span class="badge badge-dark border border-secondary p-2 m-1">GLEAM Pipeline</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">ICARUS Pipeline</span>
                     </div>
                 </div>
             </div>
@@ -53,29 +53,29 @@
             <div class="content-text">
                 <h3><i class="fa-solid fa-satellite-dish" style="color: var(--accent-glow);"></i> The Physics Problem</h3>
                 <p>The standard method for estimating dust attenuation (the Balmer Decrement) is <strong>fundamentally degenerate</strong>. It can only solve for the normalization ($E(B-V)$) if the slope of the attenuation curve ($k(\lambda)$) is assumed, or vice versa.</p>
-                <p><strong>The Solution:</strong> This research introduces a third constraint by combining Hydrogen Balmer lines ($H\alpha, H\beta$) with Paschen lines ($Pa\alpha, Pa\beta$) available via JWST. This breaks the degeneracy, allowing us to simultaneously derive both the dust content and the attenuation law specific to the complex AGN torus environment.</p>
+                <p><strong>The Methodology:</strong> This research utilizes <strong>Chandra X-ray</strong> data to definitively select and isolate AGN from the broader galaxy population. Once isolated, we break the dust degeneracy by combining Hydrogen Balmer and Paschen lines from <strong>JWST/NIRSpec</strong>, allowing us to simultaneously derive both the specific dust content and the attenuation law unique to the complex AGN environment.</p>
             </div>
              <div class="content-image">
                 <div class="content-glass d-flex align-items-center justify-content-center h-100" style="min-height: 200px;">
-                    <i class="fa-solid fa-galaxy fa-4x text-white-50"></i>
+                    <i class="fa-solid fa-bullseye fa-4x text-white-50"></i>
                 </div>
             </div>
         </div>
 
         <div class="content-row reveal delay-200 reversed">
             <div class="content-text">
-                <h3><i class="fa-solid fa-laptop-code text-warning"></i> The Engine: GLEAM v2.0</h3>
-                <p>I re-engineered the <strong>Galaxy Line Emission Analysis and Measurement (GLEAM)</strong> pipeline to handle large-scale spectral analysis for SMACS and JADES surveys.</p>
-                <p><strong>System Upgrades (Oct 2025):</strong></p>
+                <h3><i class="fa-solid fa-laptop-code text-warning"></i> The Engine: ICARUS</h3>
+                <p><strong>ICARUS</strong> (Integrated Cosmic Analysis Research Utility for Spectroscopy) is a specialized, proprietary suite developed for high-precision AGN spectral decomposition, building upon the core logic of the GLEAM pipeline.</p>
+                <p><strong>Core Capabilities & Benchmarks:</strong></p>
                 <ul class="text-white-50 mt-3">
-                    <li><i class="fa-solid fa-check text-success mr-2"></i> <strong>Numerical Stability:</strong> Implemented pre-fit scaling to prevent LMFIT crashes on small flux values ($10^{-19}$).</li>
-                    <li><i class="fa-solid fa-check text-success mr-2"></i> <strong>Error Propagation:</strong> Developed a custom <code>RandomVariable</code> class to propagate uncertainties through complex flux calculations.</li>
-                    <li><i class="fa-solid fa-check text-success mr-2"></i> <strong>Detection Logic:</strong> Added automated S/N thresholds; results below $3\sigma$ are now flagged as upper limits.</li>
+                    <li><i class="fa-solid fa-check text-success mr-2"></i> <strong>Kinematic Selection:</strong> Automated $\chi^2$ comparison to select between Broad Line (BL), Narrow Line (NL), and Blended line profiles.</li>
+                    <li><i class="fa-solid fa-check text-success mr-2"></i> <strong>Numerical Accuracy:</strong> Verified sub-5% error on flux and line-width measurements across an SNR range of 2–10.</li>
+                    <li><i class="fa-solid fa-check text-success mr-2"></i> <strong>Detection Logic:</strong> Integrated <code>RandomVariable</code> class for rigorous error propagation and automated $3\sigma$ thresholding.</li>
                 </ul>
             </div>
              <div class="content-image">
                 <div class="content-glass d-flex align-items-center justify-content-center h-100" style="min-height: 200px;">
-                    <i class="fa-solid fa-chart-area fa-4x text-white-50"></i>
+                    <i class="fa-solid fa-gauge-high fa-4x text-white-50"></i>
                 </div>
             </div>
         </div>
@@ -85,28 +85,22 @@
                 <div class="content-glass">
                     <div class="d-flex align-items-center mb-3 border-bottom pb-2" style="border-color: rgba(255,255,255,0.1)!important;">
                         <i class="fa-solid fa-code mr-2 text-info"></i>
-                        <span class="font-weight-bold text-white small">gaussian_fitting.py (Custom Class)</span>
+                        <span class="font-weight-bold text-white small">kinematics_engine.py (Model Selection)</span>
                     </div>
                     <pre class="text-white-50 small" style="font-family: 'Roboto Mono', monospace;">
-@dataclass
-class RandomVariable:
+def select_optimal_model(self, nl_fit, bl_fit, threshold=0.15):
     """
-    Custom class to handle error propagation for Multiplication and Division 
-    during flux calculations. Solves the NaN issue in previous GLEAM versions.
+    ICARUS Decision Engine: Compares Reduced Chi-Squared values to 
+    determine if the addition of a Broad Line component is statistically 
+    significant or merely over-fitting.
     """
-    value: Qty
-    error: Qty
+    improvement = (nl_fit.redchi - bl_fit.redchi) / nl_fit.redchi
 
-    def _propagate_multiplication_error(self, other):
-        # Standard error propagation formula: |xy| * sqrt((dx/x)^2 + (dy/y)^2)
-        if self.error is None or other.error is None:
-            return np.nan
-        
-        val1 = self.value if self.value != 0 else 1e-9
-        val2 = other.value if other.value != 0 else 1e-9
-
-        relative_err_sq = (self.error / val1) ** 2 + (other.error / val2) ** 2
-        return abs(self.value * other.value) * np.sqrt(relative_err_sq)
+    if improvement > threshold and bl_fit.params['sigma_broad'].value > self.inst_res:
+        self.logger.info(f"Broad Line detected: {improvement:.2%} improvement")
+        return bl_fit
+    
+    return nl_fit
                     </pre>
                 </div>
             </div>
@@ -115,9 +109,9 @@ class RandomVariable:
         <div class="content-row reveal delay-400 mt-5">
             <div class="col-12">
                 <div class="text-center mb-4">
-                    <h3><i class="fa-solid fa-clipboard-list text-success"></i> Status: Analysis & Writing</h3>
+                    <h3><i class="fa-solid fa-pen-nib text-success"></i> Status: Finalizing Manuscript</h3>
                     <p class="text-white-50" style="max-width: 700px; margin: 0 auto;">
-                        The pipeline is fully operational. We are currently analyzing Star Formation Rates (SFR) and performing diagnostic plotting (utilizing standard BPT, VO87, and OHNO diagrams) to distinguish AGN activity from star-forming regions in the SMACS, JADES, and GLASS dataset.
+                        ICARUS is currently in active development as we finalize the production pipeline. Quantitative analysis is underway, specifically focusing on definitive AGN cuts and dust attenuation modeling utilizing a <strong>Newton-Raphson Iteration</strong>. As these analysis phases conclude, the manuscript is entering active preparation and is quickly approaching internal review.
                     </p>
                 </div>
             </div>
@@ -126,8 +120,8 @@ class RandomVariable:
         <div class="text-center py-5 mt-4 reveal delay-500">
             <h4 class="text-white mb-3">Authors: <span class="text-info">Joseph Havens, Owen Zafuta, Dr. Bren Backhaus</span></h4>
             <div class="d-flex justify-content-center gap-3">
-                <button class="btn-glass" disabled style="opacity: 0.6; cursor: not-allowed;">
-                    <i class="fas fa-file-pdf"></i> Paper in Prep
+                <button class="btn-glass" style="border-color: var(--accent-glow); color: var(--accent-glow);">
+                    <i class="fas fa-file-pdf"></i> Internal Review Copy (Coming Soon)
                 </button>
             </div>
         </div>
