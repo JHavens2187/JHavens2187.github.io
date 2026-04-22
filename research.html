@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Dosis:wght@400;600&family=Roboto+Mono&display=swap" rel="stylesheet">
-    <title>Research: AGN Dust Attenuation | ICARUS</title>
+    <title>Research: Dust Attenuation in SFGs | ICARUS</title>
 </head>
 <body>
 
@@ -33,95 +33,65 @@
                     <small class="text-white-50 font-weight-bold" style="letter-spacing: 1px;">NASA_JWST_CYCLE_1</small>
                 </div>
                 <h1 class="page-title mb-3">Constraining Dust Attenuation in Star Forming Galaxies</h1>
-                <p class="page-subtitle">Breaking the fundamental degeneracy between dust content and attenuation slope ($k(\lambda)$) in Active Galactic Nuclei using multi-line diagnostics.</p>
+                <p class="page-subtitle">Breaking the fundamental degeneracy between dust normalization and attenuation slope ($n$) at Cosmic Noon using Balmer and Paschen multi-line diagnostics.</p>
             </div>
             <div class="col-lg-4 text-right">
                 <div class="content-glass p-3 text-left">
                     <h6 class="text-white border-bottom pb-2 mb-3" style="border-color: rgba(255,255,255,0.1)!important;">INSTRUMENTATION & TOOLS</h6>
                     <div class="d-flex flex-wrap gap-2">
-                        <span class="badge badge-dark border border-secondary p-2 m-1">JWST / NIRSpec</span>
-                        <span class="badge badge-dark border border-secondary p-2 m-1">Chandra / ACIS</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">JWST / NIR & MIRI</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Chandra / CSC2.1</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">AGNBoost</span>
                         <span class="badge badge-dark border border-secondary p-2 m-1">Python</span>
-                        <span class="badge badge-dark border border-secondary p-2 m-1">LMFIT</span>
-                        <span class="badge badge-dark border border-secondary p-2 m-1">ICARUS Pipeline</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="content-row reveal delay-100">
-            <div class="content-text">
-                <h3><i class="fa-solid fa-satellite-dish" style="color: var(--accent-glow);"></i> The Physics Problem</h3>
-                <p>The standard method for estimating dust attenuation (the Balmer Decrement) is <strong>fundamentally degenerate</strong>. It can only solve for the normalization ($E(B-V)$) if the slope of the attenuation curve ($k(\lambda)$) is assumed, or vice versa.</p>
-                <p><strong>The Methodology:</strong> This research utilizes <strong>Chandra X-ray</strong> data to definitively select and isolate AGN from the broader galaxy population. Once isolated, we break the dust degeneracy by combining Hydrogen Balmer and Paschen lines from <strong>JWST/NIRSpec</strong>, allowing us to simultaneously derive both the specific dust content and the attenuation law unique to the complex AGN environment.</p>
+        <div class="row align-items-center reveal delay-100 mt-5 pt-4">
+            <div class="col-lg-4 mb-4 mb-lg-0 pr-lg-4">
+                <div class="content-text">
+                    <h3><i class="fa-solid fa-satellite-dish" style="color: var(--accent-glow);"></i> The Physics Problem</h3>
+                    <p>The standard method for estimating dust attenuation (the Balmer decrement, $H\alpha/H\beta$) is <strong>fundamentally degenerate</strong>. It can constrain total attenuation but forces an assumption regarding the shape of the dust curve.</p>
+                    <p><strong>The Solution:</strong> Deep <strong>JWST NIRSpec</strong> spectroscopy allows simultaneous access to rest-frame optical (Balmer) and near-infrared (Paschen) emission lines. Because Paschen lines are at longer wavelengths and less obscured by dust, this wide baseline breaks the degeneracy. This allows us to simultaneously constrain both the dust curve slope ($n$) and normalization ($\tau_V$) without relying on fixed empirical laws.</p>
+                </div>
             </div>
-             <div class="content-image">
-                <div class="content-glass d-flex align-items-center justify-content-center h-100" style="min-height: 200px;">
-                    <i class="fa-solid fa-bullseye fa-4x text-white-50"></i>
+             <div class="col-lg-8">
+                 <div class="content-image d-flex align-items-center justify-content-center h-100">
+                    <img src="assets/img/n_vs_tau_V_plot.png" alt="Dust Attenuation Slope n vs. Optical Depth tau_V" class="rounded" style="width: 100%; height: auto; object-fit: contain;">
                 </div>
             </div>
         </div>
 
-        <div class="content-row reveal delay-200 reversed">
-            <div class="content-text">
-                <h3><i class="fa-solid fa-laptop-code text-warning"></i> The Engine: ICARUS</h3>
-                <p><strong>ICARUS</strong> (Integrated Cosmic Analysis Research Utility for Spectroscopy) is a specialized, proprietary suite developed for high-precision AGN spectral decomposition, building upon the core logic of the GLEAM pipeline.</p>
-                <p><strong>Core Capabilities & Benchmarks:</strong></p>
-                <ul class="text-white-50 mt-3">
-                    <li><i class="fa-solid fa-check text-success mr-2"></i> <strong>Kinematic Selection:</strong> Automated $\chi^2$ comparison to select between Broad Line (BL), Narrow Line (NL), and Blended line profiles.</li>
-                    <li><i class="fa-solid fa-check text-success mr-2"></i> <strong>Numerical Accuracy:</strong> Verified sub-5% error on flux and line-width measurements across an SNR range of 2–10.</li>
-                    <li><i class="fa-solid fa-check text-success mr-2"></i> <strong>Detection Logic:</strong> Integrated <code>RandomVariable</code> class for rigorous error propagation and automated $3\sigma$ thresholding.</li>
+        <div class="row reveal delay-200 mt-5 pt-5">
+            <div class="col-12 mb-4">
+                <div class="content-text text-center">
+                    <h3><i class="fa-solid fa-filter text-warning"></i> Hierarchical AGN Veto Pipeline</h3>
+                    <p class="mx-auto" style="max-width: 850px;">Accurate dust attenuation modeling requires a purely star-forming sample. Any contamination from Broad-Line Regions (BLR) or Narrow-Line Regions (NLR) in Active Galactic Nuclei (AGN) will artificially skew observed line ratios and invalidate the dust models. To ensure a pristine baseline, we utilize a rigorous multi-wavelength veto approach:</p>
+                </div>
+            </div>
+            <div class="col-lg-10 offset-lg-1 mb-4">
+                <ul class="text-white-50 pl-3">
+                    <li class="mb-2"><i class="fa-solid fa-ban text-danger mr-2"></i> <strong>Hard Indicators (AGN):</strong> Galaxies are completely excluded if their mid-infrared fraction $f_{AGN} > 0.30$ or if X-ray luminosity $L_X > 10^{42}$ erg s$^{-1}$.</li>
+                    <li class="mb-2"><i class="fa-solid fa-triangle-exclamation text-warning mr-2"></i> <strong>Soft Indicators (AGN Candidates):</strong> Excluded if exhibiting <em>both</em> broad-line kinematics (FWHM > 1000 km s$^{-1}$) and AGN-like highly ionized optical line ratios on the OHNO diagram.</li>
+                    <li><i class="fa-solid fa-check text-success mr-2"></i> <strong>Final Sample Counts:</strong> 4,061 pure Star-Forming Galaxies (SFGs) retained; 202 AGNs and 587 AGN Candidates removed.</li>
                 </ul>
             </div>
-             <div class="content-image">
-                <div class="content-glass d-flex align-items-center justify-content-center h-100" style="min-height: 200px;">
-                    <i class="fa-solid fa-gauge-high fa-4x text-white-50"></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="row reveal delay-300 mt-5">
             <div class="col-12">
-                <div class="content-glass">
-                    <div class="d-flex align-items-center mb-3 border-bottom pb-2" style="border-color: rgba(255,255,255,0.1)!important;">
-                        <i class="fa-solid fa-code mr-2 text-info"></i>
-                        <span class="font-weight-bold text-white small">kinematics_engine.py (Model Selection)</span>
-                    </div>
-                    <pre class="text-white-50 small" style="font-family: 'Roboto Mono', monospace;">
-def select_optimal_model(self, nl_fit, bl_fit, threshold=0.15):
-    """
-    ICARUS Decision Engine: Compares Reduced Chi-Squared values to 
-    determine if the addition of a Broad Line component is statistically 
-    significant or merely over-fitting.
-    """
-    improvement = (nl_fit.redchi - bl_fit.redchi) / nl_fit.redchi
-
-    if improvement > threshold and bl_fit.params['sigma_broad'].value > self.inst_res:
-        self.logger.info(f"Broad Line detected: {improvement:.2%} improvement")
-        return bl_fit
-    
-    return nl_fit
-                    </pre>
+                 <div class="content-image d-flex align-items-center justify-content-center">
+                    <img src="assets/img/survey_smart_veto_coverage.png" alt="Spatial distribution of SFGs and AGNs across JADES and GLASS fields" class="rounded" style="width: 100%; height: auto; object-fit: contain;">
                 </div>
             </div>
         </div>
 
-        <div class="content-row reveal delay-400 mt-5">
-            <div class="col-12">
-                <div class="text-center mb-4">
-                    <h3><i class="fa-solid fa-pen-nib text-success"></i> Status: Finalizing Manuscript</h3>
-                    <p class="text-white-50" style="max-width: 700px; margin: 0 auto;">
-                        ICARUS is currently in active development as we finalize the production pipeline. Quantitative analysis is underway, specifically focusing on definitive AGN cuts and dust attenuation modeling utilizing a <strong>Newton-Raphson Iteration</strong>. As these analysis phases conclude, the manuscript is entering active preparation and is quickly approaching internal review.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="text-center py-5 mt-4 reveal delay-500">
+        <div class="text-center py-5 mt-5 reveal delay-300 border-top" style="border-color: rgba(255,255,255,0.1)!important;">
             <h4 class="text-white mb-3">Authors: <span class="text-info">Joseph Havens, Owen Zafuta, Dr. Bren Backhaus</span></h4>
-            <div class="d-flex justify-content-center gap-3">
-                <button class="btn-glass" style="border-color: var(--accent-glow); color: var(--accent-glow);">
-                    <i class="fas fa-file-pdf"></i> Internal Review Copy (Coming Soon)
+            <div class="d-flex justify-content-center gap-3 mt-4">
+                <a href="assets/pdf/PALOOZA_poster_26.pdf" target="_blank" class="btn btn-outline-warning rounded-pill px-4 py-2 font-weight-bold" style="border-width: 2px;">
+                    <i class="fas fa-images mr-2"></i> View PALOOZA Poster
+                </a>
+                <button class="btn btn-outline-info rounded-pill px-4 py-2 font-weight-bold" style="border-width: 2px;" disabled>
+                    <i class="fas fa-file-pdf mr-2"></i> Internal Review Copy (Coming Soon)
                 </button>
             </div>
         </div>
