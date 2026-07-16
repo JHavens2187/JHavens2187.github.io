@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <link rel="stylesheet" href="assets/css/style.css?v=10">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Dosis:wght@400;600&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <title>Software: ICARUS Pipeline | Joseph Havens</title>
+
+    <style>
+        /* View Transition API Animations */
+        @view-transition {
+            navigation: auto;
+        }
+        
+        .code-block {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-left: 3px solid var(--accent-glow);
+            padding: 15px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.85rem;
+            color: #A8B2D1;
+            overflow-x: auto;
+        }
+        .concept-card {
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.02);
+            padding: 20px;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="research.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+
+    <div class="container py-5">
+
+        <!-- Header Section -->
+        <div class="row mb-5 reveal" style="view-transition-name: icarus-card;">
+            <div class="col-lg-8">
+                <div class="d-flex align-items-center mb-2">
+                    <span class="badge badge-success text-dark mr-2">VERSION 3.2.0</span>
+                    <small class="text-white-50 font-weight-bold" style="letter-spacing: 1px;">CORE SOFTWARE ARCHITECTURE</small>
+                </div>
+                <h1 class="page-title mb-3">The ICARUS Pipeline</h1>
+                <p class="page-subtitle">Integrated Cosmic Analysis Research Utility for Spectroscopy. A comprehensive numerical orchestration engine designed for automated kinematic selection and high-fidelity emission line fitting.</p>
+            </div>
+            <div class="col-lg-4 text-right">
+                <div class="content-glass p-3 text-left">
+                    <h6 class="text-white border-bottom pb-2 mb-3" style="border-color: rgba(255,255,255,0.1)!important;">TECHNICAL STACK</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Python</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">LMFIT</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Astropy</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Concurrent.Futures</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Pydantic</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Ingestion & Numerics -->
+        <div class="row reveal delay-100 mt-5">
+            <div class="col-12 mb-4">
+                <div class="content-text">
+                    <h3><i class="fa-solid fa-server text-info"></i> Ingestion & Dynamic Scaling</h3>
+                    <p>ICARUS standardizes chaotic input data through an immutable `Spectrum1D` container. To protect the optimization algorithms from the inherent limitations of floating-point precision, the ingestion engine dynamically normalizes spectral arrays.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="concept-card">
+                    <h5 class="text-white mb-3">Array Normalization</h5>
+                    <p class="text-white-50 small">The pipeline computes a dynamic scale factor for each unique spectrum, standardizing flux values to $O(1)$ space using $10^{\lfloor\log_{10}(\text{median flux})\rfloor}$. This explicitly prevents optimizer crashes when processing faint high-redshift targets with raw fluxes on the order of $10^{-19}$ erg s$^{-1}$ cm$^{-2}$ $\text{\AA}^{-1}$. The true physical units are mathematically restored during the final astrophysical yield compilation.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="concept-card">
+                    <h5 class="text-white mb-3">Cosmological Projection</h5>
+                    <p class="text-white-50 small">Relying on an underlying `FlatLambdaCDM` cosmology model, raw observational vectors are cleanly projected and de-redshifted into strict rest-frame coordinates.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Kinematics & Physics Locks -->
+        <div class="row reveal delay-200 mt-5 pt-4 border-top" style="border-color: rgba(255,255,255,0.1)!important;">
+            <div class="col-lg-7 mb-4">
+                <div class="content-text pr-lg-4">
+                    <h3><i class="fa-solid fa-gauge-high text-warning"></i> The Kinematic Decision Engine</h3>
+                    <p>The core logic of ICARUS evaluates complex, multi-component line structures to identify energetic outflows and Active Galactic Nuclei (AGN). The pipeline dynamically tests standard narrow-line emission against multi-component broad-line models.</p>
+                    <ul class="text-white-50 mt-3 pl-3" style="line-height: 1.8;">
+                        <li><i class="fa-solid fa-scale-balanced text-success mr-2"></i> <strong>Statistical Auditing:</strong> The addition of a broad-line component must survive a strict Bayesian Information Criterion ( $\Delta\text{BIC}$ ) test, ensuring kinematic complexity is statistically significant rather than mere over-fitting.</li>
+                        <li><i class="fa-solid fa-lock text-success mr-2"></i> <strong>Quantum Doublet Tying:</strong> Algebraic constraints physically lock emission doublets. The [O III] $\lambda5007/\lambda4959$ complex is rigidly tied to a 1:2.98 amplitude ratio, while the [N II] $\lambda6583/\lambda6548$ complex is locked to 1:2.95.</li>
+                        <li><i class="fa-solid fa-link text-success mr-2"></i> <strong>Kinematic Outflow Shifts:</strong> In composite systems, the kinematic velocity shifts of broad secondary lines are mathematically forced to match their primary pair, drastically reducing the optimizer's parameter space.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-5 mb-4 d-flex align-items-center">
+                <div class="code-block w-100">
+# The [O III] Doublet Lock
+params["O_III_4959_broad_amplitude"].set(
+    expr="O_III_5007_broad_amplitude / 2.98"
+)
+
+# Mathematically forcing the outflow velocity
+shift_expr = (
+    "4958.9 + (O_III_5007_broad_center - 5006.8) "
+    "* (4958.9 / 5006.8)"
+)
+params["O_III_4959_broad_center"].set(expr=shift_expr)
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Visual Output & Astrophysics -->
+        <div class="row reveal delay-300 mt-5 pt-4 border-top reversed" style="border-color: rgba(255,255,255,0.1)!important;">
+            <div class="col-lg-5 mb-4 d-flex align-items-center">
+                <div class="code-block w-100">
+ax.step(
+    x[~mask], y[~mask],
+    where="mid",
+    color="#2B2D42", alpha=0.35, zorder=1
+)
+
+ax.plot(
+    x, fit_result.best_fit, 
+    color="#E63946", lw=2.5, zorder=5
+)
+                </div>
+            </div>
+            <div class="col-lg-7 mb-4 pl-lg-5">
+                <div class="content-text">
+                    <h3><i class="fa-solid fa-chart-area" style="color: var(--accent-glow);"></i> Hierarchical Plotting & Analysis</h3>
+                    <p>ICARUS enforces a strict visual geometry standard. It suppresses raw spectral arrays and background integration windows to muted, semi-transparent base layers (e.g., slate gray), deliberately elevating the analytical curves and dynamic multi-component fits with high-contrast, high-zorder properties.</p>
+                    <p class="mt-3"><strong>Calculated Astrophysics:</strong></p>
+                    <p class="text-white-50 small">Upon successful convergence, the engine calculates key physical parameters including Virial Black Hole Mass ($\log_{10}(M_{BH}/M_\odot)$), Uncorrected Star Formation Rates (using equivalent base traces like H$\alpha$ or Pa$\beta$), and local RMS boxcar measurements to derive 3-$\sigma$ upper limits for non-detections (denoted visually by $\downarrow$).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: The Dev Engine -->
+        <div class="row reveal delay-400 mt-5 pt-4 border-top" style="border-color: rgba(255,255,255,0.1)!important;">
+            <div class="col-12 text-center mb-4">
+                <h3><i class="fa-solid fa-terminal text-danger"></i> The Middleware Debugging Engine</h3>
+                <p class="mx-auto text-white-50" style="max-width: 850px;">The <code>@dev_hook</code> architectural pattern embeds a non-destructive event emitter and Directed Acyclic Graph (DAG) registry throughout the pipeline. This allows developers to pass a <code>.dev</code> telemetry configuration file to inject synthetic data, force algorithmic failures, trace memory usage, or actively bypass standard multiprocessing for interactive terminal shell pauses—all without altering production code.</p>
+            </div>
+        </div>
+
+        <!-- Section 5: Assets & Presentations -->
+        <div class="text-center py-5 mt-5 reveal delay-500 border-top" style="border-color: rgba(255,255,255,0.1)!important;">
+            <h4 class="text-white mb-3">Project Assets</h4>
+            <div class="d-flex justify-content-center gap-3 mt-4">
+                <a href="assets/pdf/ICARUS.pdf" target="_blank" class="btn btn-outline-success rounded-pill px-4 py-2 font-weight-bold" style="border-width: 2px;">
+                    <i class="fas fa-person-chalkboard mr-2"></i> View ICARUS Presentation
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="assets/js/index.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>

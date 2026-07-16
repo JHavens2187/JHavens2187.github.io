@@ -9,13 +9,7 @@
 }
 
 body {
-  background: linear-gradient(
-    -45deg,
-    #d35ecd,
-    #5aad45,
-    #23a6d5,
-    #3a0eb3
-  ) !important;
+  background: linear-gradient(-45deg, #d35ecd, #5aad45, #23a6d5, #3a0eb3) !important;
   background-size: 400% 400% !important;
   animation: gradient 15s ease infinite !important;
   color: white !important;
@@ -38,6 +32,29 @@ body {
   }
 }
 /* #endregion */
+
+/* Custom Animation Keyframes for a smooth "Scale & Slide" effect */
+@keyframes slide-up-scale {
+  from {
+    transform: translateY(20px) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-down-scale {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(20px) scale(0.95);
+    opacity: 0;
+  }
+}
 
 /* #region DASHBOARD COMPONENTS */
 .profile-glass {
@@ -84,7 +101,10 @@ body {
   position: relative;
   z-index: 1;
   overflow: hidden !important;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease !important;
 }
 
 .tile-bg {
@@ -107,12 +127,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(0, 0, 0, 0.2) 60%,
-    transparent 100%
-  );
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
   z-index: 1;
   opacity: 0.6;
   transition: opacity 0.3s ease;
@@ -235,6 +250,7 @@ body {
   opacity: 1;
   transform: rotate(0deg);
 }
+
 .menu-items a {
   position: absolute;
   top: 5px;
@@ -297,6 +313,7 @@ body {
   display: inline-block;
   font-weight: 600;
 }
+
 .fade-in-up {
   opacity: 0;
   animation: fadeInUp 0.8s forwards ease-out;
@@ -324,7 +341,6 @@ body {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
 }
-
 .content-glass:hover {
   border-color: var(--accent-glow);
   transform: translateY(-5px);
@@ -335,14 +351,12 @@ body {
   margin-bottom: 60px;
   padding-top: 40px;
 }
-
 .page-title {
   font-family: "Dosis", sans-serif;
   font-size: 3.5rem;
   color: white;
   text-shadow: 0 0 20px rgba(35, 166, 213, 0.4);
 }
-
 .page-subtitle {
   font-family: "Abel", sans-serif;
   font-size: 1.2rem;
@@ -358,18 +372,14 @@ body {
   padding: 25px;
   height: 100%;
   transition: all 0.3s ease;
-  /* Added for Stretched Link Logic */
   position: relative;
 }
-
 .project-card:hover {
   background: rgba(255, 255, 255, 0.1);
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   border-color: var(--accent-glow);
 }
-
-/* Fix: Ensure buttons inside cards are clickable above the stretched link */
 .project-card .btn-glass {
   position: relative;
   z-index: 2;
@@ -397,12 +407,10 @@ body {
   transform: translateY(30px);
   transition: all 0.8s ease-out;
 }
-
 .content-row.visible {
   opacity: 1;
   transform: translateY(0);
 }
-
 .content-row.reversed {
   flex-direction: row-reverse;
 }
@@ -414,14 +422,12 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
-
 .content-text h3 {
   font-family: "Dosis", sans-serif;
   font-size: 2rem;
   color: var(--accent-glow);
   margin-bottom: 15px;
 }
-
 .content-text p {
   font-size: 1.1rem;
   line-height: 1.7;
@@ -442,7 +448,6 @@ body {
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-
 .btn-glass:hover {
   background: var(--accent-glow);
   box-shadow: 0 0 20px var(--accent-glow);
@@ -482,7 +487,6 @@ body {
   transform: translateY(50px);
   transition: all 1s cubic-bezier(0.5, 0, 0, 1);
 }
-
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
@@ -505,7 +509,6 @@ body {
   gap: 30px;
   margin-top: 50px;
 }
-
 .split-col {
   flex: 1;
   background: rgba(20, 20, 30, 0.4);
@@ -514,19 +517,16 @@ body {
   padding: 30px;
   transition: all 0.4s ease;
 }
-
 .split-col:hover {
   background: rgba(20, 20, 30, 0.7);
   border-color: var(--accent-glow);
   transform: translateY(-5px);
 }
-
 .split-icon {
   font-size: 3rem;
   color: var(--accent-glow);
   margin-bottom: 20px;
 }
-
 .bio-text {
   font-size: 1.1rem;
   line-height: 1.8;
@@ -539,7 +539,6 @@ body {
   margin-bottom: 30px;
   position: relative;
 }
-
 .timeline-item::before {
   content: "";
   position: absolute;
@@ -551,7 +550,6 @@ body {
   border-radius: 50%;
   box-shadow: 0 0 10px var(--accent-glow);
 }
-
 .timeline-date {
   font-family: "Roboto Mono", monospace;
   color: var(--gold);
@@ -567,7 +565,6 @@ body {
 /* #endregion */
 
 /* #region SYSTEM FX (BOOT, GLITCH, TERMINAL) */
-/* Boot Screen */
 #boot-screen {
   position: fixed;
   top: 0;
@@ -581,7 +578,6 @@ body {
   justify-content: center;
   flex-direction: column;
 }
-
 .terminal-container {
   font-family: "Roboto Mono", monospace;
   font-size: 1.1rem;
@@ -615,21 +611,18 @@ body {
   }
 }
 
-/* Identity Glitch */
 .glitch-wrapper {
   position: relative;
   display: inline-block;
   cursor: help;
   user-select: none;
 }
-
 .glitch-text {
   position: relative;
   display: inline-block;
   transition: color 0.1s ease-in-out;
   z-index: 1;
 }
-
 .glitch-text::before {
   content: attr(data-text);
   position: absolute;
@@ -642,16 +635,13 @@ body {
   color: var(--accent-glow);
   text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
 }
-
 .glitch-wrapper.identity-revealed .glitch-text {
   color: transparent;
 }
-
 .glitch-wrapper.identity-revealed .glitch-text::before {
   opacity: 1;
   animation: glitch-snap 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
-
 @keyframes glitch-snap {
   0% {
     transform: translateX(-50%) translate(0);
@@ -659,15 +649,21 @@ body {
   }
   25% {
     transform: translateX(-50%) translate(-3px, 3px);
-    text-shadow: 3px 0 red, -3px 0 blue;
+    text-shadow:
+      3px 0 red,
+      -3px 0 blue;
   }
   50% {
     transform: translateX(-50%) translate(3px, -3px);
-    text-shadow: -3px 0 red, 3px 0 blue;
+    text-shadow:
+      -3px 0 red,
+      3px 0 blue;
   }
   75% {
     transform: translateX(-50%) translate(-2px, 2px);
-    text-shadow: 2px 0 red, -2px 0 blue;
+    text-shadow:
+      2px 0 red,
+      -2px 0 blue;
   }
   100% {
     transform: translateX(-50%) translate(0);
@@ -675,7 +671,6 @@ body {
   }
 }
 
-/* Secret Terminal */
 #secret-terminal {
   position: fixed;
   top: -100%;
@@ -687,19 +682,21 @@ body {
   backdrop-filter: blur(10px);
   z-index: 9999;
   visibility: hidden;
-  transition: top 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s 0.4s;
+  transition:
+    top 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s 0.4s;
   font-family: "Roboto Mono", monospace;
   display: flex;
   flex-direction: column;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
 }
-
 #secret-terminal.active {
   top: 0;
   visibility: visible;
-  transition: top 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s;
+  transition:
+    top 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s;
 }
-
 .terminal-header {
   background: rgba(255, 255, 255, 0.05);
   padding: 10px 20px;
@@ -709,26 +706,22 @@ body {
   display: flex;
   justify-content: space-between;
 }
-
 .terminal-body {
   flex: 1;
   padding: 20px;
   overflow-y: auto;
   color: var(--accent-glow);
 }
-
 .terminal-input-line {
   display: flex;
   align-items: center;
   margin-top: 10px;
 }
-
 .terminal-prompt {
   color: #ffd700;
   margin-right: 10px;
   font-weight: bold;
 }
-
 #term-input {
   background: transparent;
   border: none;
@@ -738,7 +731,6 @@ body {
   outline: none;
   font-size: 1rem;
 }
-
 .term-msg {
   margin-bottom: 5px;
 }

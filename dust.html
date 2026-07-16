@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <link rel="stylesheet" href="assets/css/style.css?v=10">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Dosis:wght@400;600&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <title>Research: Dust Attenuation in SFGs | ICARUS</title>
+</head>
+<body>
+
+    <a href="research.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+
+    <div class="container py-5">
+
+        <div class="row mb-5 reveal">
+            <div class="col-lg-8">
+                <div class="d-flex align-items-center mb-2">
+                    <span class="badge badge-warning text-dark mr-2">MANUSCRIPT IN PREP</span>
+                    <small class="text-white-50 font-weight-bold" style="letter-spacing: 1px;">NASA_JWST_CYCLE_1</small>
+                </div>
+                <h1 class="page-title mb-3">Constraining Dust Attenuation Curves in Star-Forming Galaxies</h1>
+                <p class="page-subtitle">Breaking the fundamental degeneracy between dust normalization ($\tau_V$) and attenuation slope ($n$) from $1 < z < 7$ using a multi-line hydrogen recombination framework.</p>
+            </div>
+            <div class="col-lg-4 text-right">
+                <div class="content-glass p-3 text-left">
+                    <h6 class="text-white border-bottom pb-2 mb-3" style="border-color: rgba(255,255,255,0.1)!important;">INSTRUMENTATION & TOOLS</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge badge-dark border border-secondary p-2 m-1">JWST / NIRSpec</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">JADES Survey</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Chandra / CSC2.1</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Python</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 1: The Physics Problem -->
+        <div class="row align-items-center reveal delay-100 mt-5 pt-4">
+            <div class="col-lg-5 mb-4 mb-lg-0 pr-lg-4">
+                <div class="content-text">
+                    <h3><i class="fa-solid fa-satellite-dish" style="color: var(--accent-glow);"></i> The Physics Problem</h3>
+                    <p>Traditional approaches based on the Balmer decrement constrain only the overall attenuation normalization and require an assumed attenuation curve shape. To resolve this, we apply a multi-line hydrogen recombination framework to constrain both the normalization and slope of the dust attenuation law for star-forming galaxies.</p>
+                    <p><strong>The Dynamic Solution:</strong> Using JWST/NIRSpec spectroscopy from the JADES surveys, we combine measurements of $H\alpha$, $H\beta$, and a third hydrogen line—preferring near-infrared Paschen transitions ($Pa\alpha$, $Pa\beta$, or $Pa\gamma$). This extended wavelength baseline breaks the degeneracy, allowing us to jointly solve for the attenuation parameters $\tau_V$ and $n$ using a multi-start Newton-Raphson numerical implementation.</p>
+                </div>
+            </div>
+             <div class="col-lg-7">
+                 <div class="content-image d-flex align-items-center justify-content-center h-100">
+                    <img src="assets/img/tau_v_n_variation-attenuation.pdf" alt="Power-Law Attenuation Curves" class="rounded" style="width: 100%; height: auto; object-fit: contain;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 2: Hierarchical AGN Veto -->
+        <div class="row reveal delay-200 mt-5 pt-5">
+            <div class="col-12 mb-4">
+                <div class="content-text text-center">
+                    <h3><i class="fa-solid fa-filter text-warning"></i> Hierarchical AGN Veto Pipeline</h3>
+                    <p class="mx-auto" style="max-width: 850px;">Because the multi-line decrement method assumes intrinsic line ratios governed strictly by Case B recombination in HII regions, any contamination from Broad-Line or Narrow-Line Region emission artificially skews the observed line ratios. Starting from a base sample of 5,215 galaxies, we isolate a pristine baseline using rigorous multi-wavelength indicators:</p>
+                </div>
+            </div>
+            <div class="col-lg-10 offset-lg-1 mb-4">
+                <ul class="text-white-50 pl-3" style="line-height: 1.8;">
+                    <li class="mb-2"><i class="fa-solid fa-ban text-danger mr-2"></i> <strong>Hard Indicators (AGN):</strong> Galaxies are completely excluded if cross-matched with Chandra Source Catalog 2.1 data showing an X-ray luminosity of $L_X > 10^{42}$ erg s$^{-1}$.</li>
+                    <li class="mb-2"><i class="fa-solid fa-triangle-exclamation text-warning mr-2"></i> <strong>Soft Indicators (AGN Candidates):</strong> Sources are flagged and excluded if they simultaneously trigger broad-line kinematics (FWHM > 1000 km s$^{-1}$) and highly ionized optical line ratios on the OHNO diagnostic diagram.</li>
+                    <li><i class="fa-solid fa-check text-success mr-2"></i> <strong>Final Sample:</strong> Filtering leaves a pure, high-fidelity star-forming baseline of 5,165 galaxies.</li>
+                </ul>
+            </div>
+            <div class="col-12">
+                 <div class="content-image d-flex align-items-center justify-content-center">
+                    <img src="assets/img/survey_smart_veto_coverage_3_Lines.pdf" alt="Spatial Distribution of SFGs and AGNs" class="rounded" style="width: 100%; height: auto; object-fit: contain;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 3: Numerical Convergence & Parameter Diversity -->
+        <div class="row align-items-center reveal delay-300 mt-5 pt-5 reversed">
+             <div class="col-lg-6 mb-4 mb-lg-0">
+                 <div class="content-image d-flex align-items-center justify-content-center h-100">
+                    <img src="assets/img/tau_v_n_variation-banana.pdf" alt="Recovered Attenuation Parameters" class="rounded" style="width: 100%; height: auto; object-fit: contain;">
+                </div>
+            </div>
+            <div class="col-lg-6 pl-lg-5">
+                <div class="content-text">
+                    <h3><i class="fa-solid fa-microchip text-info"></i> Numerical Convergence & Dust Evolution</h3>
+                    <p>Of the pure star-forming sample passed to the numerical solver, 192 galaxies successfully converged to physically allowed attenuation solutions, yielding broad ranges of both normalizations ($\tau_V$) and slopes ($n$).</p>
+                    <p><strong>Redshift Evolution:</strong> The recovered parameters demonstrate that only 30.7% of galaxies fall within traditionally adopted slope ranges ($n=0.7-1.3$). Furthermore, high-redshift systems ($z > 3.5$) are best fit by systematically steeper attenuation slopes ($n \approx 2.2$) and lower optical depths ($\tau_V \approx 0.3$). This indicates that galaxies at earlier cosmic times possess a larger fraction of small dust grains, lower metallicities, and simpler star-dust geometries.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 4: Closing the Mathematical System -->
+        <div class="row reveal delay-400 mt-5 pt-5">
+            <div class="col-12 mb-4">
+                <div class="content-text text-center">
+                    <h3><i class="fa-solid fa-calculator text-success"></i> Closing the Mathematical System</h3>
+                    <p class="mx-auto" style="max-width: 850px;">Fixed-slope methods, such as the local starburst law (Calzetti, $n=0.7$) or the SMC bar extinction law ($n=1.3$), systematically fail when applied across broad wavelength baselines. By forcing a shallow optical slope to reproduce profound optical reddening, these models drastically overestimate residual infrared opacity, applying an exponentially inflated correction that artificially blows up near-infrared Star Formation Rates (SFR).</p>
+                </div>
+            </div>
+            <div class="col-12">
+                 <div class="content-image d-flex align-items-center justify-content-center mb-4">
+                    <img src="assets/img/Fig3_Flux_and_SFR_Ratios.pdf" alt="Internal Consistency of SFR Grids" class="rounded" style="width: 100%; height: auto; object-fit: contain;">
+                </div>
+                <div class="content-text text-center">
+                    <p class="mx-auto text-white-50" style="max-width: 800px;">Conversely, treating the power-law index $n$ as a free parameter introduces the necessary mathematical degree of freedom to reconcile the optical and near-infrared baseline. Applying our dynamically derived attenuation parameters produces a tight mathematical closure across transitions, settling at a highly consistent +0.008 dex median SFR ratio.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center py-5 mt-5 reveal delay-500 border-top" style="border-color: rgba(255,255,255,0.1)!important;">
+            <h4 class="text-white mb-3">Authors: <span class="text-info">Owen Zafuta, Joseph Havens, Bren E. Backhaus, Gregory Troiani, Allison Kirkpatrick, and Kurt Hamblin</span></h4>
+            <div class="d-flex justify-content-center gap-3 mt-4">
+                <a href="assets/pdf/PALOOZA_poster_26.pdf" target="_blank" class="btn btn-outline-warning rounded-pill px-4 py-2 font-weight-bold" style="border-width: 2px;">
+                    <i class="fas fa-images mr-2"></i> View PALOOZA Poster
+                </a>
+                <button class="btn btn-outline-info rounded-pill px-4 py-2 font-weight-bold" style="border-width: 2px;" disabled>
+                    <i class="fas fa-file-pdf mr-2"></i> Manuscript in Prep
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="assets/js/index.js"></script>
+</body>
+</html>
