@@ -8,10 +8,6 @@ I’m an Astronomy student at KU, passionate about science outreach, making astr
 - Arduino C++  
 - Mild tech repair
 
-**Projects:**  
-- **PYAXIOMA**
-- **KSHSAA sb-automator**
-
 **Interests:**  
 - Astronomy  
 - Science outreach  
