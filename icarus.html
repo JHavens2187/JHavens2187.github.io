@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Dosis:wght@400;600&family=Roboto+Mono&display=swap" rel="stylesheet">
-    <title>Software: ICARUS Pipeline | Joseph Havens</title>
+    <title>Software: ICARUS v3.4 Pipeline | Joseph Havens</title>
 
     <style>
         /* View Transition API Animations */
@@ -33,12 +33,27 @@
             font-size: 0.85rem;
             color: #A8B2D1;
             overflow-x: auto;
+            white-space: pre;
         }
         .concept-card {
             border: 1px solid rgba(255,255,255,0.1);
             background: rgba(255,255,255,0.02);
             padding: 20px;
             height: 100%;
+        }
+        .stat-card {
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.03);
+            padding: 18px 14px;
+            height: 100%;
+            text-align: center;
+        }
+        .stat-value {
+            font-family: 'Dosis', sans-serif;
+            font-size: 1.9rem;
+            font-weight: 600;
+            color: var(--accent-glow);
+            line-height: 1.1;
         }
     </style>
 </head>
@@ -52,44 +67,57 @@
         <div class="row mb-5 reveal" style="view-transition-name: icarus-card;">
             <div class="col-lg-8">
                 <div class="d-flex align-items-center mb-2">
-                    <span class="badge badge-success text-dark mr-2">VERSION 3.2.0</span>
+                    <span class="badge badge-success text-dark mr-2">VERSION 3.4.0</span>
                     <small class="text-white-50 font-weight-bold" style="letter-spacing: 1px;">CORE SOFTWARE ARCHITECTURE</small>
                 </div>
                 <h1 class="page-title mb-3">The ICARUS Pipeline</h1>
-                <p class="page-subtitle">Integrated Cosmic Analysis Research Utility for Spectroscopy. A comprehensive numerical orchestration engine designed for automated kinematic selection and high-fidelity emission line fitting.</p>
+                <p class="page-subtitle">An automated, multi-core spectroscopic decomposition and virial black hole mass estimation engine built for high-redshift JWST AGN surveys.</p>
+                <div class="mt-3">
+                    <a href="https://github.com/JHavens2187/Icarus" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-light rounded-pill px-3 py-1">
+                        <i class="fab fa-github mr-2"></i> JHavens2187/Icarus
+                    </a>
+                </div>
             </div>
-            <div class="col-lg-4 text-right">
+            <div class="col-lg-4 text-right mt-4 mt-lg-0">
                 <div class="content-glass p-3 text-left">
                     <h6 class="text-white border-bottom pb-2 mb-3" style="border-color: rgba(255,255,255,0.1)!important;">TECHNICAL STACK</h6>
-                    <div class="d-flex flex-wrap gap-2">
-                        <span class="badge badge-dark border border-secondary p-2 m-1">Python</span>
+                    <div class="d-flex flex-wrap">
+                        <span class="badge badge-dark border border-secondary p-2 m-1">Python 3.12</span>
                         <span class="badge badge-dark border border-secondary p-2 m-1">LMFIT</span>
                         <span class="badge badge-dark border border-secondary p-2 m-1">Astropy</span>
-                        <span class="badge badge-dark border border-secondary p-2 m-1">Concurrent.Futures</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">SciPy / Numba</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">ProcessPoolExecutor</span>
                         <span class="badge badge-dark border border-secondary p-2 m-1">Pydantic</span>
+                        <span class="badge badge-dark border border-secondary p-2 m-1">SLURM HPC</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Section 1: Ingestion & Numerics -->
+        <!-- Section 1: Ingestion & Global Continuum Cascade -->
         <div class="row reveal delay-100 mt-5">
             <div class="col-12 mb-4">
                 <div class="content-text">
-                    <h3><i class="fa-solid fa-server text-info"></i> Ingestion & Dynamic Scaling</h3>
-                    <p>ICARUS standardizes chaotic input data through an immutable `Spectrum1D` container. To protect the optimization algorithms from the inherent limitations of floating-point precision, the ingestion engine dynamically normalizes spectral arrays.</p>
+                    <h3><i class="fa-solid fa-server text-info"></i> Ingestion & Two-Pass Global Continuum Cascade</h3>
+                    <p>ICARUS standardizes heterogeneous survey spectra through an immutable <code>Spectrum1D</code> container and built-in instrument presets (e.g., <code>jwst_nirspec_medium</code>). Before fitting emission lines across 22 rest-frame UV/optical/NIR windows, Stage 1 isolates the underlying AGN and host-galaxy continua.</p>
                 </div>
             </div>
-            <div class="col-lg-6 mb-4">
+            <div class="col-lg-4 mb-4">
                 <div class="concept-card">
-                    <h5 class="text-white mb-3">Array Normalization</h5>
-                    <p class="text-white-50 small">The pipeline computes a dynamic scale factor for each unique spectrum, standardizing flux values to $O(1)$ space using $10^{\lfloor\log_{10}(\text{median flux})\rfloor}$. This explicitly prevents optimizer crashes when processing faint high-redshift targets with raw fluxes on the order of $10^{-19}$ erg s$^{-1}$ cm$^{-2}$ $\text{\AA}^{-1}$. The true physical units are mathematically restored during the final astrophysical yield compilation.</p>
+                    <h5 class="text-white mb-3">Dynamic $O(1)$ Normalization</h5>
+                    <p class="text-white-50 small">Computes a dynamic scale factor per spectrum, standardizing flux arrays to $O(1)$ space via $10^{\lfloor\log_{10}(\text{median flux})\rfloor}$. This prevents optimizer underflow on faint high-$z$ targets ($\sim 10^{-20}\ \text{erg s}^{-1}\ \text{cm}^{-2}\ \text{\AA}^{-1}$) before restoring true physical units.</p>
                 </div>
             </div>
-            <div class="col-lg-6 mb-4">
+            <div class="col-lg-4 mb-4">
+                <div class="concept-card">
+                    <h5 class="text-white mb-3">2-Pass Continuum & Fe II</h5>
+                    <p class="text-white-50 small">Pass 1 fits the global AGN broken power-law and Balmer recombination continuum ($3646\ \text{\AA}$ edge). Pass 2 models broadened UV and optical $\text{Fe\,\textsc{ii}}$ pseudo-continua, anchored locally by outer-25% window medians.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
                 <div class="concept-card">
                     <h5 class="text-white mb-3">Cosmological Projection</h5>
-                    <p class="text-white-50 small">Relying on an underlying `FlatLambdaCDM` cosmology model, raw observational vectors are cleanly projected and de-redshifted into strict rest-frame coordinates.</p>
+                    <p class="text-white-50 small">Relying on an underlying <code>Planck18</code> / <code>FlatLambdaCDM</code> cosmology, raw observational vectors are cleanly projected into rest-frame coordinates and deconvolved against wavelength-dependent instrumental LSF curves.</p>
                 </div>
             </div>
         </div>
@@ -99,58 +127,88 @@
             <div class="col-lg-7 mb-4">
                 <div class="content-text pr-lg-4">
                     <h3><i class="fa-solid fa-gauge-high text-warning"></i> The Kinematic Decision Engine</h3>
-                    <p>The core logic of ICARUS evaluates complex, multi-component line structures to identify energetic outflows and Active Galactic Nuclei (AGN). The pipeline dynamically tests standard narrow-line emission against multi-component broad-line models.</p>
+                    <p>Stage 2 evaluates blended multi-component emission complexes to decouple Broad-Line Regions (BLR), biconical $[\text{O\,\textsc{iii}}]$ outflows, and gravitational narrow cores without manual intervention.</p>
                     <ul class="text-white-50 mt-3 pl-3" style="line-height: 1.8;">
-                        <li><i class="fa-solid fa-scale-balanced text-success mr-2"></i> <strong>Statistical Auditing:</strong> The addition of a broad-line component must survive a strict Bayesian Information Criterion ( $\Delta\text{BIC}$ ) test, ensuring kinematic complexity is statistically significant rather than mere over-fitting.</li>
-                        <li><i class="fa-solid fa-lock text-success mr-2"></i> <strong>Quantum Doublet Tying:</strong> Algebraic constraints physically lock emission doublets. The [O III] $\lambda5007/\lambda4959$ complex is rigidly tied to a 1:2.98 amplitude ratio, while the [N II] $\lambda6583/\lambda6548$ complex is locked to 1:2.95.</li>
-                        <li><i class="fa-solid fa-link text-success mr-2"></i> <strong>Kinematic Outflow Shifts:</strong> In composite systems, the kinematic velocity shifts of broad secondary lines are mathematically forced to match their primary pair, drastically reducing the optimizer's parameter space.</li>
+                        <li><i class="fa-solid fa-scale-balanced text-success mr-2"></i> <strong>$\Delta\text{BIC} \leq -10$ Arbitration:</strong> Nested models (Narrow-Only vs. $[\text{O\,\textsc{iii}}]$ Outflow vs. Broad BLR) must survive a strict Bayesian Information Criterion threshold and physical peak/width vetoes to eliminate false positives.</li>
+                        <li><i class="fa-solid fa-lock text-success mr-2"></i> <strong>Quantum Doublet Tying:</strong> Algebraic constraints lock $[\text{O\,\textsc{iii}}]\ \lambda5007/\lambda4959$ to $2.98:1$ and $[\text{N\,\textsc{ii}}]\ \lambda6583/\lambda6548$ to $2.95:1$, paired with coupled systemic narrow-line velocity offsets ($\Delta v_{\text{narrow}}$).</li>
+                        <li><i class="fa-solid fa-bolt text-success mr-2"></i> <strong>$2\sigma$ Speed Gatekeeper:</strong> Pre-screens weak or absent spectral windows before launching multi-component Levenberg-Marquardt optimization, cutting redundant evaluations while preserving $3\sigma$ upper limits.</li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-5 mb-4 d-flex align-items-center">
-                <div class="code-block w-100">
-# The [O III] Doublet Lock
-params["O_III_4959_broad_amplitude"].set(
-    expr="O_III_5007_broad_amplitude / 2.98"
-)
+                <div class="code-block w-100"># 4-Line Interactive Python API (v3.4)
+from icarus_pkg.api import AGNFitter
+from icarus_pkg.core.containers import Spectrum1D
 
-# Mathematically forcing the outflow velocity
-shift_expr = (
-    "4958.9 + (O_III_5007_broad_center - 5006.8) "
-    "* (4958.9 / 5006.8)"
+spec = Spectrum1D.read(
+    "target.spec.fits", redshift=2.58,
+    preset="jwst_nirspec_medium"
 )
-params["O_III_4959_broad_center"].set(expr=shift_expr)
-                </div>
+result = AGNFitter(spec, preset="jwst_nirspec_medium").fit()
+result.plot("demo_summary.pdf")</div>
             </div>
         </div>
 
-        <!-- Section 3: Visual Output & Astrophysics -->
+        <!-- Section 3: Visual Output, Data Products & Astrophysics -->
         <div class="row reveal delay-300 mt-5 pt-4 border-top reversed" style="border-color: rgba(255,255,255,0.1)!important;">
             <div class="col-lg-5 mb-4 d-flex align-items-center">
-                <div class="code-block w-100">
-ax.step(
-    x[~mask], y[~mask],
-    where="mid",
-    color="#2B2D42", alpha=0.35, zorder=1
-)
-
-ax.plot(
-    x, fit_result.best_fit, 
-    color="#E63946", lw=2.5, zorder=5
-)
-                </div>
+                <div class="code-block w-100"># Standardized Survey Outputs
+├── icarus_fit_&lt;TARGET_ID&gt;.fits  # 3-HDU MEF
+│   ├── HDU 0: Primary Header (Virial Telemetry)
+│   ├── HDU 1: Decomposed 1D Model Spectra
+│   └── HDU 2: Per-Line Kinematic Table
+├── master_survey_catalog.ecsv   # Aggregated QTable
+└── demo_summary_&lt;TARGET_ID&gt;.pdf # 5-Panel Diagnostic</div>
             </div>
             <div class="col-lg-7 mb-4 pl-lg-5">
                 <div class="content-text">
-                    <h3><i class="fa-solid fa-chart-area" style="color: var(--accent-glow);"></i> Hierarchical Plotting & Analysis</h3>
-                    <p>ICARUS enforces a strict visual geometry standard. It suppresses raw spectral arrays and background integration windows to muted, semi-transparent base layers (e.g., slate gray), deliberately elevating the analytical curves and dynamic multi-component fits with high-contrast, high-zorder properties.</p>
-                    <p class="mt-3"><strong>Calculated Astrophysics:</strong></p>
-                    <p class="text-white-50 small">Upon successful convergence, the engine calculates key physical parameters including Virial Black Hole Mass ($\log_{10}(M_{BH}/M_\odot)$), Uncorrected Star Formation Rates (using equivalent base traces like H$\alpha$ or Pa$\beta$), and local RMS boxcar measurements to derive 3-$\sigma$ upper limits for non-detections (denoted visually by $\downarrow$).</p>
+                    <h3><i class="fa-solid fa-chart-area" style="color: var(--accent-glow);"></i> Publication Diagnostics & Virial Waterfall</h3>
+                    <p>ICARUS generates a 5-panel diagnostic summary per target: full-range log-wavelength SED decomposition, zoomed $[\text{O\,\textsc{iii}}]+\text{H}\beta$ and $\text{H}\alpha+[\text{N\,\textsc{ii}}]$ velocity panels with $\pm 3\sigma$ pull strips, a BPT nebular excitation diagram, and an Executive Telemetry Card.</p>
+                    <p class="mt-3"><strong>Automated Astrophysical Yields:</strong></p>
+                    <p class="text-white-50 small">Upon convergence, an automated Virial Waterfall deconvolves instrumental broadening to derive single-epoch Black Hole Masses ($\log_{10}(M_{\text{BH}}/M_\odot)$ via $\text{H}\beta$, $\text{H}\alpha$, $\text{Mg\,\textsc{ii}}$, or $\text{Pa}\beta$), Bolometric Luminosities ($\log L_{\text{bol}}$), Eddington Ratios ($\lambda_{\text{Edd}}$), narrow-line Star Formation Rates, and local RMS $3\sigma$ upper limits.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Section 4: The Dev Engine -->
+        <!-- Section 4: Blind Validation & HPC Scaling -->
+        <div class="row reveal delay-400 mt-5 pt-4 border-top" style="border-color: rgba(255,255,255,0.1)!important;">
+            <div class="col-12 mb-4">
+                <div class="content-text">
+                    <h3><i class="fa-solid fa-microchip text-success"></i> Blind Radiative-Transfer Validation & KU HPC Scaling</h3>
+                    <p>To prevent circular ($A=A$) testing, ICARUS v3.4 was validated against an independent <strong>Cloudy C23</strong> synthetic suite featuring broken accretion disks, host $\text{D}_n4000$ breaks with stellar Balmer absorption, and non-Gaussian <strong>Voigt BLR profiles</strong> on KU High-Performance Computing (HPC) SLURM nodes.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="stat-card">
+                    <div class="stat-value">100%</div>
+                    <div class="text-white small font-weight-bold mt-1">BLAGN & Outflow Recall</div>
+                    <div class="text-white-50" style="font-size: 0.75rem;">0% False Positives (T2 / SF)</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="stat-card">
+                    <div class="stat-value">0.06 dex</div>
+                    <div class="text-white small font-weight-bold mt-1">Virial $M_{\text{BH}}$ Scatter</div>
+                    <div class="text-white-50" style="font-size: 0.75rem;">$\sigma_{\text{MAD}}$, Spearman $r_s = 0.98$</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="stat-card">
+                    <div class="stat-value">27.3&times;</div>
+                    <div class="text-white small font-weight-bold mt-1">40-Core HPC Speedup</div>
+                    <div class="text-white-50" style="font-size: 0.75rem;">Amdahl $f_s = 1.2\%$ ($&gt;4.5\ \text{spec/s}$)</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="stat-card">
+                    <div class="stat-value">4.5 km/s</div>
+                    <div class="text-white small font-weight-bold mt-1">Core $\sigma_v$ RMSE</div>
+                    <div class="text-white-50" style="font-size: 0.75rem;">Deconvolved $[\text{O\,\textsc{iii}}]$ Narrow Core</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: The Dev Engine -->
         <div class="row reveal delay-400 mt-5 pt-4 border-top" style="border-color: rgba(255,255,255,0.1)!important;">
             <div class="col-12 text-center mb-4">
                 <h3><i class="fa-solid fa-terminal text-danger"></i> The Middleware Debugging Engine</h3>
@@ -158,12 +216,15 @@ ax.plot(
             </div>
         </div>
 
-        <!-- Section 5: Assets & Presentations -->
+        <!-- Section 6: Assets & Presentations -->
         <div class="text-center py-5 mt-5 reveal delay-500 border-top" style="border-color: rgba(255,255,255,0.1)!important;">
             <h4 class="text-white mb-3">Project Assets</h4>
-            <div class="d-flex justify-content-center gap-3 mt-4">
-                <a href="assets/pdf/ICARUS.pdf" target="_blank" class="btn btn-outline-success rounded-pill px-4 py-2 font-weight-bold" style="border-width: 2px;">
-                    <i class="fas fa-person-chalkboard mr-2"></i> View ICARUS Presentation
+            <div class="d-flex flex-wrap justify-content-center mt-4">
+                <a href="https://github.com/JHavens2187/Icarus" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light rounded-pill px-4 py-2 font-weight-bold mx-2 my-2" style="border-width: 2px;">
+                    <i class="fab fa-github mr-2"></i> View Source on GitHub
+                </a>
+                <a href="assets/pdf/ICARUS.pdf" target="_blank" class="btn btn-outline-success rounded-pill px-4 py-2 font-weight-bold mx-2 my-2" style="border-width: 2px;">
+                    <i class="fas fa-person-chalkboard mr-2"></i> View ICARUS v3.4 Presentation
                 </a>
             </div>
         </div>
